@@ -61,7 +61,7 @@ div.citation p { margin-top: -.4ex; } /* .citation applied with IE6 JScript */
 
 div#header { /* Transplanted blue bar from Kubrick */
   height: 182px; /* Don't truncate the blue bar */
-  background: url("http://dl.dropboxusercontent.com/u/5494476/kubrickblue.gif");
+  background: url("http://thomastan.github.io/kubrickblue.gif");
   
   text-align: center;
   background-repeat: no-repeat;	/* not necessary */
@@ -83,10 +83,10 @@ div#header { /* Transplanted blue bar from Kubrick */
   font-family: "Latin Modern Caps";
   font-style: normal;
   font-weight: normal;
-  src: url("http://dl.dropboxusercontent.com/u/5494476/LatinModern-SmallCaps.eot");
-  src: url("http://dl.dropboxusercontent.com/u/5494476/LatinModern-SmallCaps.eot?#iefix") format("embedded-opentype"),
-       url("http://dl.dropboxusercontent.com/u/5494476/LatinModern-SmallCaps.woff") format("woff"),
-       url("http://dl.dropboxusercontent.com/u/5494476/LatinModern-SmallCaps.ttf") format('truetype');
+  src: url("http://thomastan.github.io/LatinModern-SmallCaps.eot");
+  src: url("http://thomastan.github.io/LatinModern-SmallCaps.eot?#iefix") format("embedded-opentype"),
+       url("http://thomastan.github.io/LatinModern-SmallCaps.woff") format("woff"),
+       url("http://thomastan.github.io/LatinModern-SmallCaps.ttf") format('truetype');
 }
 
 /* ================ *
