@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Thomas Tan</title>
+  <meta name="description" content="Thomas Tan | my code, info, blog.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="ROBOTS" content="INDEX,FOLLOW">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta property="og:title" content="Thomas Tan">
+  <meta property="og:site_name" content="Thomas Tan">
+  <meta property="og:url" content="">
+  <meta property="og:description" content="Thomas Tan | my code, info, blog.">
+  <meta property="og:type" content="article">
+
+  <link rel="canonical" href="">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://scriptogr.am/thomastan/feed">
+  <link rel="stylesheet" href="http://thomastan.github.io/style.css" title="default">
+  <link rel="stylesheet" href="http://thomastan.github.io/prettify.css">
+  
+  <link rel="alternate stylesheet" href="http://thomastan.github.io/dark.css" title="dark">
+</head>
+
+<body>
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+  
+  <div id="header">
+    <h1 id="logo"><a href="http://scriptogr.am/thomastan" class="makewhite">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="http://thomastan.github.io/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="http://scriptogr.am/thomastan">Home</a>
+    <a href="http://scriptogr.am/thomastan?blog">Blog</a>
+    <a href="http://scriptogr.am/thomastan/tag/code">Code</a>
+    <a href="http://scriptogr.am/thomastan/math">Math</a>
+    <a href="http://scriptogr.am/thomastan/engineering">Engineering</a>
+    <a href="http://scriptogr.am/thomastan/skills">Skills</a>
+    <a href="http://scriptogr.am/thomastan/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    
+    <div class="post single">
+<div class="leftdate">Jan 18, 2038</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/home">Home</a></h3>
+        
+        <p><meta post="home">
+<meta lang="en" translation="fr-ca" title="Accueil"></p>
+
+<p>I'm a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
+
+<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
+
+<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="http://scriptogr.am/thomastan/math#publication">here</a>. For those that don't know where to start, try my <a href="?blog">blog</a>.</p>
+
+<ul>
+<li><p>Engineering <a href="http://scriptogr.am/thomastan/engineering">Thesis Project A/B</a></p></li>
+<li><p><a href="compsci">Computer Science Final Year Project</a></p></li>
+<li><p>(Applied) <a href="http://scriptogr.am/thomastan/math">Mathematics Research Project</a></p></li>
+</ul>
+
+<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
+
+<script>
+/*
+Welcome | Bienvenue
+I completed several final year projects as part of my undergraduate studies. You can follow the links below for more information:
+*/
+</script>
+
+
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Oct 26, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/quickly-test-for-a-power-of-two">Quickly test for a "power of two"</a></h3>
+        
+        <p>For positive integers $k$, use just two to three lines:</p>
+
+<ul>
+<li><p>C/C++:</p>
+
+<pre><code>#include &lt;stdbool.h&gt; // not needed in C++
+
+bool fromDoubling(unsigned k) {
+    return !((k - 1) &amp; k) &amp;&amp; k;
+}
+</code></pre></li>
+<li><p>Python:</p>
+
+<pre><code>def fromDoubling(k):
+    return k and not((k - 1) &amp; k)
+</code></pre></li>
+<li><p>Perl:</p>
+
+<pre><code>use boolean;
+
+sub fromDoubling {
+    sprintf("%b", shift) =~ /^10*$/ ? true : false;
+}
+</code></pre></li>
+</ul>
+
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/python">#python</a></li><li><a href="http://scriptogr.am/thomastan/tag/simple">#simple</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/perl">#perl</a></li><li><a href="http://scriptogr.am/thomastan/tag/power">#power</a></li><li><a href="http://scriptogr.am/thomastan/tag/kiss">#kiss</a></li><li><a href="http://scriptogr.am/thomastan/tag/bitwise">#bitwise</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Oct 14, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/the-min-and-max-functions">The min and max functions</a></h3>
+        
+        <p>Most people naïvely implement the maximum function using five lines:</p>
+
+<pre><code>int max(int a, int b) {  
+    if (a &gt; b)  
+        return a;  
+    else  
+        return b;  
+}  
+</code></pre>
+
+<p>More elegantly, the "if" and "else" conditions can be replaced by the question mark operator <code>?:</code>:</p>
+
+<pre><code>int maximum = a &gt; b ? a : b;  
+</code></pre>
+
+<p>Oftentimes, all three of "if", "else" and "?:" are unavailable to use (such as in low-level hardware design) or are just a pain to implement because of the jumping around involved (when writing things in assembly, per se).  In these cases, an easy way to find the maximum is</p>
+
+<pre><code>a - ((a - b) &amp; -(a &lt; b));
+</code></pre>
+
+<p>A sign change in each of the above implementations will give the minimum.</p>
+
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/hardware">#hardware</a></li><li><a href="http://scriptogr.am/thomastan/tag/math">#math</a></li><li><a href="http://scriptogr.am/thomastan/tag/simple">#simple</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/min">#min</a></li><li><a href="http://scriptogr.am/thomastan/tag/logic">#logic</a></li><li><a href="http://scriptogr.am/thomastan/tag/kiss">#kiss</a></li><li><a href="http://scriptogr.am/thomastan/tag/max">#max</a></li><li><a href="http://scriptogr.am/thomastan/tag/bitwise">#bitwise</a></li><li><a href="http://scriptogr.am/thomastan/tag/assembly">#assembly</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Sep 26, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/a-20-year-old-binary-search-mistake">A 20-year old binary search mistake</a></h3>
+        
+        <p>Binary searching for a certain "key" within a sorted list involves looking at the "middle" element, then, if the key isn't found, looking through either the first or second half of the list.  The binary searching process is repeated on the sublist.</p>
+
+<p>The following implementation, previously used almost everywhere, had a mistake that evaded detection for 20 years:</p>
+
+<p><p><a class="read-more" title="Continue reading 'A 20-year old binary search mistake'" href="http://scriptogr.am/thomastan/post/a-20-year-old-binary-search-mistake">Continue reading</a></p>
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/mistakes">#mistakes</a></li><li><a href="http://scriptogr.am/thomastan/tag/recursion">#recursion</a></li><li><a href="http://scriptogr.am/thomastan/tag/max">#max</a></li><li><a href="http://scriptogr.am/thomastan/tag/overflow">#overflow</a></li><li><a href="http://scriptogr.am/thomastan/tag/searching">#searching</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Sep 14, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/swapping-without-temp">Swapping numbers without a temporary variable</a></h3>
+        
+        <p>Most people do this:</p>
+
+<pre><code>int temp;
+temp = a, a = b, b = temp;
+</code></pre>
+
+<p>when you can do this:</p>
+
+<pre><code>a ^= b ^= a ^= b;
+</code></pre>
+
+<p>Remember, <a href="http://scriptogr.am/thomastan/tag/kiss">KISS</a> --- keep it <a href="http://scriptogr.am/thomastan/post/writing-simple-code">simple</a>, stupid!</p>
+
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/simple">#simple</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/kiss">#kiss</a></li><li><a href="http://scriptogr.am/thomastan/tag/bitwise">#bitwise</a></li><li><a href="http://scriptogr.am/thomastan/tag/xor">#xor</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Aug 24, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/how-operators-save-lines">How operators save lines</a></h3>
+        
+        <p>Operators such as the <em>coälescing</em> (or <em>null-coälescing</em>) operator in Microsoft's C# language are capable of saving you from unnecessary lines of code when writing if-then-else assignment code blocks.  In C# the operator is <code>??</code> and it's also called the "double question mark" operator, but, unlike the ternary "single question mark operator" <code>?:</code>, <code>??</code> only takes two operands; a value to be assigned provided it isn't <em>null</em>, and an alternative for when it is.</p>
+
+<p>An example in C#:</p>
+
+<pre><code>using System;
+
+class Cafeteria {
+    static void Main(string[] args) {
+        serve(null);
+    }
+
+    static void serve(string requested) {
+        string toServe = requested ?? "French Fries";
+        Console.WriteLine(toServe);
+    }
+}
+</code></pre>
+
+<p><p><a class="read-more" title="Continue reading 'How operators save lines'" href="http://scriptogr.am/thomastan/post/how-operators-save-lines">Continue reading</a></p>
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/javascript">#javascript</a></li><li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/simple">#simple</a></li><li><a href="http://scriptogr.am/thomastan/tag/perl">#perl</a></li><li><a href="http://scriptogr.am/thomastan/tag/c-sharp">#c-sharp</a></li><li><a href="http://scriptogr.am/thomastan/tag/operator">#operator</a></li><li><a href="http://scriptogr.am/thomastan/tag/kiss">#kiss</a></li><li><a href="http://scriptogr.am/thomastan/tag/null-coalescing">#null-coalescing</a></li><li><a href="http://scriptogr.am/thomastan/tag/question-mark">#question-mark</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Aug 4, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/writing-simple-code">Writing simple code</a></h3>
+        
+        <p><meta lang="en" translation="fr-CA" title="L'écriture de code simple">
+Complicated code is easy to write.  Simple code is hard to write.  How so?  Because "complicated" in this case doesn't mean "complex" code, it means code that's made unnecessarily complicated; obfuscated and harder to read and harder to understand.</p>
+
+<p>Below are two examples; one calculates the factorial $n!$, the other finds the greatest common denominator (GCD).  Both examples are done in a single line and show how things can be kept minimalistic. <p><a class="read-more" title="Continue reading 'Writing simple code'" href="http://scriptogr.am/thomastan/post/writing-simple-code">Continue reading</a></p>
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/math">#math</a></li><li><a href="http://scriptogr.am/thomastan/tag/simple">#simple</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/recursion">#recursion</a></li><li><a href="http://scriptogr.am/thomastan/tag/factorial">#factorial</a></li><li><a href="http://scriptogr.am/thomastan/tag/gcd">#gcd</a></li><li><a href="http://scriptogr.am/thomastan/tag/euclid">#euclid</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Aug 3, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/factorial-and-ncr-in-scheme">Factorial and nCr() in Scheme</a></h3>
+        
+        <p>Recursive form, starting with $n!$:</p>
+
+<pre><code>(define factorial
+    (lambda (n)
+        (if (or (= n 0) (= n 1))
+            1
+            (* n (factorial (- n 1)))
+)   )   )
+</code></pre>
+
+<p><p><a class="read-more" title="Continue reading 'Factorial and nCr() in Scheme'" href="http://scriptogr.am/thomastan/post/factorial-and-ncr-in-scheme">Continue reading</a></p>
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/math">#math</a></li><li><a href="http://scriptogr.am/thomastan/tag/recursion">#recursion</a></li><li><a href="http://scriptogr.am/thomastan/tag/scheme">#scheme</a></li><li><a href="http://scriptogr.am/thomastan/tag/factorial">#factorial</a></li><li><a href="http://scriptogr.am/thomastan/tag/ncr">#ncr</a></li><li><a href="http://scriptogr.am/thomastan/tag/recursive">#recursive</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Aug 2, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/dont-screw-up-ncr">Don't screw up nCr()</a></h3>
+        
+        <p>You will screw up if you try to implement <code>nCr(int n, int r)</code> using
+$$ {n\choose r} = {n! \over r! (n - r)!}. $$</p>
+
+<p>Here's why: $n!$ will overflow! <p><a class="read-more" title="Continue reading 'Don't screw up nCr()'" href="http://scriptogr.am/thomastan/post/dont-screw-up-ncr">Continue reading</a></p>
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/math">#math</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/probability">#probability</a></li><li><a href="http://scriptogr.am/thomastan/tag/factorial">#factorial</a></li><li><a href="http://scriptogr.am/thomastan/tag/overflow">#overflow</a></li><li><a href="http://scriptogr.am/thomastan/tag/ncr">#ncr</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="post single">
+<div class="leftdate">Jul 24, 2013</div>
+      <div class="wrapper">
+        <h3><a href="http://scriptogr.am/thomastan/post/primality-testing">A short, somewhat efficient, primality test in C</a></h3>
+        
+        <p>Welcome to my first <a href="http://scriptogr.am">Scriptogr.am</a> post.  Onto prime numbers!</p>
+
+<p>By intuition, testing whether a given number is prime or not (primality testing), can be more efficiently done by noting that all prime numbers (above 2 and 3) can be expressed as $6k \pm 1 \le \sqrt{n}$ for $k = 1, 2, 3, \ldots$. <p><a class="read-more" title="Continue reading 'A short, somewhat efficient, primality test in C'" href="http://scriptogr.am/thomastan/post/primality-testing">Continue reading</a></p>
+
+        <ul class="tags">
+<li><a href="http://scriptogr.am/thomastan/tag/code">#code</a></li><li><a href="http://scriptogr.am/thomastan/tag/math">#math</a></li><li><a href="http://scriptogr.am/thomastan/tag/c">#c</a></li><li><a href="http://scriptogr.am/thomastan/tag/prime">#prime</a></li><li><a href="http://scriptogr.am/thomastan/tag/primality">#primality</a></li><li><a href="http://scriptogr.am/thomastan/tag/number-theory">#number-theory</a></li><li><a href="http://scriptogr.am/thomastan/tag/sieve">#sieve</a></li>        </ul>
+      <div class="wrapper"><hr></div>
+      </div>
+    </div>
+
+    
+
+
+    
+    <div class="pagination"><ul>
+<li class="active"><a href="#">1</a></li>
+<li><a href="http://scriptogr.am/thomastan/2">2</a></li>
+<li><a href="http://scriptogr.am/thomastan/3">3</a></li>
+<li class="next"><a href="http://scriptogr.am/thomastan/2">Next</a></li></ul></div>
+
+    <div id="footer">
+      <p>
+        <a href="http://scriptogr.am/thomastan/this-site">This site</a>
+        has been built, tested and modified for IE6 compatibility.
+        © 2012 <a href="http://scriptogr.am/thomastan/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:setContrast()">
+          <img title="Reduce contrast" src="http://thomastan.github.io/globe.png" height="20px">
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+  
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+<script type="text/javascript"> /* google code prettify */
+  for (var i = 0; i < document.getElementsByTagName("pre").length; i++)
+    document.getElementsByTagName("pre")[i].className += "prettyprint";
+  prettyPrint();
+</script>
+
+<meta lang="en" translation="fr-CA" title="Accueil" type="feed">
+  
+<script type="text/javascript"> /* make page i18n aware */
+  var L = new Array();
+  L['en'.toLowerCase()] = 'English';
+  L['fr-ca'.toLowerCase()] = 'Français canadien';
+</script>
+
+<script src="http://thomastan.github.io/i18n.js"></script>
+
+<link href="http://thomastan.github.io/respond-proxy.html" id="respond-proxy">
+<script src="http://thomastan.github.io/respond.min.js"></script>
+<script src="http://thomastan.github.io/respond.proxy.js"></script>
+
+</body>
+</html>                                                                                                                                                                                                                                                                                        
