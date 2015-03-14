@@ -301,6 +301,7 @@ ul li ul { margin-bottom: 0; }
   #menu { text-align: center; }
   #menu a { padding: 6px; }
   #translator { display: block; float: none; padding-bottom: 10px !important; }
+  .onright { visibility: hidden; }
 }
 
 @media print {

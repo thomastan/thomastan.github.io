@@ -62,11 +62,11 @@ div.citation p { margin-top: -.4ex; } /* .citation applied with IE6 JScript */
 div#header { /* Transplanted blue bar from Kubrick */
   height: 182px; /* Don't truncate the blue bar */
   background: url("http://thomastan.github.io/kubrickblue.gif");
-  
+
   text-align: center;
   background-repeat: no-repeat;	/* not necessary */
   background-position: center;	/* not necessary */
-  
+
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -83,10 +83,10 @@ div#header { /* Transplanted blue bar from Kubrick */
   font-family: "Latin Modern Caps";
   font-style: normal;
   font-weight: normal;
-  src: url("http://thomastan.github.io/LatinModern-SmallCaps.eot");
-  src: url("http://thomastan.github.io/LatinModern-SmallCaps.eot?#iefix") format("embedded-opentype"),
-       url("http://thomastan.github.io/LatinModern-SmallCaps.woff") format("woff"),
-       url("http://thomastan.github.io/LatinModern-SmallCaps.ttf") format('truetype');
+  src: url("http://tt.comule.com/font/LatinModern-SmallCaps.eot");
+  src: url("http://tt.comule.com/font/LatinModern-SmallCaps.eot?#iefix") format("embedded-opentype"),
+       url("http://tt.comule.com/font/LatinModern-SmallCaps.woff") format("woff"),
+       url("http://tt.comule.com/font/LatinModern-SmallCaps.ttf") format('truetype');
 }
 
 /* ================ *
@@ -274,7 +274,7 @@ ul li ul { margin-bottom: 0; }
 	height: 1ex; color: #222;
 	font: bold 28px Arial, "Helvetica Neue", "Helvetica", sans-serif;
   }
-  
+
   .blog-description { text-align: left; }
 
   body .wrapper { padding: 0 20px; }
@@ -282,19 +282,21 @@ ul li ul { margin-bottom: 0; }
   body .wrapper .container .wrapper { padding: 0 !important; }
 
   .post .leftdate { float: none; }
-  
+
   div#footer { padding: 0; }
-  
+
   .tags { text-align: center; }
   .tags li a { margin: 0 5px !important; }
-  
+
   /* increase contrast */
   body { background: white; color: #333; }
   .divider hr, .wrapper hr { border: 1px solid white; }
   b, strong, h1, h2, h3, h4 { color: #333 !important; }
-  
+
   #menu { border-bottom: 1px solid #eee; border-top: 1px solid #eee; }
   ul.tags { border-top: 1px solid #eeeeee; }
+
+  .onright { visibility: hidden; }
 }
 
 @media screen and (max-width: 768px) {

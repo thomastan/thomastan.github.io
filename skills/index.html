@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="http://scriptogr.am/thomastan/feed">
   <link rel="stylesheet" href="http://thomastan.github.io/style.css" title="default">
   <link rel="stylesheet" href="http://thomastan.github.io/prettify.css">
-  
+
   <link rel="alternate stylesheet" href="http://thomastan.github.io/dark.css" title="dark">
 </head>
 
@@ -28,7 +27,7 @@
 <div class="leftpad"></div>
 <div class="rightpad"></div>
 <div class="wrapper">
-  
+
   <div id="header">
     <h1 id="logo"><a href="http://scriptogr.am/thomastan" class="makewhite">Thomas Tan</a></h1>
   </div>
@@ -50,9 +49,9 @@
   </div>
 
   <div class="container">
-    
 
-    
+
+
     <div class="post page">
       <h3>Skills</h3>
 
@@ -83,7 +82,7 @@ function enableHighlighting(topic) {
     }
     topic.onmouseout = function() {
         topic.style.backgroundColor = "transparent";
-    }   
+    }
 }
 
 function toggle(desc) {
@@ -96,10 +95,10 @@ function toggle(desc) {
             desc.style.backgroundColor = "transparent";
             desc.lastChild.style.display = "none";
         }
-        
+
         desc.lastChild.style.display = "none";
         desc.title = "nowPopup";
-        
+
     } else {
         desc.onmouseover = function() {
             desc.style.backgroundColor = "#dddddd";
@@ -251,11 +250,11 @@ for (var i = 0; heads && i < heads.length; i++)
         heads[i].innerHTML = "";
         heads[i].appendChild(newTitle);
     }
-        
+
 var short = new Array();
 var descriptions = new Array();
 
-short["linux"] = "Red Hat Enterprise, Ubuntu Server, Novell SUSE, Linux/390, z/Linux.";
+short["linux"] = "Red Hat Enterprise, Ubuntu Server, Novell SUSE, Arch Linux, Linux/390, z/Linux.";
 short["unix"] = "Solaris, BSD, AIX, HP-UX, OS X Server, OS/390, z/OS.";
 short["windows"] = "Server, Embedded, PowerShell, SUA.";
 short["programming"] = "C, C++, C#, Java, COBOL, Fortran, Ada, Python.";
@@ -263,13 +262,13 @@ short["scripting"] = "bash, Bourne, Almquist, Korn, csh, TENEX C shell, Z shell,
 short["libraries"] = "OpenGL, OpenCV, OpenMP, Intel TBB, OpenCL, CUDA.";
 short["ui"] = "Swing, AWT, GTK+, Qt, .NET.";
 short["database"] = "PostgreSQL; MySQL, Oracle, DB2, SQL Server.";
-short["compilers"] = "GCC, Intel, IBM XL, mingw-w64, Visual Studio, WoW64.";
-short["src-control"] = "CVS, SVN, Trac, Rational ClearCase.";
+short["compilers"] = "GCC, Intel, Clang/LLVM, IBM XL, mingw-w64, Visual Studio, WoW64.";
+short["src-control"] = "CVS, SVN, Git, Trac, Rational ClearCase.";
 short["tech-doc"] = "Javadoc, Doxygen, Graphviz, LaTeX.";
-short["webdev"] = "HTML, PHP, Perl, JavaScript, AJAX, JSON, JSP, ASP, Ruby on Rails.";
+short["webdev"] = "HTML, PHP, Perl, JavaScript, AJAX, JSON, AngularJS, JSP, ASP, Ruby on Rails.";
 short["webdev2"] = "Lotus Domino, WebSphere, SharePoint.";
 short["math"] = "MATLAB, Mathematica, R, Maple.";
-short["hardware"] = "Beowulf clusters, IBM Blue Gene, Cell BE, Verilog, VHDL.";
+short["hardware"] = "Beowulf clusters, IBM Blue Gene, Cell BE, Arduino, Galileo, Raspberry Pi, Verilog, VHDL.";
 
 descriptions["linux"] = "", descriptions["unix"] = "";
 descriptions["windows"] = "", descriptions["programming"] = "";
@@ -279,7 +278,7 @@ descriptions["math"] = "", descriptions["scripting"] = "";
 function callback(replacement) {
     for (var tag in replacement) {
         descriptions[tag] = replacement[tag];
-        
+
         var toRemove = document.getElementsByTagName("script");
         for (i = 0; toRemove && i < toRemove.length; i++)
             if (toRemove[i].tagName.toLowerCase() == "script")
@@ -305,19 +304,19 @@ for (var i = 0; topics && i < topics.length; i++) {
     enableHighlighting(topics[i]);
     toggle(topics[i]);
     topics[i].href = "#";
-    
+
     var descs = topics[i].getElementsByTagName("span");
     for (var j = 0; descs && j < descs.length; j++) {
         descs[j].style.display = "none";
-        
+
         for (var id in short)
             if (descs[j].id.toLowerCase() == id) {
                 var textToInsert = document.createTextNode(short[id]);
                 descs[j].parentNode.insertBefore(textToInsert, descs[j]);
             }
-            
+
         var fetcher = new Array();
-                
+
         for (var id in descriptions)
             if (descs[j].id.toLowerCase() == id) {
                 fetcher[j] = document.createElement("script");
@@ -336,7 +335,7 @@ function update() {
             continue;
 
         var descs = topics[i].getElementsByTagName("span");
-        for (var j = 0; descs && j < descs.length; j++) {   
+        for (var j = 0; descs && j < descs.length; j++) {
             for (var id in descriptions)
                 if (descs[j] && descs[j].id && descs[j].id.toLowerCase() == id)
                     descs[j].innerHTML = "<i>" + descriptions[id] + "</i>";
@@ -348,14 +347,14 @@ setTimeout(update, 500);
 setTimeout(update, 2000);
 setTimeout(update, 4000);
 setTimeout(update, 16000);
-        
+
 </script>
 
 
     </div>
 
 
-    
+
     <div class="pagination"></div>
 
     <div id="footer">
@@ -370,7 +369,7 @@ setTimeout(update, 16000);
     </div>
   </div>
 </div>
-  
+
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
   MathJax.Hub.Config({
     jax: ["input/TeX", "output/HTML-CSS"],
@@ -387,7 +386,6 @@ setTimeout(update, 16000);
   prettyPrint();
 </script>
 
-  
 <script type="text/javascript"> /* make page i18n aware */
   var L = new Array();
   L['en'.toLowerCase()] = 'English';
