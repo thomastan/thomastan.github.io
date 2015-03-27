@@ -1,0 +1,7 @@
+callback({
+
+"unix":
+
+"<p>I've worked with a myriad of UNIX and Unix-like servers. At university, I completed a third year course in <i>UNIX Tools</i> (CSE3395) and since beginning my career I've worked with many corporate UNIX servers. Through a combination of building/supporting UNIX server software, workplace training, personal research, and encounters with random (usually BSD for some reason) servers with a daring will to engage where others decline, I've gained knowledge of the differences in the file systems, shells, shared library linking models and licensing terms which lead to incompatibilities between different UNIX/Unix-like platforms.</p><p>A favorite of mine is dealing with how BSD and GNU variants of the same tool behave differently (<code>sed</code>, <code>ls</code>, etc.) and the exciting challenge of using and being restricted to features of the otherwise-extinct Korn, Bourne, Almquist and C shells.</p>"
+
+})

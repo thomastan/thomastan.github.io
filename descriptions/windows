@@ -1,0 +1,7 @@
+callback({
+
+"windows":
+
+"<p>My current interests in the Windows platform are: <ul><li>building all Windows apps in native 64-bit mode (due to my Gentoo syndrome) for 4+ GiB memory support,</li><li>future Windows 8.1+ kernel features,</li><li>compatibility of Unix-based shells, SSH servers, build environments and filters on Windows platforms and native alternatives (PowerShell, batch scripting, Windows SDK),</li><li>the unification of the desktop and mobile Windows operating systems,</li><li>the Windows Embedded line,</li><li>the development and compatibility of the open source ReactOS project.</li></ul></p>"
+
+})

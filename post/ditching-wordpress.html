@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Ditching Wordpress for a newer blogging platform: Scriptogr.am, Jekyll, Pelican and Ghost</title>
+  <meta name="description" content="">
+
+  <link rel="canonical" href="/post/ditching-wordpress">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jun 15, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>Ditching Wordpress for a newer blogging platform: Scriptogr.am, Jekyll, Pelican and Ghost</h3>
+
+    <!--more-->
+<p>This site is powered by <a href="http://scriptogr.am">Scriptogr.am</a>, a new blogging platform (currently in beta) that features <a href="http://dropbox.com">Dropbox</a> integration:</p>
+
+<ul>
+  <li>
+    <p>Posts are written in <a href="http://daringfireball.net/markdown">Markdown</a>, and saved in the <code>Apps/scriptogram/posts/</code> folder of a linked Dropbox account where they will automatically be “markdowned” (styled) to HTML and published to <code>http://scriptogr.am/</code>blogname.  Draft posts saved in <code>Apps/scriptogram/posts/drafts/</code> are not published.</p>
+  </li>
+  <li>
+    <p>The only overhead <em>required</em> for posts, at the minimum, are two plaintext lines at the top of each:</p>
+  </li>
+</ul>
+
+<pre><code>---
+layout: post
+title: Title goes here
+date: YYYY-mm-dd timestamp
+</code></pre>
+
+<p>Oh what a relief it is to be able to write a post without having to log in to <a href="http://wordpress.com">Wordpress</a> or use its syntax.  And if you didn’t already it notice, it just got much easier blog on a mobile device by pushing the post to Scriptogr.am.</p>
+
+<p>Personally, I love the recent direction blogging <em>platforms</em> have taken.  For those that care more about blogging,</p>
+
+<blockquote>
+  <p><em>“Wordpress has grown up.  It’s not really about blogging anymore.  It’s moved on to be about websites and content management… Wordpress, by all rights, is no longer just a blogging platform.” — John O’Nolan, founder of <a href="http://ghost.org">Ghost</a>.</em></p>
+</blockquote>
+
+<p>And as much I admire the power of Wordpress, I love kicking it old school with a static site.  Having a static blog simplifies the hosting of it and reduces security risks.  Wordpress is symptomatic of the times in which it was created, when LAMP stacks and database backends were used in every web development project even when they were perhaps unnecessary.</p>
+
+<p>Along with many bloggers who have dropped Wordpress in favor of a static blog generators have found, the ability to drop the use of a database breathes fresh air into blogging.  I chose Scriptogr.am after trialling with <a href="http://octopress.org">Octopress</a>/<a href="http://jekyllrb.com">Jekyll</a> (written in Ruby)<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and <a href="http://getpelican.com">Pelican</a> (written in Python)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+
+<p>I’ve yet to try <a href="http://ghost.org">Ghost</a>, the exciting new blogging platform “made for love”.  The open source <a href="http://kickstarter.com">Kickstarter</a> project is currently at version 0.3.1 at time of writing (Oct 2013), but is yet to be released to anyone that wasn’t part of their initial funding.</p>
+
+<h4 id="this-site">This site</h4>
+
+<p>One feature I’m missing from my previous <a href="http://wordpress.org">WordPress</a> site is the ability to have it bilingual, as was made possible by the third-party Wordpress plugin <a href="http://qianqin.de/qtranslate">qTranslate</a>.</p>
+
+<p>I have no regrets about losing my bilingual site (if I were in or writing this in Québec I most sincerely would be); my impression of <a href="http://scriptogr.am">Scriptogr.am</a>, static blog generators in general, and my freedom from at least one database, greatly outweighs my allegiance to Wordpress.  I have hope Scriptogr.am and/or Ghost will provide multilingual capabilities in the future, but in the mean time and until then, sorry francophones,</p>
+
+<h3 id="certaines-sections-de-ce-site-sont-disponible-en-anglais-seulement"><em>Certaines sections de ce site sont disponible en anglais seulement.</em></h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Jekyll-based platforms require Ruby 1.9.3, and I was just too lazy to do anything about only having Ruby 1.8.7 that shipped with Mountain Lion (OS X 10.8) – the OS I do most of my work on. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>I ditched Pelican at the first hiccup that occurred, despite my system satisfying its requirements. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/blogging">#blogging</a></li><li><a href="/tag/scriptogram">#scriptogram</a></li><li><a href="/tag/wordpress">#wordpress</a></li><li><a href="/tag/markdown">#markdown</a></li><li><a href="/tag/jekyll">#jekyll</a></li><li><a href="/tag/pelican">#pelican</a></li><li><a href="/tag/ghost">#ghost</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

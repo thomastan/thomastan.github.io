@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | The min and max functions</title>
+  <meta name="description" content="Most people naïvely implement the maximum function using five lines:int max(int a, int b) {    if (a &gt; b)        return a;    else        return b;}More e...">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/min-and-max-functions">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,42 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Oct 14, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>The min and max functions</h3>
+
+    <p>Most people naïvely implement the maximum function using five lines:</p>
+
+<pre><code>int max(int a, int b) {
+    if (a &gt; b)
+        return a;
+    else
+        return b;
+}
+</code></pre>
+
+<p>More elegantly, the “if” and “else” conditions can be replaced by the question mark operator <code>?:</code>:</p>
+
+<pre><code>int maximum = a &gt; b ? a : b;
+</code></pre>
+
+<p>Oftentimes, all three of “if”, “else” and “?:” are unavailable to use (such as in low-level hardware design) or are just a pain to implement because of the jumping around involved (when writing things in assembly, per se).  In these cases, an easy way to find the maximum is</p>
+
+<pre><code>a - ((a - b) &amp; -(a &lt; b));
+</code></pre>
+
+<p>A sign change in each of the above implementations will give the minimum.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/hardware">#hardware</a></li><li><a href="/tag/assembly">#assembly</a></li><li><a href="/tag/bitwise">#bitwise</a></li><li><a href="/tag/logic">#logic</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/max">#max</a></li><li><a href="/tag/min">#min</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

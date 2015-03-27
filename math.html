@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Math</title>
+  <meta name="description" content="my code, info, blog.">
+
+  <link rel="canonical" href="/math">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post page">
+
+  <div>
+    <h3>Math</h3>
+    <p>My honours thesis, <em>“Automated Algorithm Selection for the Traveling Salesman and other $\mathcal{NP}$-hard Problems”</em> involved using <em><a href="http://en.wikipedia.org/wiki/Evolutionary_computing">evolutionary computing</a></em> to better analyze and select algorithms in a visual or automated manner.</p>
+
+<p>The approach taken involves using an innovative combination of high-dimensional data analysis, an evolutionary genetic algorithm and a concave approach to polyhedral theory. The result is the visualization of algorithms from which head-to-head algorithm performance is quantified to form an automated solution to the algorithm selection problem.</p>
+
+<!-- The application was demonstrated on the traveling salesman problem, but can be applied to any problem that is verifiable in linear time but takes non-deterministic polynomial time to solve (the $\mathcal{NP}$-hard class).-->
+
+<blockquote>
+  <p><em>This page anchors all my shared thesis work, including the <a href="#publication">published paper</a> and online <a href="#contents">bite-sized delivery</a> of my thesis as blog posts.  For posts I’ve simply tagged with <a href="/tag/math">#math</a>, go <a href="/tag/math">here</a>.</em></p>
+</blockquote>
+
+<!--
+> _This page anchors all my shared thesis work, including an interactive 3D [algorithm visualization](#), the [published work](#publication) and online [bite-sized delivery](#contents) of my thesis as blog posts.  For posts I've simply tagged with [#math](../tag/math), go [here](../tag/math)._
+-->
+
+<h3 id="publication">Published work</h3>
+<p>DOI: 10.1109/CEC.2012.6252992<br>
+<em>Measuring Algorithm Footprints in Instance Space</em><br>
+- <em>IEEE Congress on Evolutionary Computation</em>, 2012.<br>
+- [<a href="http://thomastan.github.io/paper/cec2012-latex.pdf">pdf</a>] or [<a href="http://thomastan.github.io/paper/cec2012-latex.zip">zip</a>: LaTeX source and files used for generating figures (.txt data)]</p>
+
+<h3 id="contents">Contents</h3>
+<ul>
+  <li>
+    <p><a href="/post/thesis-abstract">Abstract</a></p>
+  </li>
+  <li>
+    <p>Overview</p>
+    <ul>
+      <li><a href="/post/thesis-motivation">Motivation</a></li>
+      <li>Aims</li>
+      <li>Outline</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="/post/algorithm-selection">The Algorithm Selection Problem</a>
+    <ul>
+      <li><a href="/post/benchmarking-algorithms">Benchmarking algorithms</a></li>
+      <li>Problem difficulty and “good” performance</li>
+      <li>Meta-data and sufficiency</li>
+      <li>Application to combinatorial optimization problems</li>
+    </ul>
+  </li>
+  <li><a href="/post/tsp">The Traveling Salesman Problem</a>
+    <ul>
+      <li><a href="/post/tsp#symbols-and-definitions-used">Symbols and deﬁnitions used</a></li>
+      <li><a href="/post/tsp#description">Description</a></li>
+      <li><a href="/post/tsp#mathematical-definitions">Mathematical definitions</a></li>
+    </ul>
+  </li>
+  <li>Evolutionary Computing
+    <ul>
+      <li>Evolutionary algorithms for the TSP
+        <ul>
+          <li>A genetic algorithm, fitness function and 2-tournament selection</li>
+        </ul>
+      </li>
+      <li>Evolved instances</li>
+    </ul>
+  </li>
+  <li>Multivariate Statistics
+    <ul>
+      <li>Dimension reduction and Principal Component Analysis</li>
+      <li>Discriminant analysis</li>
+    </ul>
+  </li>
+  <li>Methodology &amp; Framework</li>
+</ol>
+
+
+    <div><hr></div>
+  </div>
+
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

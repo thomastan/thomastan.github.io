@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Centering a div, the proper way</title>
+  <meta name="description" content="Consider &lt;div class="container"&gt;Center this block, but not this text.&lt;/div&gt;.  Everybody is centering their div’s wrong:      Setting margin-left ...">
+
+  <link rel="canonical" href="/post/centering-divs">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jul 7, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>Centering a div, the proper way</h3>
+
+    <p>Consider <code>&lt;div class="container"&gt;Center this block, but not this text.&lt;/div&gt;</code>.  Everybody is centering their div’s wrong:</p>
+
+<ol>
+  <li>
+    <p>Setting <code>margin-left</code> and <code>margin-right</code> will work, but it won’t be IE6 compatible.</p>
+  </li>
+  <li>
+    <p>Setting the div’s <code>parentNode</code> class to have <code>text-align: center</code> and then setting the div to have <code>text-align: left</code> (or <code>right</code>, or <code>justify</code>) is also incorrect.  You’d have to add <code>content { width: 640px; }</code> for that, but that stops the div from responding to changes in the browser width.  You cannot specify <code>max-width</code> for the <code>.content</code> because that also won’t be IE6 compatible.</p>
+  </li>
+  <li>
+    <p>Using JavaScript disables the better browsers from having <code>@media</code> queries apply to these <code>.content</code> div’s.</p>
+  </li>
+  <li>
+    <p>And, using IE expressions is just wrong.</p>
+  </li>
+</ol>
+
+<!--more-->
+<p>The <strong>proper</strong> way to center a div, with IE6 compatiblity is to do it in pure CSS.  This is achieved by <code>float</code>ing two div’s:</p>
+
+<ul>
+  <li>The left div has <code>float: left;</code> and <code>margin-right: -320px;</code>.</li>
+  <li>The right div has <code>float: right;</code> and <code>margin-left: -320px;</code>.</li>
+  <li>Both have a <code>width: 50%</code> and give both a <code>height: 1px</code>.</li>
+  <li>Now place the div you want centered with <code>overflow: hidden</code>.</li>
+</ul>
+
+<p>Make sense?  You are essentially padding a middle, “centered” div, of width 640 pixels, in between two other div’s.  The only caveat is perhaps a 1px rounding error for odd resolution widths which probably won’t even be noticed.  As close to perfection as you can get.</p>
+
+<p>Here’s all the code collected together:</p>
+
+<ul>
+  <li>
+    <p>HTML:</p>
+
+    <pre><code>&lt;body&gt;
+    &lt;div class="leftpad"&gt;&lt;/div&gt;
+    &lt;div class="rightpad"&gt;&lt;/div&gt;
+    &lt;div class="container"&gt;Center this block, but not this text.&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>CSS:</p>
+
+    <pre><code>.leftpad { float: left; margin-right: -335px; }
+.rightpad { float: right; margin-left: -335px; }
+.leftpad, .rightpad { height: 1px; width: 50%; }
+
+* html .container { float: left; }
+.container { overflow: hidden; }
+</code></pre>
+  </li>
+</ul>
+
+<p>An <strong>ADDED BONUS:</strong> for WebKit browsers (Chrome, Safari, Opera), this will also fix the highlighting of your div, the highlighting no longer spans the full browser width.</p>
+
+<p>You can see all this in action on this site<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>right-click → View page source. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/css">#css</a></li><li><a href="/tag/html">#html</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/proper">#proper</a></li><li><a href="/tag/max-width">#max-width</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/ie6">#ie6</a></li><li><a href="/tag/webdev">#webdev</a></li><li><a href="/tag/div">#div</a></li><li><a href="/tag/centering">#centering</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

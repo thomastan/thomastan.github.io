@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | This site</title>
+  <meta name="description" content="my code, info, blog.">
+
+  <link rel="canonical" href="/this-site">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post page">
+
+  <div>
+    <h3>This site</h3>
+    <p>I believe in love at first sight.  I fell in love the moment I first saw the <a href="http://wordpress.org">Wordpress</a> theme “<a href="http://theme.wordpress.com/retired/kubrick">Kubrick</a>”, the default in Wordpress versions 1.5 through 2.9.  I can’t remember on which blog I first saw it on, but I remember the first time I saw the blue bar replaced with a green and the Kubrick theme replaced with a new default in Wordpress v3, that I still wanted to keep Kubrick along with all its blue fidelity.</p>
+
+<h3 id="transplanting-to-scriptogram">Transplanting to Scriptogr.am</h3>
+<p>I’m no longer on Wordpress, so I transplanted the blue bar from Kubrick to one of the default Scriptogr.am themes (Linearian).  As long as you’re not viewing this site on a smartphone, you’re seeing my custom theme right now.  :-)</p>
+
+<p>The most notable difference should be the change of the accent from a red to match Kubrick’s blue colour (yes, Canadian/Australian 😃).<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>  Several other improvements have been made, but the end result should be that everything looks “just right”.  If you want to know what else has been done to enrich this site, continue reading…</p>
+
+<h3 id="ie6-compatibility">IE6 compatibility</h3>
+<p>Kubrick was never really IE6 compatible (or was it Wordpress to blame?).  With my previous older site, I spent many hours of work to achieve an IE6-compatible correct-looking drop down menu in pure CSS.  Good riddance.  As Scriptogr.am and the default “Linearian” theme have been written atop <a href="http://html5boilerplate.com">HTML5 Boilerplate</a>, things are less of a mess.</p>
+
+<p>Nevertheless, some hacks have been applied while customizing “Linearian” to make this site IE6 backwards compatible.  Most notably, the “wrapper” div is now centered.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></p>
+
+<p>I will continue to target CSS3 browsers with this site, but will always test the site in IE6 and hack a fix if anything doesn’t look satisfactory.</p>
+
+<p>Enjoy :-)</p>
+
+<h3 id="google-code-prettify">Google Code Prettify</h3>
+<p>I actually prefer <a href="http://alexgorbatchev.com/SyntaxHighlighter">SyntaxHighlighter</a> for pretty printing code – its highlighting is more striking.  However, <a href="http://code.google.com/p/google-code-prettify">Google’s</a> does automatic language detection which is also used by Scriptogr.am to some extent, by default.  My <a href="http://thomastan.github.io/prettify.css">prettify stylesheet</a> is a custom one.</p>
+
+<h3 id="mathjax">MathJax</h3>
+<p>Another love of mine is LaTeX ^_*.<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>  I love it in all its glory and can’t live without it, especially the Computer/Latin Modern font.  I often find myself struggling to read papers and sites heavily involving mathematics when they aren’t properly typeset using a LaTeX engine.  I’ve chose to lead by example and render all math on this site how it should be; beautifully, with <a href="http://mathjax.org">MathJax</a>.  Here’s some:
+<script type="math/tex">\begin{gather}
+ax^2 + bx + c = 0 \qquad \implies \quad x={-b \pm \sqrt{b^2 - 4ac} \over 2}. \newline
+\int_0^T B_s\,dB_s = {1 \over 2}(B_T^2 - T).
+\end{gather}</script></p>
+
+<p>By the way, I’m aware my site flies in the face of the typesetting philosophy of using a serif font for the main bodies of text.  But we are in the Web 2.0 stage (maybe even later?) of the internet and for me, even in IE6, the result of Kubrick’s <strong>sans</strong> serif font for main text still looks okay.</p>
+
+<h3 id="custom-fonts">Custom fonts</h3>
+<p>I’ve changed my blog title to be in the “Small Caps” <em>shape</em> of the “Latin Modern” <strong>font</strong>, did you notice?</p>
+
+<p>Yes, custom fonts <a href="http://randsco.com/index.php/2009/07/04/p680"><strong>are</strong></a> are supported in IE6.  Having the custom font appear across different browsers requires having the font in multiple formats: woff (web open font format), eot (embedded open type), ttf (true type), and if you insist, svg (scalable vector graphics).</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Neither the original “Linearian” theme, nor my custom version of it, actually use Scriptogr.am’s accent.  CSS instances of <code>#e14a42</code> were simply replaced with <code>#0081c6</code>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Using pure CSS, no JavaScript, nor Microsoft expressions.  And no, the “wrapper”’s parent is not <code>text-align</code>ed to the center with an overwritting <code>text-align</code>ment of left or justify. See CSS play’s <a href="http://www.cssplay.co.uk/boxes/maxwidth-centered.html">page</a> for how to do this. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>I’ve made the transition XeTeX.  Have you?  And does anyone know, is XeTeX still considered LaTeX? <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <div><hr></div>
+  </div>
+
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

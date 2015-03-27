@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Recursive sorting algorithms</title>
+  <meta name="description" content="Merge sort and Quicksort written (as in this post), in C for ascending order1 and kept as minimal as possible so it’s as easy as possible for adaptation to y...">
+
+  <link rel="canonical" href="/post/recursive-sorting">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Apr 13, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>Recursive sorting algorithms</h3>
+
+    <p>Merge sort and Quicksort written (as in <a href="post/basic-sorting">this post</a>), in C for ascending order<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and kept as minimal as possible so it’s as easy as possible for adaptation to your needs.<!--more--></p>
+
+<h4 id="merge-sort">Merge sort</h4>
+<p>Repeatedly halve the given list until single elements are obtained.  Merge neighboring elements into sorted pairs, then merge each neighboring pair (by selecting elements from both pairs in an ordered fashion) into a sorted sublist.  Continue by merging neighboring sublists into larger sublists until a sorted list is obtained.</p>
+
+<pre><code>void mergesort(int a[], int n);
+void partition(int a[], int left, int right);
+void merge(int a[], int left, int mid, int right);
+
+void mergesort(int a[], int n) {
+    partition(a, 0, n - 1);
+}
+
+void partition(int a[], int left, int right) {
+    if (left != right) {
+        int mid = left + (right - left) / 2;
+
+        partition(a, left, mid);
+        partition(a, mid + 1, right);
+
+        merge(a, left, mid, right);
+    }
+}
+
+void merge(int a[], int left, int mid, int right) {
+    int i = left, j = mid + 1, k = 0;
+    int sorted[right - left];
+
+    while ((i &lt;= mid) &amp;&amp; (j &lt;= right))
+        if (a[i] &lt; a[j])
+            sorted[k++] = a[i++];
+        else
+            sorted[k++] = a[j++];
+
+    while (i &lt;= mid)
+        sorted[k++] = a[i++];
+    while (j &lt;= right)
+        sorted[k++] = a[j++];
+
+    for (i = left, k = 0; i &lt;= right; i++, k++)
+        a[i] = sorted[k];
+}
+</code></pre>
+
+<p>Comments: the recursion in this merge sort code is the <code>partition()</code> call.</p>
+
+<h4 id="quicksort">Quicksort</h4>
+<p>Select a pivot and partition the list in two, with the left list containing elements smaller than the partition and the right having those larger than it.  Repeat on the obtained partitions.</p>
+
+<pre><code>void quicksort(int a[], int n);
+int partition(int a[], int first, int last);
+void sort(int a[], int first, int last);
+
+void quicksort(int a[], int n) {
+    sort(a, 0, n - 1);
+}
+
+void sort(int a[], int first, int last) {
+    int pivot;
+
+    if (first &lt; last) {
+        pivot = partition(a, first, last);
+        sort(a, first, pivot - 1);
+        sort(a, pivot + 1, last);
+    }
+}
+
+int partition(int a[], int first, int last) {
+    int pivot, below, above, temp;
+
+    if (first &lt; last) {
+        pivot = first;
+        below = first, above = last;
+
+        while (below &lt; above) {
+            while (a[below] &lt;= a[pivot] &amp;&amp; below &lt; last)
+                below++;
+                // below holds index of first number above pivot
+            while (a[above] &gt; a[pivot])
+                above--;
+                // above holds index of last number lte to pivot
+
+            if (below &lt; above)
+                temp = a[below], a[below] = a[above], a[above] = temp;
+        }
+
+        temp = a[pivot], a[pivot] = a[above], a[above] = temp;
+
+        return above;
+    }
+}
+</code></pre>
+
+<h4 id="test-code">Test code</h4>
+<p>You can use the following to test:</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a[] = {-3, -2, 5, 7, 37, 2, 8, 19, 28};
+
+    int i, n = sizeof(a) / sizeof(a[0]);
+
+    quicksort(a, n); // or mergesort(a, n);
+
+    for (i = 0; i &lt; n; i++)
+        printf("%d%c", a[i], i == n - 1 ? '\n' : ' ');
+
+    return 0;
+}
+</code></pre>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>You can convert to descending order using a simple sign change. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/sorting">#sorting</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/recursion">#recursion</a></li><li><a href="/tag/merge">#merge</a></li><li><a href="/tag/quick">#quick</a></li><li><a href="/tag/merge-sort">#merge-sort</a></li><li><a href="/tag/quick-sort">#quick-sort</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

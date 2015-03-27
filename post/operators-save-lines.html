@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | How operators save lines</title>
+  <meta name="description" content="Operators such as the coälescing (or null-coälescing) operator in Microsoft’s C# language are capable of saving you from unnecessary lines of code when writi...">
+
+  <link rel="canonical" href="/post/operators-save-lines">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Aug 24, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>How operators save lines</h3>
+
+    <p>Operators such as the <em>coälescing</em> (or <em>null-coälescing</em>) operator in Microsoft’s C# language are capable of saving you from unnecessary lines of code when writing if-then-else assignment code blocks.  In C# the operator is <code>??</code> and it’s also called the “double question mark” operator, but, unlike the ternary “single question mark operator” <code>?:</code>, <code>??</code> only takes two operands; a value to be assigned provided it isn’t <em>null</em>, and an alternative for when it is.</p>
+
+<p>An example in C#:</p>
+
+<pre><code>using System;
+
+class Cafeteria {
+    static void Main(string[] args) {
+        serve(null);
+    }
+
+    static void serve(string requested) {
+        string toServe = requested ?? "French Fries";
+        Console.WriteLine(toServe);
+    }
+}
+</code></pre>
+
+<!--more-->
+<p>Perl 5.10+ also provides for null-coälescing via <code>//</code>:</p>
+
+<pre><code>#!/usr/bin/env perl
+
+$toServe = $requested // "French Fries";
+print $toServe;
+</code></pre>
+
+<p>Code containing null-coälescing operators have equivalents in their same language and in others, written using <code>?:</code>, <code>||</code> or if-then-else statements.</p>
+
+<ol>
+  <li>Take the ternary <code>?:</code> operator for example:
+    <ul>
+      <li><code>string toServe = requested ?? "French Fries";</code></li>
+      <li><code>string toServe = requested ? requested : "French Fries";</code></li>
+    </ul>
+
+    <p>Now comes your first warning: the above two code fragments are only equivalent in C# for the <code>requested == null</code> case.  If <code>requested</code> is the empty string <code>""</code>, the first line with <code>??</code> works as expected, but the second won’t as am empty string is not boolean false.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>  However, it can be adjusted so it works as expected:</p>
+
+    <ul>
+      <li>In C#:<br>
+<code>string toServe = requested.Length &gt; 0 ? requested : "French Fries";</code></li>
+      <li>In C++:<br>
+<code>string toServe = requested.length() &gt; 0? requested : "French Fries";</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>In many languages the logical “OR” operator suffices.  In JavaScript for example, “OR” is <code>||</code>:</p>
+
+    <pre><code>function serve(requested) {
+    var toServe = (requested || "French Fries");
+    alert(toServe);
+}
+</code></pre>
+
+    <p><code>serve()</code> yields “<code>French Fries</code>” and <code>serve("meat")</code> yields “<code>meat</code>”.</p>
+  </li>
+  <li>
+    <p>If you want to replace an if-then-else block with a null-coälescing operator you’ll need to exercise a bit of caution.  The following cannot be converted to use a null-coälescing operator:</p>
+
+    <pre><code>if (winnings)
+    gain = winnings;
+else
+    spent += 1;
+</code></pre>
+
+    <p>Why not?  Because the conditional assignment is done to two differing variables, depending on whether <code>winnings</code> is defined or not.  You also cannot convert the above to use the <code>?:</code> operator in this case.</p>
+  </li>
+</ol>
+
+<p>In conclusion, the null-coälescing “double-question mark” operator is awesome.  For languages without it, you can still use <code>?:</code> or <code>||</code> to shorten code, but you need to pay attention when conditioning on your left operand depending on whether or not your language differentiates 0, empty strings and unassigned variables from <em>null</em>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>C# error: “Cannot implicitly convert type ‘string’ to ‘bool’”. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>C++ error: “could not convert ‘requested’ from ‘std::string {aka std::basic_string<char>}' to 'bool'".</char> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/c-sharp">#c-sharp</a></li><li><a href="/tag/javascript">#javascript</a></li><li><a href="/tag/perl">#perl</a></li><li><a href="/tag/question-mark">#question-mark</a></li><li><a href="/tag/null-coalescing">#null-coalescing</a></li><li><a href="/tag/operator">#operator</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/simple">#simple</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

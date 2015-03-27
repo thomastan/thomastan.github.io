@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Factorial and nCr() in Scheme</title>
+  <meta name="description" content="Recursive form, starting with $n!$:(define factorial    (lambda (n)        (if (or (= n 0) (= n 1))            1            (* n (factorial (- n 1))))    )    )">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/functions-in-scheme">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,49 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Aug 3, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>Factorial and nCr() in Scheme</h3>
+
+    <p>Recursive form, starting with $n!$:</p>
+
+<pre><code>(define factorial
+    (lambda (n)
+        (if (or (= n 0) (= n 1))
+            1
+            (* n (factorial (- n 1)))
+)    )    )
+</code></pre>
+
+<!--more-->
+<p>nCr using $\displaystyle{ {n \choose r} = {n! \over r!(n-r)!} }$:</p>
+
+<pre><code>(define ncr
+    (lambda (n r)
+        (/ (factorial n) (* (factorial r) (factorial (- n r))))
+)    )
+</code></pre>
+
+<p>and a safer version of nCr:</p>
+
+<pre><code>(define ncr
+    (lambda (n r)
+        (if (or (= n r) (= r 0))
+            1
+            (+ (ncr (- n 1) (- r 1)) (ncr (- n 1) r))
+)    )    )
+</code></pre>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/scheme">#scheme</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/recursive">#recursive</a></li><li><a href="/tag/recursion">#recursion</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

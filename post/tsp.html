@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | The Traveling Salesman Problem</title>
+  <meta name="description" content="Symbols and definitions usedThe TSP model1 consists of the input graph which can be either:  a complete undirected graph $G=(V,E)$  or a complete directed gr...">
+
+  <link rel="canonical" href="/post/tsp">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jun 9, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>The Traveling Salesman Problem</h3>
+
+    
+<p><br></p>
+
+<h3 id="symbols-and-definitions-used">Symbols and definitions used</h3>
+
+<p>The TSP model<sup id="fnref:laporte"><a href="#fn:laporte" class="footnote">1</a></sup> consists of the input graph which can be either:</p>
+
+<ul>
+  <li>a complete undirected graph $G=(V,E)$</li>
+  <li>or a complete directed graph $G=(V,A)$</li>
+</ul>
+
+<p>where</p>
+
+<ul>
+  <li>$V=\{1,\ldots, n\}$ is the set of vertices or locations or ‘cities’,</li>
+  <li>$S$ is a non-empty proper subset of $V$,</li>
+  <li>$E=\{(i,j):i,j\in V,i&lt;j\}$ is the set of edges,</li>
+  <li>$A=\{(i,j):i,j\in V,i\ne j\}$ is the set of arcs,</li>
+  <li>$C=(c_{i,j})$ is the cost matrix defined on $E$ or $A$,</li>
+  <li>$k$ is the total cost of the tour,</li>
+</ul>
+
+<p>and tours are defined using $X_{i,j}=1$ when city $i$ is followed by city $j$ and 0 otherwise, subject to the constraints in $\eqref{eq:condition1}$, $\eqref{eq:condition2}$, $\eqref{eq:condition3}$ below.</p>
+
+<h3 id="description">Description</h3>
+
+<p>The Traveling Salesman Problem (TSP) is <em>described</em> as: <!--more--></p>
+
+<blockquote>
+  <p>“Given $n$ cities, a salesman must complete a tour of minimum cost by visiting each city. The tour must be a Hamiltonian cycle, where each city must be visited once and only once, with the finish being at the starting city. Traveling from city $i$ to $j$ has cost $c(i,j)$ and the tour has total cost equal to the sum of the costs.”</p>
+</blockquote>
+
+<p>The TSP is an $\mathcal{NP}$-hard combinatorial optimization problem.</p>
+
+<p>There also exists the corresponding <em>decision</em> version of the TSP.  This is a binary decision problem of determining</p>
+
+<blockquote>
+  <p>“Given a length $\ell$, does there exist any tour shorter than $\ell$? (The tour must be the Hamiltonian cycle, and the informal ‘length’ mentioned is the total cost and the sum of individual costs).”</p>
+</blockquote>
+
+<p>The decision problem is $\mathcal{NP}$-complete.</p>
+
+<h3 id="mathematical-definitions">Mathematical definitions</h3>
+
+<p>The mathematical definitions of the TSP and its associated decision problem<sup id="fnref:clrs"><a href="#fn:clrs" class="footnote">2</a></sup> actually generalize the aforementioned descriptions. It is more natural to introduce the formal language of the latter problem first:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+\mathrm{TSP}=\{\left\langle G,c,k\right\rangle :\;  & G=(V,A)\text{ is a complete directed graph,}\newline
+ & c\text{ is a function from }V\times V\rightarrow\mathbb{Z},\newline
+ & k\in\mathbb{Z},\text{ and}\newline
+ & G\text{ has a traveling salesman tour with cost at most }k\}.\end{aligned} %]]></script>
+
+<p>where the tour is subject to being a Hamiltonian <em>circuit</em>. That is, if $X_{i,j}=1$ denotes location $i$ is followed by location $j$ in the tour (and 0 otherwise), then</p>
+
+<script type="math/tex; mode=display">\begin{gather}
+X_{i,j}\in\{0,1\}\text{ for all }i\text{ and }j.\label{eq:condition1}\newline
+\sum_{i}X_{i,j}=1\text{ for all }j,\label{eq:condition2}\newline
+\sum_{j}X_{i,j}=1\text{ for all }i.\label{eq:condition3}\end{gather}</script>
+
+<p>The combinatorial optimization problem<sup id="fnref:caor"><a href="#fn:caor" class="footnote">3</a></sup> is then the task to</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+\text{minimize } & \sum_{i=1}^{n}\sum_{j=1}^{n}c(i,j)X_{i,j}\newline
+\text{subject to } & \sum_{i\in S}\sum_{j\in S}X_{i,j}\le|S|-1\text{ and }\eqref{eq:condition1},\eqref{eq:condition2},\eqref{eq:condition3}.\end{aligned} %]]></script>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:laporte">
+      <p>Gilbert Laporte, <em><a href="http://neumann.hec.ca/chairedistributique/common/laporte-short.pdf‎">A Short History of the Traveling Salesman Problem</a></em>. Canada Research Chair in Distribution Management, Centre for Research on Transportation (CRT) and GERAD HEC, Montréal QC, Canada (2006). <a href="#fnref:laporte" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:clrs">
+      <p>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, <em><a href="http://en.tjcities.com/wp-content/uploads/Books/Algorithms_3rd.pdf">Introduction to Algorithms (3rd edition)</a></em>, (2009). MIT Press, Cambridge MA, USA. <a href="#fnref:clrs" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:caor">
+      <p>Kate Smith-Miles and Leo Lopes, <em>“Measuring instance difficulty for combinatorial optimization problems”</em>. Computers and Operations Research, Vol. 39, Iss. 5, pp. 875-889 (May 2012). Elsevier Science Ltd., Oxford, England, UK. <a href="#fnref:caor" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

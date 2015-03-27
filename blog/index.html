@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Blog</title>
+  <meta name="description" content="my code, info, blog.">
+
+  <link rel="canonical" href="/blog/">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    
+  
+
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Oct 26, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/power-of-two">Quickly test for a "power of two"</a></h3>
+
+        <p>For positive integers $k$, use just two to three lines:</p>
+
+<ul>
+  <li>
+    <p>C/C++:</p>
+
+    <pre><code>#include &lt;stdbool.h&gt; // not needed in C++
+
+bool fromDoubling(unsigned k) {
+    return !((k - 1) &amp; k) &amp;&amp; k;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Python:</p>
+
+    <pre><code>def fromDoubling(k):
+    return not((k - 1) &amp; k) and k
+</code></pre>
+  </li>
+  <li>
+    <p>Perl:</p>
+
+    <pre><code>use boolean;
+
+sub fromDoubling {
+    sprintf("%b", shift) =~ /^10*$/ ? true : false;
+}
+</code></pre>
+  </li>
+</ul>
+
+
+
+        
+        
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/perl">#perl</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/power">#power</a></li><li><a href="/tag/bitwise">#bitwise</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Oct 14, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/min-and-max-functions">The min and max functions</a></h3>
+
+        <p>Most people naïvely implement the maximum function using five lines:</p>
+
+<pre><code>int max(int a, int b) {
+    if (a &gt; b)
+        return a;
+    else
+        return b;
+}
+</code></pre>
+
+<p>More elegantly, the “if” and “else” conditions can be replaced by the question mark operator <code>?:</code>:</p>
+
+<pre><code>int maximum = a &gt; b ? a : b;
+</code></pre>
+
+<p>Oftentimes, all three of “if”, “else” and “?:” are unavailable to use (such as in low-level hardware design) or are just a pain to implement because of the jumping around involved (when writing things in assembly, per se).  In these cases, an easy way to find the maximum is</p>
+
+<pre><code>a - ((a - b) &amp; -(a &lt; b));
+</code></pre>
+
+<p>A sign change in each of the above implementations will give the minimum.</p>
+
+
+
+        
+        
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/hardware">#hardware</a></li><li><a href="/tag/assembly">#assembly</a></li><li><a href="/tag/bitwise">#bitwise</a></li><li><a href="/tag/logic">#logic</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/max">#max</a></li><li><a href="/tag/min">#min</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Sep 26, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/binary-search-mistake">A 20-year old binary search mistake</a></h3>
+
+        <p>Binary searching for a certain “key” within a sorted list involves looking at the “middle” element, then, if the key isn’t found, looking through either the first or second half of the list.  The binary searching process is repeated on the sublist.</p>
+
+<p>The following implementation, previously used almost everywhere, had a mistake that evaded detection for 20 years:</p>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'A 20-year old binary search mistake'" href="/post/binary-search-mistake"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/mistakes">#mistakes</a></li><li><a href="/tag/max">#max</a></li><li><a href="/tag/overflow">#overflow</a></li><li><a href="/tag/recursion">#recursion</a></li><li><a href="/tag/searching">#searching</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Sep 14, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/swapping-without-temp">Swapping numbers without a temporary variable</a></h3>
+
+        <p>Most people do this:</p>
+
+<pre><code>int temp;
+temp = a, a = b, b = temp;
+</code></pre>
+
+<p>when you can do this:</p>
+
+<pre><code>a ^= b ^= a ^= b;
+</code></pre>
+
+<p>Remember, <a href="../tag/kiss">KISS</a> — keep it <a href="writing-simple-code">simple</a>, stupid!</p>
+
+
+
+        
+        
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/xor">#xor</a></li><li><a href="/tag/bitwise">#bitwise</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Aug 24, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/operators-save-lines">How operators save lines</a></h3>
+
+        <p>Operators such as the <em>coälescing</em> (or <em>null-coälescing</em>) operator in Microsoft’s C# language are capable of saving you from unnecessary lines of code when writing if-then-else assignment code blocks.  In C# the operator is <code>??</code> and it’s also called the “double question mark” operator, but, unlike the ternary “single question mark operator” <code>?:</code>, <code>??</code> only takes two operands; a value to be assigned provided it isn’t <em>null</em>, and an alternative for when it is.</p>
+
+<p>An example in C#:</p>
+
+<pre><code>using System;
+
+class Cafeteria {
+    static void Main(string[] args) {
+        serve(null);
+    }
+
+    static void serve(string requested) {
+        string toServe = requested ?? "French Fries";
+        Console.WriteLine(toServe);
+    }
+}
+</code></pre>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'How operators save lines'" href="/post/operators-save-lines"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c-sharp">#c-sharp</a></li><li><a href="/tag/javascript">#javascript</a></li><li><a href="/tag/perl">#perl</a></li><li><a href="/tag/question-mark">#question-mark</a></li><li><a href="/tag/null-coalescing">#null-coalescing</a></li><li><a href="/tag/operator">#operator</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/simple">#simple</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Aug 4, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/simple-code">Writing simple code</a></h3>
+
+        <meta lang="en" translation="fr-CA" title="L'écriture de code simple" />
+
+<p>Complicated code is easy to write.  Simple code is hard to write.  How so?  Because “complicated” in this case doesn’t mean “complex” code, it means code that’s made unnecessarily complicated; obfuscated and harder to read and harder to understand.</p>
+
+<p>Below are two examples; one calculates the factorial $n!$, the other finds the greatest common divisor (GCD).  Both examples are done in a single line and show how things can be kept minimalistic.</p>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Writing simple code'" href="/post/simple-code"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/c++">#c++</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/math">#math</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/gcd">#gcd</a></li><li><a href="/tag/euclid">#euclid</a></li><li><a href="/tag/recursion">#recursion</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Aug 3, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/functions-in-scheme">Factorial and nCr() in Scheme</a></h3>
+
+        <p>Recursive form, starting with $n!$:</p>
+
+<pre><code>(define factorial
+    (lambda (n)
+        (if (or (= n 0) (= n 1))
+            1
+            (* n (factorial (- n 1)))
+)    )    )
+</code></pre>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Factorial and nCr() in Scheme'" href="/post/functions-in-scheme"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/scheme">#scheme</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/recursive">#recursive</a></li><li><a href="/tag/recursion">#recursion</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Aug 2, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/dont-screw-up-ncr">Don't screw up nCr()</a></h3>
+
+        <p>You will screw up if you try to implement <code>nCr(int n, int r)</code> using
+<script type="math/tex">{n\choose r} = {n! \over r! (n - r)!}.</script></p>
+
+<p>Here’s why: $n!$ will overflow!</p>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Don't screw up nCr()'" href="/post/dont-screw-up-ncr"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/probability">#probability</a></li><li><a href="/tag/overflow">#overflow</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/factorial">#factorial</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+
+    <meta type="feed">
+
+    <div class="pagination">
+      <ul>
+        
+
+        
+        
+        <li class="active"><a href="#">1</a></li>
+        
+        
+        
+        <li><a href="/blog/2">2</a></li>
+        
+        
+        
+        <li><a href="/blog/3">3</a></li>
+        
+        
+
+        
+        <li class="next"><a href="/blog/2">Next</a></li>
+        
+        <br><a href="/archive">View all</a>
+      </ul>
+    </div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

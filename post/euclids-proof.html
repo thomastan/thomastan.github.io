@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Proof of Euclid's algorithm</title>
+  <meta name="description" content="The greatest common denominator of two integers $a,b\in\mathbb{Z}$,can be solved using Euclid’s algorithm for $\gcd(a,b)$ in$\{n\in \mathbb{N}_0 \mid 0 \le n...">
+
+  <link rel="canonical" href="/post/euclids-proof">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Mar 10, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>Proof of Euclid's algorithm</h3>
+
+    <p>The <em>greatest common denominator</em> of two integers $a,b\in\mathbb{Z}$,
+can be solved using Euclid’s algorithm for $\gcd(a,b)$ in
+$\{n\in \mathbb{N}_0 \mid 0 \le n\le \left\lfloor 5\log_{10}\min(a,b) \right\rfloor \}$
+iterations.</p>
+
+<p>This proof consists of three parts. <!--more--> This first part shows that Euclid’s
+algorithm yields some common divisor of $a$ and $b$ less than or equal
+to the gcd. The second part shows this same divisor is greater than or
+equal to the gcd. After the implicating equality, a bound for the number
+of iterations is derived.</p>
+
+<ol>
+  <li>
+    <p>Assert $a&gt;b$ and Euclid’s algorithm recurrence relation of
+<script type="math/tex">\begin{gather}r(k-2)=q(k)r(k-1)+r(k),\label{eq:euclids-algorithm}\end{gather}</script>
+where $r_{k}\prec r_{k+1}$, $\{k\in\mathbb{N}_{0}\mid0\le k\le n\}$,
+$q(k)$ is the quotient at the $k$-th iteration, and $a$ and $b$ are
+the initial values for $r(k)$ (at $k=0$, $r(-2)=a$ and $r(-1)=b$).
+Also, in \eqref{eq:euclids-algorithm}, $r(k-1)&gt;r(k)$ for all $k\le n$.</p>
+
+    <p>The remainder at the terminating $n$-th iteration is $r(n)=0$, so
+<script type="math/tex">r(n-2)=q(n)r(n-1)</script> revealing that $r(n-1)$ exactly divides
+$r(n-2)$. Iterating \eqref{eq:euclids-algorithm} at $k=n-1$,
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+r(n-3) & =q(n-1)r(n-2)+r(n-1)\newline
+ & =q(n-1)[q(n)r(n-1)]+r(n-1)\newline
+ & =[q(n-1)q(n)+1]r(n-1)\end{aligned} %]]></script>
+and by generalization, $r(n-1)$ exactly divides all preceding
+$r(k)$, including $a$ and $b$. Because this, by definition, means
+that $r(n-1)$ is a divisor of $a$ and $b$
+<script type="math/tex">\begin{equation}r(n-1)\le\gcd(a,b).\label{eq:gcd-bound-lower}\end{equation}</script></p>
+  </li>
+  <li>
+    <p>Now consider the natural numbers $\{c,m,n\in\mathbb{N}\}$ where $c$
+can exactly divide both $a$ and $b$. Because $c$ is a common divisor
+of $a$ and $b$ (not necessarily the biggest), by Bézout’s identity:
+<script type="math/tex">\begin{equation}a=mc\qquad\qquad\qquad b=nc.\label{bézouts-identity}\end{equation}</script>
+Now, from \eqref{eq:euclids-algorithm} we have
+\begin{align}
+ &amp;  &amp; a &amp; =q(0)b+r(0)\label{eq:r0}\newline
+ &amp;  &amp; b &amp; =q(1)r(0)+r(1)\label{eq:r1}\newline
+ &amp;\smash{\left\{
+\vphantom{\begin{array}{c} 1\newline 2\newline 3\newline 4\newline 5\newline 6 \end{array}}
+\right.}  &amp; r(0) &amp; =q(2)r(1)+r(2)\nonumber \newline
+ &amp;  &amp; r(1) &amp; =q(3)r(2)+r(3)\nonumber \newline
+ &amp;  &amp;  &amp; \ \,\vdots\nonumber
+\end{align}
+Solving \eqref{eq:r0} for $r(0)$ using \eqref{bézouts-identity}
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+r(0) & =a-q(0)b\newline
+ & =mc-q(0)nc\newline
+ & =[m-q(0)n]c\end{aligned} %]]></script>
+we have that $c$ must exactly divide $r(0)$. By repeating this
+procedure<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>, it can be generalized that $c$ divides $r(1)$, $r(2)$
+and all other subsequent, smaller remainders $r(k)$. The largest of
+these $c$, $\gcd(a,b)$ will divide $r(n-1)$, leaving $r(n)=0$, and
+so
+<script type="math/tex">\begin{equation}\gcd(a,b)\le r(n-1).\label{eq:gcd-bound-upper}\end{equation}</script>
+Recalling the inequality from the first stage
+\eqref{eq:gcd-bound-lower}, and combining it with \eqref{eq:gcd-bound-upper}
+for consistency, we have
+<script type="math/tex">\begin{gather}r(n-1)\le\gcd(a,b)\le r(n-1)\newline \implies \qquad \gcd(a,b) = r(n-1).\qquad\ \end{gather}</script>
+In summary, as $k$ iterates through $k=0,…,n$,
+$a\mapsto b\mapsto r(0)\mapsto\ldots\mapsto r(n-2)$ in \eqref{eq:r0},
+and $b\mapsto r(0)\mapsto r(1)\mapsto\ldots\mapsto r(n-1)$ in
+ \eqref{eq:r1}, and thus
+<script type="math/tex">% <![CDATA[
+\begin{aligned}\gcd(a,b) & =\gcd(b,r(0))=\gcd(r(0),r(1))=\ldots \newline
+&=\gcd(r(n-2),r(n-1) =r(n-1).\end{aligned} %]]></script></p>
+  </li>
+  <li>
+    <p>For $n$ steps and a pair of natural numbers $a,b\in\mathbb{N}$ with
+$a&gt;b$, the Fibonacci numbers $F_{n+2}$ and $F_{n+1}$ are the
+smallest $a$ and $b$ possible, proved by induction as follows:</p>
+
+    <ul>
+      <li>
+        <p>For $n=1$: $b$ divides $a$ with no remainder, and the smallest
+possible natural numbers for this are $a=2$ and $b=1$. It is
+clear here that $a=F_{3}$ and $b=F_{2}$.</p>
+      </li>
+      <li>
+        <p>Assume the result holds up to $n=m-1$.</p>
+      </li>
+      <li>
+        <p>Inducing $n=m$:
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+a & =q(0)b+r(0)\newline
+b & =q(1)r(0)+r(1)\end{aligned} %]]></script>
+By the recursion $m-1$ steps were required to find
+$\gcd(b,r(0))$, whose smallest values are $F_{m+1}$ and $F_{m}$.
+The smallest value of $a$ is therefore when $q(0)=1$, which
+gives $a=b+r(0)=F_{m+1}+F_{m}=F_{m+2}$.</p>
+      </li>
+    </ul>
+
+    <p>Now, for $n$ iterations, the smaller of the two natural numbers
+$b\ge F_{n+1}$. As $F_{n+1}\ge\phi^{n-1}$ for golden ratio
+$\phi=\frac{1+\sqrt{5}}{2}$,</p>
+
+    <p><script type="math/tex">% <![CDATA[
+\begin{aligned}
+b & \ge\bigg(\frac{1+\sqrt{5}}{2}\bigg)^{n-1}\approx(1.1680)^{n-1}\newline
+n-1 & \le\log_{\phi}b\end{aligned} %]]></script>
+Using $\log_{10}\phi&gt;\frac{1}{5}$,
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+n-1 & <5\log_{10}\phi\log_{\phi}b\newline
+ & <5\log_{10}b+1\newline
+n & \le5\log_{10}b.\end{aligned} %]]></script></p>
+
+    <p>As $n\in \mathbb{N}_{0}$,
+$n\le\left\lfloor 5\log_{10}\min(a,b)\right\rfloor $.</p>
+  </li>
+</ol>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Solving \eqref{eq:r0} for $r(1)$:</p>
+
+      <script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+r(1) & =b-q(1)r(0)\newline
+ & =nc-q(1)[m-q(0)n]c=[n-q(1)(m-q(0)n)]c\end{aligned} %]]></script>
+
+      <p>and so $c$ divides $r(1)$. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/euclid">#euclid</a></li><li><a href="/tag/gcd">#gcd</a></li><li><a href="/tag/proof">#proof</a></li><li><a href="/tag/bezout">#bezout</a></li><li><a href="/tag/bound">#bound</a></li><li><a href="/tag/complexity">#complexity</a></li><li><a href="/tag/golden-ratio">#golden-ratio</a></li><li><a href="/tag/fibonacci">#fibonacci</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

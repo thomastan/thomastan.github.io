@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Isolated Python environments %%% DRAFT %%%</title>
+  <meta name="description" content="You should only ever need (admin access) to globally install two Python packages:sudo easy_install pipsudo pip install virtualenvThe first is pip and this al...">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/isolated-python-environments">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,46 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Dec 31, 2014
   </div>
 
+  <div class="wrapper">
+    <h3>Isolated Python environments %%% DRAFT %%%</h3>
+
+    <p>You should only ever need (admin access) to globally install two Python packages:</p>
+
+<pre><code>sudo easy_install pip
+sudo pip install virtualenv
+</code></pre>
+
+<p>The first is <code>pip</code> and this allows you to install the enabling <code>virtualenv</code>.  With <code>virtualenv</code>, you can have isolated Python environments, each with their own copy of <code>pip</code>.</p>
+
+<p>Now <code>ch</code> into the root of a project directory and run</p>
+
+<pre><code>virtualenv env
+source env/bin/activate
+</code></pre>
+
+<p>This creates the Python environment in <code>env/</code> and activates the environment so the project uses env/bin/python.  Add <code>env/</code> to .gitignore (or similar) if you’re using a version control system.</p>
+
+<p>With <code>deactivate</code>, the <code>env/bin/deactivate</code> binary will bring you back to your normal environment.</p>
+
+<h4 id="requirements-files">Requirements files</h4>
+<p>You can state and install dependencies in your Python environments by placing them in the <code>requirements.txt</code> file in a project’s root directory.  These dependencies are installed with</p>
+
+<pre><code>env/bin/pip install -r requirements.txt
+</code></pre>
+
+<p>Have fun installing as many Python packages as you’d like without polluting your systems!</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/virtualenv">#virtualenv</a></li><li><a href="/tag/pip">#pip</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

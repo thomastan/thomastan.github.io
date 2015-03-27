@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Using SSH keys</title>
+  <meta name="description" content="Using SSH keys  Generate a key pair with ssh-keygen.  Place:          public key on server: ~/.ssh/authorized_keys.      private key on client: ~/.ssh/id_rsa...">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/using-ssh-keys">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,34 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Feb 18, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>Using SSH keys</h3>
+
+    <p>Using SSH keys</p>
+
+<ol>
+  <li>Generate a key pair with <code>ssh-keygen</code>.  Place:
+    <ul>
+      <li>public key on server: <code>~/.ssh/authorized_keys</code>.</li>
+      <li>private key on client: <code>~/.ssh/id_rsa</code>.</li>
+    </ul>
+  </li>
+  <li>Make your private key private (mode 600 = only you the owner can read/write): <code>chmod 600 ~/.ssh/id_rsa</code>.</li>
+</ol>
+
+<p>If you generate a key pair without a passphrase, anybody who captures your private key can access servers with its public key counterpart.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/ssh">#ssh</a></li><li><a href="/tag/keys">#keys</a></li><li><a href="/tag/private">#private</a></li><li><a href="/tag/public">#public</a></li><li><a href="/tag/remote">#remote</a></li><li><a href="/tag/access">#access</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

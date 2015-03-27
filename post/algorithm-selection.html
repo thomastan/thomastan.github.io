@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | The Algorithm Selection Problem</title>
+  <meta name="description" content="The Algorithm Selection Problem (ASP) involves selecting an algorithm, from among those in a portfolio, that will perform effectively or good or best on a pr...">
+
+  <link rel="canonical" href="/post/algorithm-selection">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jun 10, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>The Algorithm Selection Problem</h3>
+
+    <p>The Algorithm Selection Problem (ASP) involves selecting an algorithm, from among those in a portfolio, that will perform effectively or good or best on a problem instance.</p>
+
+<p>It is important to make the distinction between a problem and its instances.  A problem is the requirement to find an output subject to constraints.  An instance of a problem is one of many (possibly infinite) configurations of the problem and acts as the input to to which the constraints are applied.</p>
+
+<p>Rice’s framework<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> introduces an abstract model to clarify consideration of the ASP.  The abstract model<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> is shown in Figure 1 and its items are described below.</p>
+
+<figure>
+<img src="http://thomastan.github.io/img/rice.svg" />
+<figcaption>Figure 1. An abstract model for algorithm selection from Rice's framework.</figcaption>
+</figure>
+<!--more-->
+
+<dl>
+  <dt>problem space $\mathcal{P}$</dt>
+  <dd>This is the problem at hand. $\mathcal{P}$ may represent the traveling salesman problem, the knapsack problem, graph colouring, or any other given problem.</dd>
+  <dt>problem instance $x$</dt>
+  <dd>A particular configuration of $\mathcal{P}$ to be solved.</dd>
+  <dt>feature space $\mathcal{F}$</dt>
+  <dd>Contains measurable instance characteristics.</dd>
+  <dt>instance features $f(x)$</dt>
+  <dd>The measured features of instance $x$ which map it from $\mathcal{P}$ to $\mathcal{F}$.</dd>
+  <dt>algorithm selection $S(f(x))$</dt>
+  <dd>The selection mapping features to $\alpha$.</dd>
+  <dt>$\alpha$</dt>
+  <dd>An algorithm that solve instances of problem type $\mathcal{P}$.</dd>
+  <dt>algorithm space $\mathcal{A}$</dt>
+  <dd>The portfolio of candidate algorithms.  When counting algorithms, those which are otherwise identical except in some numeric parameter are not considered different.</dd>
+  <dt>performance space $\mathcal{Y}$</dt>
+  <dd>The space in which algorithm performance is measured.</dd>
+  <dt>performance mapping $y$</dt>
+  <dd>How algorithm $\alpha$ performed on instance $x$.</dd>
+</dl>
+
+<p>Within Rice’s framework, our goal to solve the ASP can be stated as:</p>
+
+<blockquote>
+  <p>Given problem instance $x\in\mathcal{P}$ with features $f(x)\in\mathcal{F}$, find the algorithm selection mapping <script type="math/tex">\alpha = S(f(x))</script> such that the selected algorithm $\alpha\in\mathcal{A}$ maximizes the performance mapping $y(\alpha, x)\in\mathcal{Y}$.</p>
+</blockquote>
+
+<p>Note that the selection mapping is $S(f)$ and depends only on features, yet it is the problem instance $x$ that has its performance evaluated.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>John R. Rice, <em><a href="http://docs.lib.purdue.edu/cstech/99">The Algorithm Selection Problem</a></em>, Computer Science Technical Reports, Paper 99 (1975). Purdue University, West Fayette  IN, USA. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><em>Ibid</em>, p. 9. This is Rice’s model with selection based on <em>features</em> – an improvement of a basic model lacking features but otherwise identical.  Rice introduced a basic model (p. 3) and supplemented it with features only to systematize the introduction of problem subclasses. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/asp">#asp</a></li><li><a href="/tag/algorithm">#algorithm</a></li><li><a href="/tag/algorithm-selection">#algorithm-selection</a></li><li><a href="/tag/rice">#rice</a></li><li><a href="/tag/features">#features</a></li><li><a href="/tag/model">#model</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

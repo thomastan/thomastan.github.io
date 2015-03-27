@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Benchmarking algorithms</title>
+  <meta name="description" content="When a new algorithm is proposed, it is commonly demonstrated to outperform others in a benchmark using a set of randomly generated or commonly used test ins...">
+
+  <link rel="canonical" href="/post/benchmarking-algorithms">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jun 12, 2013
+  </div>
+
+  <div class="wrapper">
+    <h3>Benchmarking algorithms</h3>
+
+    <p>When a new algorithm is proposed, it is commonly demonstrated to outperform others in a benchmark using a set of randomly generated or commonly used test instances from the problem’s literature.  The No Free Lunch (NFL) theorem<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> tells us it’s impossible for one single algorithm to outperform all others on <em>all</em> instances of a problem<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>, so claims of better performance using this common methodology only hold for the instances tested and those the tested instances are representative of.</p>
+
+<p>The reason proposed algorithms cannot proclaim superior performance across <em>all</em> instances is because any increase in performance is only obtained by exploiting particular characteristics of particular problem instances.<sup id="fnref:2:1"><a href="#fn:2" class="footnote">2</a></sup><sup>,</sup><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup><sup>,</sup><sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>  An example that will be familiar with many is how a sorting algorithm performs. The time complexity for Selection Sort is $\mathcal{O}(n^2)$ for the best case, the worst case and the average case.  In a best case scenario, Insertion Sort will demonstrate improved performance and complete its comparisons in $\mathcal{O}(n)$ linear time.  Merge sort and Quicksort more so over, do better <em>on average</em> and complete in $\mathcal{O}(n\log n)$ time, with Mergesort maintaining this linearithmic complexity in the worst case.  Quicksort can have quadratic time complexity in, again, certain instances of the (sorting) problem. <!--more--></p>
+
+<p>Clearly, algorithm selection is better performed with knowledge of a problem instance and how it relates to other instances in the problem space.  Rice<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup> even emphasized that assuming superior algorithm selection without exploiting the specific nature of a problem at hand would be naïve.<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup>  Smith-Miles<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> and Pfahringer <em>et al</em>.<sup id="fnref:8"><a href="#fn:8" class="footnote">8</a></sup> have demonstrated how such knowledge can be <em>“learnt”</em>.  Of course, learning about problem instances will reveal an algorithm’s strengths, but weaknesses of the algorithm will uncovered and these rarely go reported.  For instances that go untested, other algorithms may perform better and the new algorithm may even fail miserably.</p>
+
+<!--
+The Algorithm Selection Problem is "an essential extension and generalization of approximation theory".
+
+quadrature => historical term for calculating area under a curve.
+-->
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>David H. Wolpert, and William G. Macready, <em><a href="http://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf">No Free Lunch Theorems for Optimization</a></em>. IEEE Transactions on Evolutionary Computation, Vol. 1, Iss. 1, pp. 67-82 (April 1997). <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><em>Ibid.</em>, pp 67, “any elevated performance over one class of problems is offset by performance over another class.” <a href="#fnref:2" class="reversefootnote">&#8617;</a> <a href="#fnref:2:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:3">
+      <p>Yu-Chi Ho and David L. Pepyne, <em><a href="http://www.cc.gatech.edu/~jlee716/ml/NoFreeLunch.pdf">Simple Explanation of the No-Free-Lunch Theorem of Optimization</a></em>. IEEE Conference of Decision and Control (Proc. of 40th), Vol. 5, pp. 4409-4414 (December 2001). Orlando FL, USA. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p><em>Ibid.</em>, p. 4409, “a general-purpose universal optimization strategy is impossible, and the only way one strategy can outperform another is if it is specialized to the structure of the specific problem under consideration.” <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>John R. Rice, <em><a href="http://docs.lib.purdue.edu/cstech/99">The Algorithm Selection Problem</a></em>, Computer Science Technical Reports, Paper 99 (1975). Purdue University, West Fayette, IN 47907, USA.</p>
+
+      <p>John R. Rice, <em>The Algorithm Selection Problem</em>, Advances in Computers, Vol. 15, pp. 65-118 (1976). <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p><em>Ibid.</em>, p. 1/p. 66, “will always require exploitation of the specific nature of the situation at hand.” <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p>Kate Smith-Miles, <em>Towards insightful algorithm selection for optimisation using meta-learning concepts</em>, IEEE World Congress on Computational Intelligence, pp. 4118-4124 (June 2008).  Hong Kong, China. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:8">
+      <p>Bernhard Pfahringer, Hilan Bensusan and Christophe Giraud-Carrier, <em><a href="http://www.cs.waikato.ac.nz/~ml/publications/2000/landmarking_icml2000.pdf">Meta-Learning by Landmarking Various Learning Algorithms</a></em>, International Conference on Machine Learning (Proc. of 17th), pp. 743-750 (June 2000). Stanford University, Stanford, CA, USA. <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/benchmarking">#benchmarking</a></li><li><a href="/tag/rice">#rice</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

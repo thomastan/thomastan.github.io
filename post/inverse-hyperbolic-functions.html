@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Inverse hyperbolic functions</title>
+  <meta name="description" content="If $ y = \cosh x = \dfrac{e^x + e^{-x}}{2} $, then the hyperbolic cosine’s inversecan be derived as follows:">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/inverse-hyperbolic-functions">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,41 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Feb 10, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>Inverse hyperbolic functions</h3>
+
+    <p>If $ y = \cosh x = \dfrac{e^x + e^{-x}}{2} $, then the hyperbolic cosine’s inverse
+<script type="math/tex">y = \mathrm{arccosh}\,x</script>
+can be derived as follows: <!--more-->
+<script type="math/tex">y = \cosh^{-1} x \qquad \Longleftrightarrow \qquad x = \cosh y = \frac{e^y + e^{-y}}{2}.</script>
+As $e^y$ is of degree two higher than that of $e^{-y}$, we have a quadratic in $e^y$:
+<script type="math/tex">% <![CDATA[
+\begin{align}
+& & 2xe^y - e^{-y}e^y &= (e^y)^2 \newline
+& & (e^y)^2 - 2x\cdot e^y + 1 &= 0 \newline
+&\Longleftrightarrow & e^y &= \frac{2x \pm \sqrt{4x^2 - 4}}{2} \newline
+&\implies & e^y &= x + \sqrt{x^2 - 1}, ~\text{as}~e^y>0.
+\end{align} %]]></script>
+Taking the natural log of both sides:
+<script type="math/tex">% <![CDATA[
+\begin{align}
+\ln(e^y) &= \ln(x + \sqrt{x^2 - 1}) \newline
+\therefore \qquad y = \mathrm{arccosh}\,x &= \ln(x + \sqrt{x^2 - 1}) \qquad \blacksquare
+\end{align} %]]></script></p>
+
+<p>Using the same procedure, $\mathrm{arcsinh}\,x = \ln(x - \sqrt{x^2 + 1})$ can also be obtained.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/calculus">#calculus</a></li><li><a href="/tag/hyperbolic">#hyperbolic</a></li><li><a href="/tag/cosh">#cosh</a></li><li><a href="/tag/proof">#proof</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

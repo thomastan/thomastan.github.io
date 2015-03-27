@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Swapping numbers without a temporary variable</title>
+  <meta name="description" content="Most people do this:int temp;temp = a, a = b, b = temp;when you can do this:a ^= b ^= a ^= b;Remember, KISS — keep it simple, stupid!">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/swapping-without-temp">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,33 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Sep 14, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>Swapping numbers without a temporary variable</h3>
+
+    <p>Most people do this:</p>
+
+<pre><code>int temp;
+temp = a, a = b, b = temp;
+</code></pre>
+
+<p>when you can do this:</p>
+
+<pre><code>a ^= b ^= a ^= b;
+</code></pre>
+
+<p>Remember, <a href="../tag/kiss">KISS</a> — keep it <a href="writing-simple-code">simple</a>, stupid!</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/xor">#xor</a></li><li><a href="/tag/bitwise">#bitwise</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | C's mod operator yields negative integers</title>
+  <meta name="description" content="What is -10 % 6?  In C99 that’s -4.  For the mathematical Euclidean definition:for $a = -10$ and $q = 6$, $r = 2$ ($n = -1$).">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/c-mod-operator">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,33 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Mar 12, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>C's mod operator yields negative integers</h3>
+
+    <p>What is <code>-10 % 6</code>?  In C99 that’s -4.  For the mathematical Euclidean definition:
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+a \mod q &= \{r \vert a = n\cdot q + r,\quad  q\in\mathbb{Z},~0 \le r < |n|\} \newline
+&= \left\{r \middle\vert a = \begin{cases}
+ n \left\lfloor\displaystyle{a\over n}\right\rfloor + r, & \text{if } n > 0 \newline n \left\lceil\displaystyle{a\over n}\right\rceil + r, & \text{if } n < 0 \end{cases} \right\} \newline
+ &= \left\{r \middle\vert a= \mathrm{sgn}(n) \biggl\lfloor{a\over|n|} \biggr\rfloor \right\}
+\end{aligned} %]]></script></p>
+
+<p>for $a = -10$ and $q = 6$, $r = 2$ ($n = -1$).<!--more--></p>
+
+<p>It turns out C99 follows Donald Knuth’s definition with the floor function <script type="math/tex">r = a - n\cdot q = a - n\left\lfloor{a\over n}\right\rfloor</script> where the remainder $r$ is always positive.  In C89, the result is undefined for $a \oplus n &lt; 0$ and is implementation specific.  The C89 result is <em>usually</em> that the integer/integer division truncates, as most CPUs do this, and so C99 standardized the <em>de facto</em>, assigning the result the same sign as the dividend.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/c89">#c89</a></li><li><a href="/tag/c99">#c99</a></li><li><a href="/tag/modulo">#modulo</a></li><li><a href="/tag/mod">#mod</a></li><li><a href="/tag/division">#division</a></li><li><a href="/tag/knuth">#knuth</a></li><li><a href="/tag/euclidean">#euclidean</a></li><li><a href="/tag/undefined">#undefined</a></li><li><a href="/tag/ambiguous">#ambiguous</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

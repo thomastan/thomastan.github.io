@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | A 20-year old binary search mistake</title>
+  <meta name="description" content="Binary searching for a certain “key” within a sorted list involves looking at the “middle” element, then, if the key isn’t found, looking through either the ...">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/binary-search-mistake">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,56 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Sep 26, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>A 20-year old binary search mistake</h3>
+
+    <p>Binary searching for a certain “key” within a sorted list involves looking at the “middle” element, then, if the key isn’t found, looking through either the first or second half of the list.  The binary searching process is repeated on the sublist.</p>
+
+<p>The following implementation, previously used almost everywhere, had a mistake that evaded detection for 20 years:</p>
+
+<!--more-->
+
+<pre><code>int binarySearch(int a[], int length, int key) {
+    int start = 0, middle, end = length - 1;
+
+    while (start &lt;= end) {
+        middle = (start + end) / 2;
+
+        if (a[middle] == key)
+            return middle;
+        else if (key &gt; a[middle])
+            start = middle + 1;
+        else if (key &lt; a[middle])
+            end = middle - 1;
+    }
+
+    return -1;  /* the key wasn't found */
+}
+</code></pre>
+
+<p>The problem is in the calculation of <code>middle</code> for certain sublists.  For sublists closer toward the right of the original list there is a chance of <code>(start + end)</code> overflowing. The fix is to restrict calculation of <code>middle</code> from going above <code>length</code>, done by replacing</p>
+
+<pre><code>middle = (start + end) / 2;
+</code></pre>
+
+<p>with</p>
+
+<pre><code>middle = start + (end - start) / 2;
+</code></pre>
+
+<p>Now <code>middle</code>, along with the intermediate calculation of it, is guaranteed to always be less than <code>length</code>.  The use of a <code>middle</code> to iteratively split the list in half means the complexity of binary search is $\mathcal{O}(\log_2 n)$.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/mistakes">#mistakes</a></li><li><a href="/tag/max">#max</a></li><li><a href="/tag/overflow">#overflow</a></li><li><a href="/tag/recursion">#recursion</a></li><li><a href="/tag/searching">#searching</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">

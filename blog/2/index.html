@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Blog</title>
+  <meta name="description" content="my code, info, blog.">
+
+  <link rel="canonical" href="/blog/2/">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    
+  
+    <div class="post single">
+      <div class="leftdate">Jul 24, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/primality-testing">A short, somewhat efficient, primality test in C</a></h3>
+
+        <p>Welcome to my first <a href="http://scriptogr.am">Scriptogr.am</a> post.  Onto prime numbers!</p>
+
+<p>By intuition, testing whether a given number is prime or not (primality testing), can be more efficiently done by noting that all prime numbers (above 2 and 3) can be expressed as $6k \pm 1 \le \sqrt{n}$ for $k = 1, 2, 3, \ldots$.</p>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'A short, somewhat efficient, primality test in C'" href="/post/primality-testing"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/sieve">#sieve</a></li><li><a href="/tag/prime">#prime</a></li><li><a href="/tag/primality">#primality</a></li><li><a href="/tag/number-theory">#number-theory</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jul 7, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/centering-divs">Centering a div, the proper way</a></h3>
+
+        <p>Consider <code>&lt;div class="container"&gt;Center this block, but not this text.&lt;/div&gt;</code>.  Everybody is centering their div’s wrong:</p>
+
+<ol>
+  <li>
+    <p>Setting <code>margin-left</code> and <code>margin-right</code> will work, but it won’t be IE6 compatible.</p>
+  </li>
+  <li>
+    <p>Setting the div’s <code>parentNode</code> class to have <code>text-align: center</code> and then setting the div to have <code>text-align: left</code> (or <code>right</code>, or <code>justify</code>) is also incorrect.  You’d have to add <code>content { width: 640px; }</code> for that, but that stops the div from responding to changes in the browser width.  You cannot specify <code>max-width</code> for the <code>.content</code> because that also won’t be IE6 compatible.</p>
+  </li>
+  <li>
+    <p>Using JavaScript disables the better browsers from having <code>@media</code> queries apply to these <code>.content</code> div’s.</p>
+  </li>
+  <li>
+    <p>And, using IE expressions is just wrong.</p>
+  </li>
+</ol>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Centering a div, the proper way'" href="/post/centering-divs"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/css">#css</a></li><li><a href="/tag/html">#html</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/proper">#proper</a></li><li><a href="/tag/max-width">#max-width</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/ie6">#ie6</a></li><li><a href="/tag/webdev">#webdev</a></li><li><a href="/tag/div">#div</a></li><li><a href="/tag/centering">#centering</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 15, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/ditching-wordpress">Ditching Wordpress for a newer blogging platform: Scriptogr.am, Jekyll, Pelican and Ghost</a></h3>
+
+        
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Ditching Wordpress for a newer blogging platform: Scriptogr.am, Jekyll, Pelican and Ghost'" href="/post/ditching-wordpress"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/blogging">#blogging</a></li><li><a href="/tag/scriptogram">#scriptogram</a></li><li><a href="/tag/wordpress">#wordpress</a></li><li><a href="/tag/markdown">#markdown</a></li><li><a href="/tag/jekyll">#jekyll</a></li><li><a href="/tag/pelican">#pelican</a></li><li><a href="/tag/ghost">#ghost</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 12, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/benchmarking-algorithms">Benchmarking algorithms</a></h3>
+
+        <p>When a new algorithm is proposed, it is commonly demonstrated to outperform others in a benchmark using a set of randomly generated or commonly used test instances from the problem’s literature.  The No Free Lunch (NFL) theorem<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> tells us it’s impossible for one single algorithm to outperform all others on <em>all</em> instances of a problem<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>, so claims of better performance using this common methodology only hold for the instances tested and those the tested instances are representative of.</p>
+
+<p>The reason proposed algorithms cannot proclaim superior performance across <em>all</em> instances is because any increase in performance is only obtained by exploiting particular characteristics of particular problem instances.<sup id="fnref:2:1"><a href="#fn:2" class="footnote">2</a></sup><sup>,</sup><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup><sup>,</sup><sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>  An example that will be familiar with many is how a sorting algorithm performs. The time complexity for Selection Sort is $\mathcal{O}(n^2)$ for the best case, the worst case and the average case.  In a best case scenario, Insertion Sort will demonstrate improved performance and complete its comparisons in $\mathcal{O}(n)$ linear time.  Merge sort and Quicksort more so over, do better <em>on average</em> and complete in $\mathcal{O}(n\log n)$ time, with Mergesort maintaining this linearithmic complexity in the worst case.  Quicksort can have quadratic time complexity in, again, certain instances of the (sorting) problem.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>David H. Wolpert, and William G. Macready, <em><a href="http://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf">No Free Lunch Theorems for Optimization</a></em>. IEEE Transactions on Evolutionary Computation, Vol. 1, Iss. 1, pp. 67-82 (April 1997). <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><em>Ibid.</em>, pp 67, “any elevated performance over one class of problems is offset by performance over another class.” <a href="#fnref:2" class="reversefootnote">&#8617;</a> <a href="#fnref:2:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:3">
+      <p>Yu-Chi Ho and David L. Pepyne, <em><a href="http://www.cc.gatech.edu/~jlee716/ml/NoFreeLunch.pdf">Simple Explanation of the No-Free-Lunch Theorem of Optimization</a></em>. IEEE Conference of Decision and Control (Proc. of 40th), Vol. 5, pp. 4409-4414 (December 2001). Orlando FL, USA. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p><em>Ibid.</em>, p. 4409, “a general-purpose universal optimization strategy is impossible, and the only way one strategy can outperform another is if it is specialized to the structure of the specific problem under consideration.” <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Benchmarking algorithms'" href="/post/benchmarking-algorithms"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/benchmarking">#benchmarking</a></li><li><a href="/tag/rice">#rice</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 10, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/algorithm-selection">The Algorithm Selection Problem</a></h3>
+
+        <p>The Algorithm Selection Problem (ASP) involves selecting an algorithm, from among those in a portfolio, that will perform effectively or good or best on a problem instance.</p>
+
+<p>It is important to make the distinction between a problem and its instances.  A problem is the requirement to find an output subject to constraints.  An instance of a problem is one of many (possibly infinite) configurations of the problem and acts as the input to to which the constraints are applied.</p>
+
+<p>Rice’s framework<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> introduces an abstract model to clarify consideration of the ASP.  The abstract model<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> is shown in Figure 1 and its items are described below.</p>
+
+<figure>
+<img src="http://thomastan.github.io/img/rice.svg" />
+<figcaption>Figure 1. An abstract model for algorithm selection from Rice's framework.</figcaption>
+</figure>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>John R. Rice, <em><a href="http://docs.lib.purdue.edu/cstech/99">The Algorithm Selection Problem</a></em>, Computer Science Technical Reports, Paper 99 (1975). Purdue University, West Fayette  IN, USA. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><em>Ibid</em>, p. 9. This is Rice’s model with selection based on <em>features</em> – an improvement of a basic model lacking features but otherwise identical.  Rice introduced a basic model (p. 3) and supplemented it with features only to systematize the introduction of problem subclasses. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'The Algorithm Selection Problem'" href="/post/algorithm-selection"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/asp">#asp</a></li><li><a href="/tag/algorithm">#algorithm</a></li><li><a href="/tag/algorithm-selection">#algorithm-selection</a></li><li><a href="/tag/rice">#rice</a></li><li><a href="/tag/features">#features</a></li><li><a href="/tag/model">#model</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 9, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/tsp">The Traveling Salesman Problem</a></h3>
+
+        
+<p><br></p>
+
+<h3 id="symbols-and-definitions-used">Symbols and definitions used</h3>
+
+<p>The TSP model<sup id="fnref:laporte"><a href="#fn:laporte" class="footnote">1</a></sup> consists of the input graph which can be either:</p>
+
+<ul>
+  <li>a complete undirected graph $G=(V,E)$</li>
+  <li>or a complete directed graph $G=(V,A)$</li>
+</ul>
+
+<p>where</p>
+
+<ul>
+  <li>$V=\{1,\ldots, n\}$ is the set of vertices or locations or ‘cities’,</li>
+  <li>$S$ is a non-empty proper subset of $V$,</li>
+  <li>$E=\{(i,j):i,j\in V,i&lt;j\}$ is the set of edges,</li>
+  <li>$A=\{(i,j):i,j\in V,i\ne j\}$ is the set of arcs,</li>
+  <li>$C=(c_{i,j})$ is the cost matrix defined on $E$ or $A$,</li>
+  <li>$k$ is the total cost of the tour,</li>
+</ul>
+
+<p>and tours are defined using $X_{i,j}=1$ when city $i$ is followed by city $j$ and 0 otherwise, subject to the constraints in $\eqref{eq:condition1}$, $\eqref{eq:condition2}$, $\eqref{eq:condition3}$ below.</p>
+
+<h3 id="description">Description</h3>
+
+<p>The Traveling Salesman Problem (TSP) is <em>described</em> as:</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:laporte">
+      <p>Gilbert Laporte, <em><a href="http://neumann.hec.ca/chairedistributique/common/laporte-short.pdf‎">A Short History of the Traveling Salesman Problem</a></em>. Canada Research Chair in Distribution Management, Centre for Research on Transportation (CRT) and GERAD HEC, Montréal QC, Canada (2006). <a href="#fnref:laporte" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'The Traveling Salesman Problem'" href="/post/tsp"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 9, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/thesis-motivation">Motivation</a></h3>
+
+        <p>The Traveling Salesman Problem (TSP), of finding the shortest tour through $n$ cities, visiting each exactly once and finishing at the starting city, is classified as an $\mathcal{NP}$-hard problem whose solutions may require unfeasible computational resources or running times even for real-world instances. By its definition, a solution to a TSP instance is not just finding a ‘good’ tour, or one better than any previously known, but is the finding of the absolute shortest tour and determining that there is no better tour possible<sup id="fnref:gatech-lowerbounds"><a href="#fn:gatech-lowerbounds" class="footnote">1</a></sup>. Applications of the TSP in fields such as logistics, telecommunications routing and microchip manufacturing often lack the need to strictly satisfy these requirements and finding just ‘short’ feasible tours is often the case. The result has been the interest in, and development of large numbers of TSP heuristic methods that yield near-optimal results.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:gatech-lowerbounds">
+      <p>Wiliam Cook, <em><a href="http://www.tsp.gatech.edu/methods/opt/opt.htm">TSP Lower Bounds: Certifying Tour Quality</a></em> (May 2005). Georgia Institute of Technology, Atlanta GA, USA. <a href="#fnref:gatech-lowerbounds" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Motivation'" href="/post/thesis-motivation"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/motivation">#motivation</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/traveling-salesman">#traveling-salesman</a></li><li><a href="/tag/algorithm">#algorithm</a></li><li><a href="/tag/algorithm-selection">#algorithm-selection</a></li><li><a href="/tag/asp">#asp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 9, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/thesis-abstract">Abstract</a></h3>
+
+        <p>The Traveling Salesman Problem (TSP) is an $\mathcal{NP}$-hard problem easy to describe but difficult to solve.  Given $n$ cities, a salesman must complete a tour by visiting each city exactly once and then return to their starting city. Finding the shortest tour length is a <a href="http://en.wikipedia.org/wiki/combinatorial_optimization">combinatorial optimization</a> problem that traditional computational methods have difficulty with typically for large $n$.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>  The cause of problem difficulty is not a single problem-specific characteristic, but rather several characteristics of the problem <em>instances</em>.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup><sup>,</sup><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup><sup>,</sup><sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, <em><a href="en.tjcities.com/wp-content/uploads/Books/Algorithms_3rd.pdf">Introduction to Algorithms (3rd edition)</a></em>, (2009). MIT Press, Cambridge MA, USA. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>John R. Rice, <em><a href="http://docs.lib.purdue.edu/cstech/99">The Algorithm Selection Problem</a></em>, Computer Science Technical Reports, Paper 99 (1975). Purdue University, West Fayette IN, USA. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Kevin Leyton-Brown, Eugene Nudelman, Galen Andrew, Jim McFadden and Yoav Shoham, <em><a href="http://www.cs.ubc.ca/~kevinlb/papers/portfolio-IJCAI.pdf">A Portfolio Approach to Algorithm Selection</a></em>, International Joint Conferences on Artificial Intelligence (Proc. of 18th), pp. 1542-1543 (2003). <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>Peter Cheeseman, Bob Kanefsky and William M. Taylor, <em><a href="http://pic.plover.com/really-hard-NP-complete-problems.ps">Where the Really Hard Problems Are</a></em>, International Joint Conferences on Artificial Intelligence, Vol. 91, pp. 331-337 (1991). <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Abstract'" href="/post/thesis-abstract"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/abstract">#abstract</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/traveling-salesman">#traveling-salesman</a></li><li><a href="/tag/algorithm">#algorithm</a></li><li><a href="/tag/algorithm-selection">#algorithm-selection</a></li><li><a href="/tag/asp">#asp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Apr 13, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/recursive-sorting">Recursive sorting algorithms</a></h3>
+
+        <p>Merge sort and Quicksort written (as in <a href="post/basic-sorting">this post</a>), in C for ascending order<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and kept as minimal as possible so it’s as easy as possible for adaptation to your needs.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>You can convert to descending order using a simple sign change. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Recursive sorting algorithms'" href="/post/recursive-sorting"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/sorting">#sorting</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/recursion">#recursion</a></li><li><a href="/tag/merge">#merge</a></li><li><a href="/tag/quick">#quick</a></li><li><a href="/tag/merge-sort">#merge-sort</a></li><li><a href="/tag/quick-sort">#quick-sort</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Apr 11, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/basic-sorting">Basic sorting algorithms</a></h3>
+
+        <p>Bubble sort, selection sort and insertion sort all written in C for ascending order<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.  Kept as minimal as possible so it’s as easy as possible for adaptation to your needs.</p>
+
+<h4 id="bubble-sort">Bubble sort</h4>
+<p>Loop through the list, swapping any adjacent pair of elements if the first is larger.  Repeat looping $n - 1$ times (end swapping one place earlier each time).</p>
+
+<pre><code>void bubble(int a[], int n) {
+    int i, j, temp;
+
+    for (i = 0; i &lt; n - 1; i++)
+        for (j = 0; j &lt; n - 1; j++)
+            if (a[j] &gt; a[j + 1])
+                temp = a[j], a[j] = a[j + 1], a[j + 1] = temp;
+}
+</code></pre>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>You can convert to descending order using a simple sign change. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Basic sorting algorithms'" href="/post/basic-sorting"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/sorting">#sorting</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/bubble">#bubble</a></li><li><a href="/tag/bubble-sort">#bubble-sort</a></li><li><a href="/tag/selection">#selection</a></li><li><a href="/tag/selection-sort">#selection-sort</a></li><li><a href="/tag/insertion">#insertion</a></li><li><a href="/tag/insertion-sort">#insertion-sort</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+
+    <meta type="feed">
+
+    <div class="pagination">
+      <ul>
+        
+        <li class="prev"><a href="/blog/">Prev</a></li>
+        
+
+        
+        
+        <li><a href="/blog">1</a></li>
+        
+        
+        
+        <li class="active"><a href="#">2</a></li>
+        
+        
+        
+        <li><a href="/blog/3">3</a></li>
+        
+        
+
+        
+        <li class="next"><a href="/blog/3">Next</a></li>
+        
+        <br><a href="/archive">View all</a>
+      </ul>
+    </div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

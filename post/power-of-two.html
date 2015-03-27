@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Quickly test for a "power of two"</title>
+  <meta name="description" content="For positive integers $k$, use just two to three lines:      C/C++:    #include &lt;stdbool.h&gt; // not needed in C++bool fromDoubling(unsigned k) {    retu...">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/power-of-two">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,52 @@
   </div>
 
   <div class="container">
-    <div class="post page">
+    <div class="post permalink">
+  <div class="leftdate">
+    Oct 26, 2013
+  </div>
 
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
+  <div class="wrapper">
+    <h3>Quickly test for a "power of two"</h3>
 
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
+    <p>For positive integers $k$, use just two to three lines:</p>
 
 <ul>
   <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
+    <p>C/C++:</p>
+
+    <pre><code>#include &lt;stdbool.h&gt; // not needed in C++
+
+bool fromDoubling(unsigned k) {
+    return !((k - 1) &amp; k) &amp;&amp; k;
+}
+</code></pre>
   </li>
   <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
+    <p>Python:</p>
+
+    <pre><code>def fromDoubling(k):
+    return not((k - 1) &amp; k) and k
+</code></pre>
   </li>
   <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
+    <p>Perl:</p>
+
+    <pre><code>use boolean;
+
+sub fromDoubling {
+    sprintf("%b", shift) =~ /^10*$/ ? true : false;
+}
+</code></pre>
   </li>
 </ul>
 
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
 
-
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/perl">#perl</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/power">#power</a></li><li><a href="/tag/bitwise">#bitwise</a></li>
+    </ul>
     <div><hr></div>
   </div>
-
 </div>
 
     <div id="footer">

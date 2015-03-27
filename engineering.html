@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Engineering</title>
+  <meta name="description" content="my code, info, blog.">
+
+  <link rel="canonical" href="/engineering">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post page">
+
+  <div>
+    <h3>Engineering</h3>
+    <p>I completed my thesis project with the <a href="http://ecse.monash.edu" title="Department of Electrical and Computer Systems Engineering">ECSE</a> department at <a href="http://monash.edu">Monash</a> University<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> under the supervision of <a href="http://waiholi.com">Dr. Wai Ho Li</a> in the field of <a href="http://en.wikipedia.org/wiki/computer_vision">computer vision</a>.  I accelerated <a href="http://en.wikipedia.org/wiki/scale-invariant_feature_transform">SIFT</a> using <a href="http://en.wikipedia.org/wiki/OpenMP">OpenMP</a> to thread to multiple cores and used <a href="http://nvidia.com/cuda">CUDA</a> to unlock the power of the GPU to accelerate SIFT’s cousin <a href="http://ipol.im/pub/art/2011/my-asift/posterICASSP09_ASIFT_v2.pdf">Affine-SIFT</a>.</p>
+
+<p>View my results below — <em>and interact!</em>  The output is a 3d model obtained from 37 still input images.  You need any <a href="http://en.wikipedia.org/wiki/WebGL">WebGL</a> capable browser – that’s Chrome, Firefox 4+, Internet Explorer 11 or Safari, no plugin required.</p>
+
+<iframe src="http://p3d.in/e/Pa8Qn+spin" width="600px" height="320px" seamless="" allowfullscreen="" webkitallowfullscreen=""></iframe>
+
+<p><strong><em>What are you seeing?</em></strong></p>
+
+<p>Using a feature detector allows “features” of an object to be tracked across several images.  Tracking relative distances between each feature and the camera allows the spatial location of each feature to be triangulated and a three-dimensional <em>structure from motion</em> can thus be created.</p>
+
+<p>Here are the input images:</p>
+
+<p align="left">
+<a href="http://i.imgur.com/divXXVq.jpg"><img src="http://i.imgur.com/8pQsMqB.jpg" /></a>
+<a href="http://i.imgur.com/jUrF2iN.jpg"><img src="http://i.imgur.com/pYt0lxS.jpg" /></a>
+<a href="http://i.imgur.com/ekePS9z.jpg"><img src="http://i.imgur.com/qboM9hd.jpg" /></a>
+<a href="http://i.imgur.com/p3kxfCn.jpg"><img src="http://i.imgur.com/sx9mPba.jpg" /></a>
+<a href="http://i.imgur.com/h2LBqa2.jpg"><img src="http://i.imgur.com/gUhYKJO.jpg" /></a>
+<a href="http://i.imgur.com/nAscrU9.jpg"><img src="http://i.imgur.com/2O6EXGi.jpg" /></a>
+<a href="http://i.imgur.com/PKEUvD2.jpg"><img src="http://i.imgur.com/ELgf3J5.jpg" /></a>
+<a href="http://i.imgur.com/x172Gjd.jpg"><img src="http://i.imgur.com/WWiBoB8.jpg" /></a>
+</p>
+
+<div style="clear:both">
+<i><a href="http://imgur.com/a/lMUG5">See all 37 input images...</a></i>
+</div>
+
+<p><em>Published work:</em></p>
+
+<ul>
+  <li><a href="http://dl.dropboxusercontent.com/u/5494476/poster.pdf">Poster</a> — published to accompany my presentation.</li>
+  <li>Tech report – <em>to come</em>.</li>
+</ul>
+
+<p><strong>Code</strong></p>
+
+<ul>
+  <li><strong>siftbycpu</strong> – <em>migrating to GitHub (from Google SubVersion).</em></li>
+  <li><strong>siftbycuda</strong> – <em>migrating</em>.</li>
+  <li><em>asiftbycpu</em><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> – <em>original <a href="http://ipol.im/pub/art/2011/my-asift">ASIFT C++ code</a> available from authors</em>.</li>
+  <li><strong>asiftbycuda</strong> – <em>coming soon</em>.</li>
+</ul>
+
+<script>
+/* My thesis project will be delivered here in bite-sized pieces */
+</script>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Clayton campus, Victoria, Australia. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Jean-Michel Morel and Guoshen Yu, <em><a href="http://ipol.im/pub/art/2011/my-asift">ASIFT C++ source code and executable</a></em>, Image Processing On Line (IPOL) Journal, Isle of Man, UK (April 2011). <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <div><hr></div>
+  </div>
+
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

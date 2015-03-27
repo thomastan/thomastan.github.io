@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Home</title>
-  <meta name="description" content="my code, info, blog.">
+  <title>Thomas Tan | Don't screw up nCr()</title>
+  <meta name="description" content="You will screw up if you try to implement nCr(int n, int r) usingHere’s why: $n!$ will overflow!">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/dont-screw-up-ncr">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,38 +48,48 @@
   </div>
 
   <div class="container">
-    <div class="post page">
-
-  <div>
-    <h3>Home</h3>
-    <meta post="home" />
-
-<meta lang="en" translation="fr-ca" title="Accueil" />
-
-<p>I’m a recent graduate in Engineering &amp; Science.  I graduated with honours in electrical &amp; computer engineering as well as in science (applied math, computer science).</p>
-
-<p>I created this site to share my interests (especially a love of code) and a little about myself.</p>
-
-<p>Links below are for thesis and final year projects I completed for my majors.  I have a publication <a href="/math#publication">here</a>. For those that don’t know where to start, try my <a href="/blog">blog</a>.</p>
-
-<ul>
-  <li>
-    <p>Engineering <a href="/engineering">Thesis Project A/B</a></p>
-  </li>
-  <li>
-    <p><a href="/compsci">Computer Science Final Year Project</a></p>
-  </li>
-  <li>
-    <p>(Applied) <a href="/math">Mathematics Research Project</a></p>
-  </li>
-</ul>
-
-<p>My GitHub repository: <a href="http://github.com/thomastan">page</a>.</p>
-
-
-    <div><hr></div>
+    <div class="post permalink">
+  <div class="leftdate">
+    Aug 2, 2013
   </div>
 
+  <div class="wrapper">
+    <h3>Don't screw up nCr()</h3>
+
+    <p>You will screw up if you try to implement <code>nCr(int n, int r)</code> using
+<script type="math/tex">{n\choose r} = {n! \over r! (n - r)!}.</script></p>
+
+<p>Here’s why: $n!$ will overflow! <!--more--></p>
+
+<p>What you need to do is use the recursive formula</p>
+
+<script type="math/tex; mode=display">{n \choose r} = {n-1 \choose r-1} + {n-1 \choose r} \qquad \forall \{n,r\in\mathbb{Z} \mid 1 \le r \le n-1 \}.</script>
+
+<p>With the base cases $\displaystyle{r\choose r}$, $\displaystyle{r\choose0} = 1$ we have
+<script type="math/tex">% <![CDATA[
+{n \choose r}=\begin{cases}
+1 & \text{if}\ {k \choose k}\ \text{or}\ {k \choose 0}, \{k\in\mathbb{Z}\}\newline
+{n-1 \choose r-1}+{n-1 \choose r} & \forall \{n,r\in\mathbb{Z}\mid1\le r\le n-1\}
+\end{cases} %]]></script></p>
+
+<p>In C:</p>
+
+<pre><code>int nCr(int n, int r) {
+    if (n == r || r == 0)
+        return 1;
+    else
+        return nCr(n - 1, r - 1) + nCr(n - 1, r);
+}
+</code></pre>
+
+<p>This will protect you (not entirely) from overflow. The complexity is $\mathcal{O}(n^2)$.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/probability">#probability</a></li><li><a href="/tag/overflow">#overflow</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/factorial">#factorial</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
 </div>
 
     <div id="footer">
