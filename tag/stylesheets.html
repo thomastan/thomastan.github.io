@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Isolated Python environments</title>
-  <meta name="description" content="You should only ever need (admin access) to globally install two Python packages:sudo easy_install pipsudo pip install virtualenvThe first is pip and this al...">
+  <title>Thomas Tan</title>
+  <meta name="description" content="my code, info, blog.">
 
-  <link rel="canonical" href="/post/isolated-python-environments">
+  <link rel="canonical" href="/tag/stylesheets">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,48 +48,19 @@
   </div>
 
   <div class="container">
-    <div class="post permalink">
-  <div class="leftdate">
-    Feb 13, 2014
-  </div>
+    
 
-  <div class="wrapper">
-    <h3>Isolated Python environments</h3>
-
-    <p>You should only ever need (admin access) to globally install two Python packages:</p>
-
-<pre class="bash"><code>sudo easy_install pip
-sudo pip install virtualenv
-</code></pre>
-
-<p>The first is <code>pip</code> and this allows you to install the enabling <code>virtualenv</code>.  With <code>virtualenv</code>, you can have isolated Python environments, each with their own copy of <code>pip</code>.</p>
-
-<p>Now <code>ch</code> into the root of a project directory and run</p>
-
-<pre class="bash"><code>virtualenv env
-source env/bin/activate
-</code></pre>
-
-<p>This creates the Python environment in <code>env/</code> and activates the environment so the project uses env/bin/python.  Add <code>env/</code> to .gitignore (or similar) if you’re using a version control system.</p>
-
-<p>With <code>deactivate</code>, the <code>env/bin/deactivate</code> binary will bring you back to your normal environment.</p>
-
-<h4 id="requirements-files">Requirements files</h4>
-<p>You can state and install dependencies in your Python environments by placing them in the <code>requirements.txt</code> file in a project’s root directory.  These dependencies are installed with</p>
-
-<pre><code>env/bin/pip install -r requirements.txt
-</code></pre>
-
-<p>Have fun installing as many Python packages as you’d like without polluting your systems!</p>
-
-
-    <ul class="tags">
-      <li><a href="/tag/code">#code</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/virtualenv">#virtualenv</a></li><li><a href="/tag/pip">#pip</a></li>
-    </ul>
-    <div><hr></div>
+<div class="post archive">
+  <div class="content">
+    <div class="leftdate" style="visibility: visible;">Jan 30, 2015</div>
+    <div class="wrapper"><h3><a href="/post/bug-in-chrome-safari">A bug in Google Chrome and Apple Safari (and the fix)</a></h3></div>
+    <div class="divider"><hr></div>
   </div>
 </div>
 
+
+
+<meta type="feed">
     <div id="footer">
       <p>
         <a href="/this-site">This site</a> has

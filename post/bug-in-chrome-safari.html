@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | A bug in Google Chrome and Apple Safari (and the fix)</title>
+  <meta name="description" content="Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.Of the three types of stylesheets,  persistent styles...">
+
+  <link rel="canonical" href="/post/bug-in-chrome-safari">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jan 30, 2015
+  </div>
+
+  <div class="wrapper">
+    <h3>A bug in Google Chrome and Apple Safari (and the fix)</h3>
+
+    <p>Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.</p>
+
+<p>Of the three types of stylesheets,  <em>persistent</em> stylesheets are always applied on page load.  They act as a good <em>base</em> stylesheet and are identified by having no <code>title</code> attribute and have a <code>rel</code> attribute of simply “stylesheet”.  <em>Preferred</em> stylesheets have the same <code>rel</code> attribute but <em>do</em> have a <code>title</code> attribute.  Only one preferred stylesheet may be active at the same time.  <em>Alternate</em> stylesheets have <code>rel="alternate stylesheet"</code> and a <code>title</code> attribute.</p>
+
+<p>Selecting between different stylesheets involves using JavaScript to switch preferred and alternate stylesheets between <code>.disabled = false</code> and <code>.disabled = true</code>.  All works well for Firefox and IE browsers, but not so for the WebKit/Blink based browsers (Safari, Chrome, Opera).  For whatever reason, <!--more--></p>
+
+<blockquote>
+  <p>for WebKit/Blink browsers, alternate stylesheets are “enabled” by default, even though they aren’t being used and aren’t being shown.</p>
+</blockquote>
+
+<p>This leaves us in the situation where to <em>visually</em> enable alternate stylsheets in WebKit/Blink, setting <code>.disabled = false</code> does nothing because the element is already <em>internally</em> enabled. A force enabling of state can be performed with the workaround</p>
+
+<pre><code>link[i].disabled = true;
+link[i].disabled = false;
+</code></pre>
+
+<p>seems to work, but if an alternate stylesheet is being set on a page load dependent on a cookie setting, the page will load without a stylesheet at all.  Of course, when there is stylesheet being shown at all, switching to an undesired alternate stylesheet and quick switching to the desired stylesheet in quick succession will achieve the proper outcome, but this will result in a “flicker” where an intermediate stylesheet is shown before the final outcome.</p>
+
+<h3 id="the-solution-without-side-effects-in-firefox-and-ie">The solution (without side-effects in Firefox and IE)</h3>
+
+<p>The solution is to have no <em>preferred</em> stylesheets (having base <em>persistent</em> stylesheets is still okay).  Give all stylesheets a <code>rel="alternate stylesheet"</code> attribute (<em>i.e.</em> make them all alternative stylesheets) and use JavaScript to iterate through these, in the page <code>&lt;head&gt;</code> <strong>before</strong> the <code>&lt;main&gt;</code> body loads, and set the desired stylesheet to have <code>rel="stylesheet"</code> and all others to have <code>rel="alternate stylesheet"</code>.  The same procedure (JavaScript function) can be called when the user performs an action on the page to change the stylesheet.</p>
+
+<p>This solution produces no stylesheet “flickering”.  You can see the solution in action on this site =)</p>
+
+<p>Time for me to go launch a defect with the WebKit team!</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/google">#google</a></li><li><a href="/tag/chrome">#chrome</a></li><li><a href="/tag/apple">#apple</a></li><li><a href="/tag/safari">#safari</a></li><li><a href="/tag/JavaScript">#JavaScript</a></li><li><a href="/tag/CSS">#CSS</a></li><li><a href="/tag/stylesheets">#stylesheets</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

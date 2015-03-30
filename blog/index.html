@@ -50,6 +50,34 @@
   <div class="container">
     
   
+    <div class="post single">
+      <div class="leftdate">Jan 30, 2015</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/bug-in-chrome-safari">A bug in Google Chrome and Apple Safari (and the fix)</a></h3>
+
+        <p>Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.</p>
+
+<p>Of the three types of stylesheets,  <em>persistent</em> stylesheets are always applied on page load.  They act as a good <em>base</em> stylesheet and are identified by having no <code>title</code> attribute and have a <code>rel</code> attribute of simply “stylesheet”.  <em>Preferred</em> stylesheets have the same <code>rel</code> attribute but <em>do</em> have a <code>title</code> attribute.  Only one preferred stylesheet may be active at the same time.  <em>Alternate</em> stylesheets have <code>rel="alternate stylesheet"</code> and a <code>title</code> attribute.</p>
+
+<p>Selecting between different stylesheets involves using JavaScript to switch preferred and alternate stylesheets between <code>.disabled = false</code> and <code>.disabled = true</code>.  All works well for Firefox and IE browsers, but not so for the WebKit/Blink based browsers (Safari, Chrome, Opera).  For whatever reason,</p>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'A bug in Google Chrome and Apple Safari (and the fix)'" href="/post/bug-in-chrome-safari"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/google">#google</a></li><li><a href="/tag/chrome">#chrome</a></li><li><a href="/tag/apple">#apple</a></li><li><a href="/tag/safari">#safari</a></li><li><a href="/tag/javascript">#javascript</a></li><li><a href="/tag/css">#css</a></li><li><a href="/tag/stylesheets">#stylesheets</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
 
   
     <div class="post single">
@@ -113,7 +141,7 @@ gem 'jekyll-paginate'
 
         <p>You should only ever need (admin access) to globally install two Python packages:</p>
 
-<pre><code>sudo easy_install pip
+<pre class="bash"><code>sudo easy_install pip
 sudo pip install virtualenv
 </code></pre>
 
@@ -121,7 +149,7 @@ sudo pip install virtualenv
 
 <p>Now <code>ch</code> into the root of a project directory and run</p>
 
-<pre><code>virtualenv env
+<pre class="bash"><code>virtualenv env
 source env/bin/activate
 </code></pre>
 
@@ -365,38 +393,6 @@ class Cafeteria {
         
         <ul class="tags">
           <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/c++">#c++</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/math">#math</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/gcd">#gcd</a></li><li><a href="/tag/euclid">#euclid</a></li><li><a href="/tag/recursion">#recursion</a></li>
-        </ul>
-        <div class="wrapper"><hr></div>
-      </div>
-    </div>
-  
-
-  
-    <div class="post single">
-      <div class="leftdate">Aug 3, 2013</div>
-
-      <div class="wrapper">
-        <h3><a href="/post/functions-in-scheme">Factorial and nCr() in Scheme</a></h3>
-
-        <p>Recursive form, starting with $n!$:</p>
-
-<pre><code>(define factorial
-    (lambda (n)
-        (if (or (= n 0) (= n 1))
-            1
-            (* n (factorial (- n 1)))
-)    )    )
-</code></pre>
-
-
-
-        
-        
-        
-        <p class="read-more"><a title="Click to open the full article 'Factorial and nCr() in Scheme'" href="/post/functions-in-scheme"><i>Continue reading...</i></a></p>
-        
-        <ul class="tags">
-          <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/scheme">#scheme</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/recursive">#recursive</a></li><li><a href="/tag/recursion">#recursion</a></li>
         </ul>
         <div class="wrapper"><hr></div>
       </div>
