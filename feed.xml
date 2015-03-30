@@ -5,12 +5,115 @@
     <description>my code, info, blog.</description>
     <link>http://thomastan.github.io/</link>
     <atom:link href="http://thomastan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Mar 2015 16:07:01 -0700</pubDate>
-    <lastBuildDate>Fri, 27 Mar 2015 16:07:01 -0700</lastBuildDate>
+    <pubDate>Mon, 30 Mar 2015 02:45:11 -0700</pubDate>
+    <lastBuildDate>Mon, 30 Mar 2015 02:45:11 -0700</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta2</generator>
     
       <item>
         <title>Isolated Python environments %%% DRAFT %%%</title>
+        <description>&lt;p&gt;A polynomial of degree $n$, $P_n(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \ldots + a_0$ can be represented in C as the vector &lt;code&gt;{ a[0], a[1], ..., a[n] }&lt;/code&gt;.  The vector has size $n+1$. &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;Such a polynomial can be differentiated with a C function operating on the polynomial’s coëfficient vector (here called &lt;code&gt;coeff&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdlib.h&amp;gt;
+
+void differentiate(float *coeff, int degree) {
+    int i;
+    for (i = 0; i &amp;lt;= degree - 1; i++)
+        coeff[i] = (i + 1) * coeff[i + 1];
+
+    if (degree &amp;gt;= 1) {
+        // The polynomial and its coëfficient vector has a new size
+        coeff = (float *) realloc(coeff, degree * sizeof(float));
+
+        degree--;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Thu, 01 Jan 2015 00:00:00 -0700</pubDate>
+        <link>http://thomastan.github.io/post/draft-test</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/draft-test</guid>
+        
+        <category>code</category>
+        
+        <category>python</category>
+        
+        <category>isolation</category>
+        
+        <category>virtual-machine</category>
+        
+        <category>virtualenv</category>
+        
+        <category>pip</category>
+        
+        
+        <category>post</category>
+        
+      </item>
+    
+      <item>
+        <title>Isolated Ruby environments</title>
+        <description>&lt;p&gt;First, make sure you have the latest &lt;code&gt;gems&lt;/code&gt; and &lt;code&gt;bundler&lt;/code&gt; installed:&lt;/p&gt;
+
+&lt;pre class=&quot;bash&quot;&gt;&lt;code&gt;sudo gem update --system
+sudo gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now &lt;code&gt;ch&lt;/code&gt; into your project directory and create a plaintext &lt;code&gt;Gemfile&lt;/code&gt;.  The first line is where to download gem source files from, and following lines are the gems your project requires:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;source &#39;https://rubygems.org&#39;
+
+gem &#39;jekyll&#39;, &#39;&amp;gt;= 3.0.0.pre.beta2&#39;
+gem &#39;jekyll-tagging&#39;
+gem &#39;jekyll-paginate&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, install the required gems and dependencies:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bundle install --path=.rubyenv --binstubs=.gems
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: &lt;code&gt;--path&lt;/code&gt; is a remembered option by bundle.&lt;/p&gt;
+
+&lt;p&gt;Generated in your project directory, alongside &lt;code&gt;Gemfile&lt;/code&gt; will be:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;.bundle&lt;/code&gt;, listing the relative path of the environment created by bundler,&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;.gems&lt;/code&gt;, a folder containing the gem executables,&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;.rubyenv/ruby/&lt;/code&gt;, a folder containing yours gems’ other files,&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;Gemfile.lock&lt;/code&gt;, a list of your installed gems and the installed gems these are dependent on.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By running binaries from, and/or adding the &lt;code&gt;.gems/&lt;/code&gt; folder to your &lt;code&gt;PATH&lt;/code&gt;, you will be using your isolated Ruby environment. When you no longer want to work in this environment, simply remove &lt;code&gt;.gems/&lt;/code&gt; from your &lt;code&gt;PATH&lt;/code&gt;. To blow away your isolated environment, remove the &lt;code&gt;.rubyenv&lt;/code&gt; and &lt;code&gt;.gems&lt;/code&gt; folders from your project (you can also remove &lt;code&gt;.bundle&lt;/code&gt;, &lt;code&gt;Gemfile&lt;/code&gt; and &lt;code&gt;Gemfile.lock&lt;/code&gt;).&lt;/p&gt;
+</description>
+        <pubDate>Thu, 01 May 2014 00:00:00 -0700</pubDate>
+        <link>http://thomastan.github.io/post/isolated-ruby-environments</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/isolated-ruby-environments</guid>
+        
+        <category>code</category>
+        
+        <category>ruby</category>
+        
+        <category>isolation</category>
+        
+        <category>virtual-machine</category>
+        
+        <category>gem</category>
+        
+        <category>gems</category>
+        
+        <category>bundle</category>
+        
+        <category>bundler</category>
+        
+        
+        <category>post</category>
+        
+      </item>
+    
+      <item>
+        <title>Isolated Python environments</title>
         <description>&lt;p&gt;You should only ever need (admin access) to globally install two Python packages:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo easy_install pip
@@ -37,52 +140,9 @@ source env/bin/activate
 
 &lt;p&gt;Have fun installing as many Python packages as you’d like without polluting your systems!&lt;/p&gt;
 </description>
-        <pubDate>Wed, 31 Dec 2014 00:00:00 -0700</pubDate>
+        <pubDate>Thu, 13 Feb 2014 00:00:00 -0700</pubDate>
         <link>http://thomastan.github.io/post/isolated-python-environments</link>
         <guid isPermaLink="true">http://thomastan.github.io/post/isolated-python-environments</guid>
-        
-        <category>code</category>
-        
-        <category>python</category>
-        
-        <category>isolation</category>
-        
-        <category>virtual-machine</category>
-        
-        <category>virtualenv</category>
-        
-        <category>pip</category>
-        
-        
-        <category>post</category>
-        
-      </item>
-    
-      <item>
-        <title>Isolated Python environments %%% DRAFT %%%</title>
-        <description>&lt;p&gt;A polynomial of degree $n$, $P_n(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \ldots + a_0$ can be represented in C as the vector &lt;code&gt;{ a[0], a[1], ..., a[n] }&lt;/code&gt;.  The vector has size $n+1$. &lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;Such a polynomial can be differentiated with a C function operating on the polynomial’s coëfficient vector (here called &lt;code&gt;coeff&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdlib.h&amp;gt;
-
-void differentiate(float *coeff, int degree) {
-    int i;
-    for (i = 0; i &amp;lt;= degree - 1; i++)
-        coeff[i] = (i + 1) * coeff[i + 1];
-
-    if (degree &amp;gt;= 1) {
-        // The polynomial and its coëfficient vector has a new size
-        coeff = (float *) realloc(coeff, degree * sizeof(float));
-
-        degree--;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Wed, 31 Dec 2014 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/draft-test</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/draft-test</guid>
         
         <category>code</category>
         
@@ -143,7 +203,7 @@ sub fromDoubling {
         
         <category>simple</category>
         
-        <category>c</category>
+        <category>C</category>
         
         <category>perl</category>
         
@@ -192,7 +252,7 @@ sub fromDoubling {
         
         <category>code</category>
         
-        <category>c</category>
+        <category>C</category>
         
         <category>simple</category>
         
@@ -259,7 +319,7 @@ sub fromDoubling {
         
         <category>code</category>
         
-        <category>c</category>
+        <category>C</category>
         
         <category>mistakes</category>
         
@@ -299,7 +359,7 @@ temp = a, a = b, b = temp;
         
         <category>simple</category>
         
-        <category>c</category>
+        <category>C</category>
         
         <category>kiss</category>
         
@@ -353,9 +413,9 @@ print $toServe;
     &lt;p&gt;Now comes your first warning: the above two code fragments are only equivalent in C# for the &lt;code&gt;requested == null&lt;/code&gt; case.  If &lt;code&gt;requested&lt;/code&gt; is the empty string &lt;code&gt;&quot;&quot;&lt;/code&gt;, the first line with &lt;code&gt;??&lt;/code&gt; works as expected, but the second won’t as am empty string is not boolean false.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;  However, it can be adjusted so it works as expected:&lt;/p&gt;
 
     &lt;ul&gt;
-      &lt;li&gt;In C#:&lt;br /&gt;
+      &lt;li&gt;In C#:&lt;br&gt;
 &lt;code&gt;string toServe = requested.Length &amp;gt; 0 ? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;In C++:&lt;br /&gt;
+      &lt;li&gt;In C++:&lt;br&gt;
 &lt;code&gt;string toServe = requested.length() &amp;gt; 0? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -406,7 +466,7 @@ else
         
         <category>JavaScript</category>
         
-        <category>Perl</category>
+        <category>perl</category>
         
         <category>question-mark</category>
         
@@ -414,7 +474,7 @@ else
         
         <category>operator</category>
         
-        <category>KISS</category>
+        <category>kiss</category>
         
         <category>simple</category>
         
@@ -464,9 +524,9 @@ n! = \begin{cases} 1 &amp; n = 0 \newline \prod_{k=1}^{n} k &amp; n \in \mathbb{
         
         <category>code</category>
         
-        <category>c</category>
+        <category>C</category>
         
-        <category>c++</category>
+        <category>C++</category>
         
         <category>simple</category>
         
@@ -533,59 +593,6 @@ n! = \begin{cases} 1 &amp; n = 0 \newline \prod_{k=1}^{n} k &amp; n \in \mathbb{
         <category>recursive</category>
         
         <category>recursion</category>
-        
-        
-        <category>post</category>
-        
-      </item>
-    
-      <item>
-        <title>Don&#39;t screw up nCr()</title>
-        <description>&lt;p&gt;You will screw up if you try to implement &lt;code&gt;nCr(int n, int r)&lt;/code&gt; using
-&lt;script type=&quot;math/tex&quot;&gt;{n\choose r} = {n! \over r! (n - r)!}.&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Here’s why: $n!$ will overflow! &lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;What you need to do is use the recursive formula&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;{n \choose r} = {n-1 \choose r-1} + {n-1 \choose r} \qquad \forall \{n,r\in\mathbb{Z} \mid 1 \le r \le n-1 \}.&lt;/script&gt;
-
-&lt;p&gt;With the base cases $\displaystyle{r\choose r}$, $\displaystyle{r\choose0} = 1$ we have
-&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-{n \choose r}=\begin{cases}
-1 &amp; \text{if}\ {k \choose k}\ \text{or}\ {k \choose 0}, \{k\in\mathbb{Z}\}\newline
-{n-1 \choose r-1}+{n-1 \choose r} &amp; \forall \{n,r\in\mathbb{Z}\mid1\le r\le n-1\}
-\end{cases} %]]&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;In C:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;int nCr(int n, int r) {
-    if (n == r || r == 0)
-        return 1;
-    else
-        return nCr(n - 1, r - 1) + nCr(n - 1, r);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will protect you (not entirely) from overflow. The complexity is $\mathcal{O}(n^2)$.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 02 Aug 2013 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/dont-screw-up-ncr</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/dont-screw-up-ncr</guid>
-        
-        <category>math</category>
-        
-        <category>code</category>
-        
-        <category>c</category>
-        
-        <category>probability</category>
-        
-        <category>overflow</category>
-        
-        <category>nCr</category>
-        
-        <category>factorial</category>
         
         
         <category>post</category>

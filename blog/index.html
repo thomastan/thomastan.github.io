@@ -52,6 +52,103 @@
   
 
   
+    <div class="post single">
+      <div class="leftdate">May 1, 2014</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/isolated-ruby-environments">Isolated Ruby environments</a></h3>
+
+        <p>First, make sure you have the latest <code>gems</code> and <code>bundler</code> installed:</p>
+
+<pre class="bash"><code>sudo gem update --system
+sudo gem install bundler
+</code></pre>
+
+<p>Now <code>ch</code> into your project directory and create a plaintext <code>Gemfile</code>.  The first line is where to download gem source files from, and following lines are the gems your project requires:</p>
+
+<pre><code>source 'https://rubygems.org'
+
+gem 'jekyll', '&gt;= 3.0.0.pre.beta2'
+gem 'jekyll-tagging'
+gem 'jekyll-paginate'
+</code></pre>
+
+<p>Then, install the required gems and dependencies:</p>
+
+<pre><code>bundle install --path=.rubyenv --binstubs=.gems
+</code></pre>
+
+<p>Note: <code>--path</code> is a remembered option by bundle.</p>
+
+<p>Generated in your project directory, alongside <code>Gemfile</code> will be:</p>
+
+<ul>
+  <li><code>.bundle</code>, listing the relative path of the environment created by bundler,</li>
+  <li><code>.gems</code>, a folder containing the gem executables,</li>
+  <li><code>.rubyenv/ruby/</code>, a folder containing yours gems’ other files,</li>
+  <li><code>Gemfile.lock</code>, a list of your installed gems and the installed gems these are dependent on.</li>
+</ul>
+
+<p>By running binaries from, and/or adding the <code>.gems/</code> folder to your <code>PATH</code>, you will be using your isolated Ruby environment. When you no longer want to work in this environment, simply remove <code>.gems/</code> from your <code>PATH</code>. To blow away your isolated environment, remove the <code>.rubyenv</code> and <code>.gems</code> folders from your project (you can also remove <code>.bundle</code>, <code>Gemfile</code> and <code>Gemfile.lock</code>).</p>
+
+
+
+        
+        
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/ruby">#ruby</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/gem">#gem</a></li><li><a href="/tag/gems">#gems</a></li><li><a href="/tag/bundle">#bundle</a></li><li><a href="/tag/bundler">#bundler</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Feb 13, 2014</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/isolated-python-environments">Isolated Python environments</a></h3>
+
+        <p>You should only ever need (admin access) to globally install two Python packages:</p>
+
+<pre><code>sudo easy_install pip
+sudo pip install virtualenv
+</code></pre>
+
+<p>The first is <code>pip</code> and this allows you to install the enabling <code>virtualenv</code>.  With <code>virtualenv</code>, you can have isolated Python environments, each with their own copy of <code>pip</code>.</p>
+
+<p>Now <code>ch</code> into the root of a project directory and run</p>
+
+<pre><code>virtualenv env
+source env/bin/activate
+</code></pre>
+
+<p>This creates the Python environment in <code>env/</code> and activates the environment so the project uses env/bin/python.  Add <code>env/</code> to .gitignore (or similar) if you’re using a version control system.</p>
+
+<p>With <code>deactivate</code>, the <code>env/bin/deactivate</code> binary will bring you back to your normal environment.</p>
+
+<h4 id="requirements-files">Requirements files</h4>
+<p>You can state and install dependencies in your Python environments by placing them in the <code>requirements.txt</code> file in a project’s root directory.  These dependencies are installed with</p>
+
+<pre><code>env/bin/pip install -r requirements.txt
+</code></pre>
+
+<p>Have fun installing as many Python packages as you’d like without polluting your systems!</p>
+
+
+
+        
+        
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/virtualenv">#virtualenv</a></li><li><a href="/tag/pip">#pip</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
 
   
     <div class="post single">
@@ -300,33 +397,6 @@ class Cafeteria {
         
         <ul class="tags">
           <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/scheme">#scheme</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/recursive">#recursive</a></li><li><a href="/tag/recursion">#recursion</a></li>
-        </ul>
-        <div class="wrapper"><hr></div>
-      </div>
-    </div>
-  
-
-  
-    <div class="post single">
-      <div class="leftdate">Aug 2, 2013</div>
-
-      <div class="wrapper">
-        <h3><a href="/post/dont-screw-up-ncr">Don't screw up nCr()</a></h3>
-
-        <p>You will screw up if you try to implement <code>nCr(int n, int r)</code> using
-<script type="math/tex">{n\choose r} = {n! \over r! (n - r)!}.</script></p>
-
-<p>Here’s why: $n!$ will overflow!</p>
-
-
-
-        
-        
-        
-        <p class="read-more"><a title="Click to open the full article 'Don't screw up nCr()'" href="/post/dont-screw-up-ncr"><i>Continue reading...</i></a></p>
-        
-        <ul class="tags">
-          <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/probability">#probability</a></li><li><a href="/tag/overflow">#overflow</a></li><li><a href="/tag/ncr">#ncr</a></li><li><a href="/tag/factorial">#factorial</a></li>
         </ul>
         <div class="wrapper"><hr></div>
       </div>

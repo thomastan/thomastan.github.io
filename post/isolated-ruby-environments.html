@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Differentiating polynomials in C</title>
-  <meta name="description" content="A polynomial of degree $n$, $P_n(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \ldots + a_0$ can be represented in C as the vector { a[0], a[1], ..., a[...">
+  <title>Thomas Tan | Isolated Ruby environments</title>
+  <meta name="description" content="First, make sure you have the latest gems and bundler installed:sudo gem update --systemsudo gem install bundlerNow ch into your project directory and create...">
 
-  <link rel="canonical" href="/post/differentiating-polynomials">
+  <link rel="canonical" href="/post/isolated-ruby-environments">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -50,35 +50,48 @@
   <div class="container">
     <div class="post permalink">
   <div class="leftdate">
-    Jan 3, 2013
+    May 1, 2014
   </div>
 
   <div class="wrapper">
-    <h3>Differentiating polynomials in C</h3>
+    <h3>Isolated Ruby environments</h3>
 
-    <p>A polynomial of degree $n$, $P_n(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \ldots + a_0$ can be represented in C as the vector <code>{ a[0], a[1], ..., a[n] }</code>.  The vector has size $n+1$. <!--more--></p>
+    <p>First, make sure you have the latest <code>gems</code> and <code>bundler</code> installed:</p>
 
-<p>Such a polynomial can be differentiated with a C function operating on the polynomial’s coëfficient vector (here called <code>coeff</code>):</p>
-
-<pre><code>#include &lt;stdlib.h&gt;
-
-void differentiate(float *coeff, int degree) {
-    int i;
-    for (i = 0; i &lt;= degree - 1; i++)
-        coeff[i] = (i + 1) * coeff[i + 1];
-
-    if (degree &gt;= 1) {
-        // The polynomial and its coëfficient vector has a new size
-        coeff = (float *) realloc(coeff, degree * sizeof(float));
-
-        degree--;
-    }
-}
+<pre class="bash"><code>sudo gem update --system
+sudo gem install bundler
 </code></pre>
+
+<p>Now <code>ch</code> into your project directory and create a plaintext <code>Gemfile</code>.  The first line is where to download gem source files from, and following lines are the gems your project requires:</p>
+
+<pre><code>source 'https://rubygems.org'
+
+gem 'jekyll', '&gt;= 3.0.0.pre.beta2'
+gem 'jekyll-tagging'
+gem 'jekyll-paginate'
+</code></pre>
+
+<p>Then, install the required gems and dependencies:</p>
+
+<pre><code>bundle install --path=.rubyenv --binstubs=.gems
+</code></pre>
+
+<p>Note: <code>--path</code> is a remembered option by bundle.</p>
+
+<p>Generated in your project directory, alongside <code>Gemfile</code> will be:</p>
+
+<ul>
+  <li><code>.bundle</code>, listing the relative path of the environment created by bundler,</li>
+  <li><code>.gems</code>, a folder containing the gem executables,</li>
+  <li><code>.rubyenv/ruby/</code>, a folder containing yours gems’ other files,</li>
+  <li><code>Gemfile.lock</code>, a list of your installed gems and the installed gems these are dependent on.</li>
+</ul>
+
+<p>By running binaries from, and/or adding the <code>.gems/</code> folder to your <code>PATH</code>, you will be using your isolated Ruby environment. When you no longer want to work in this environment, simply remove <code>.gems/</code> from your <code>PATH</code>. To blow away your isolated environment, remove the <code>.rubyenv</code> and <code>.gems</code> folders from your project (you can also remove <code>.bundle</code>, <code>Gemfile</code> and <code>Gemfile.lock</code>).</p>
 
 
     <ul class="tags">
-      <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/C">#C</a></li><li><a href="/tag/calculus">#calculus</a></li><li><a href="/tag/differentiation">#differentiation</a></li><li><a href="/tag/polynomial">#polynomial</a></li><li><a href="/tag/realloc">#realloc</a></li>
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/ruby">#ruby</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/gem">#gem</a></li><li><a href="/tag/gems">#gems</a></li><li><a href="/tag/bundle">#bundle</a></li><li><a href="/tag/bundler">#bundler</a></li>
     </ul>
     <div><hr></div>
   </div>

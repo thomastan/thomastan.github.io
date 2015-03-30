@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Thomas Tan | Differentiating polynomials in C</title>
-  <meta name="description" content="A polynomial of degree $n$, $P_n(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \ldots + a_0$ can be represented in C as the vector { a[0], a[1], ..., a[...">
+  <title>Thomas Tan</title>
+  <meta name="description" content="my code, info, blog.">
 
-  <link rel="canonical" href="/post/differentiating-polynomials">
+  <link rel="canonical" href="/tag/bundle">
   <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="alternate stylesheet" href="/css/style.css" title="default">
@@ -48,42 +48,19 @@
   </div>
 
   <div class="container">
-    <div class="post permalink">
-  <div class="leftdate">
-    Jan 3, 2013
-  </div>
+    
 
-  <div class="wrapper">
-    <h3>Differentiating polynomials in C</h3>
-
-    <p>A polynomial of degree $n$, $P_n(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \ldots + a_0$ can be represented in C as the vector <code>{ a[0], a[1], ..., a[n] }</code>.  The vector has size $n+1$. <!--more--></p>
-
-<p>Such a polynomial can be differentiated with a C function operating on the polynomial’s coëfficient vector (here called <code>coeff</code>):</p>
-
-<pre><code>#include &lt;stdlib.h&gt;
-
-void differentiate(float *coeff, int degree) {
-    int i;
-    for (i = 0; i &lt;= degree - 1; i++)
-        coeff[i] = (i + 1) * coeff[i + 1];
-
-    if (degree &gt;= 1) {
-        // The polynomial and its coëfficient vector has a new size
-        coeff = (float *) realloc(coeff, degree * sizeof(float));
-
-        degree--;
-    }
-}
-</code></pre>
-
-
-    <ul class="tags">
-      <li><a href="/tag/math">#math</a></li><li><a href="/tag/code">#code</a></li><li><a href="/tag/C">#C</a></li><li><a href="/tag/calculus">#calculus</a></li><li><a href="/tag/differentiation">#differentiation</a></li><li><a href="/tag/polynomial">#polynomial</a></li><li><a href="/tag/realloc">#realloc</a></li>
-    </ul>
-    <div><hr></div>
+<div class="post archive">
+  <div class="content">
+    <div class="leftdate" style="visibility: visible;">May 1, 2014</div>
+    <div class="wrapper"><h3><a href="/post/isolated-ruby-environments">Isolated Ruby environments</a></h3></div>
+    <div class="divider"><hr></div>
   </div>
 </div>
 
+
+
+<meta type="feed">
     <div id="footer">
       <p>
         <a href="/this-site">This site</a> has

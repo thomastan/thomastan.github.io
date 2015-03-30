@@ -14,8 +14,13 @@ for (var i = 0, post = divs[0]; i < divs.length; post = divs[++i])
 
 
 // 2 (a). Tag all <pre> tags with a className for google code prettify.
-for (var i = 0; i < document.getElementsByTagName("pre").length; i++)
-	document.getElementsByTagName("pre")[i].className += "prettyprint";
+var blocks = document.getElementsByTagName("pre");
+for (var i = 0; i < blocks.length; i++)
+	if (blocks[i].className.indexOf("prettyprint") == -1)
+		if (blocks[i].className.length == 0)
+			blocks[i].className = "prettyprint";
+		else
+			blocks[i].className = "prettyprint " + blocks[i].className;
 prettyPrint();
 
 
