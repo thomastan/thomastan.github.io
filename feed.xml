@@ -5,13 +5,15 @@
     <description>my code, info, blog.</description>
     <link>http://thomastan.github.io/</link>
     <atom:link href="http://thomastan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Mar 2015 03:09:09 -0700</pubDate>
-    <lastBuildDate>Mon, 30 Mar 2015 03:09:09 -0700</lastBuildDate>
+    <pubDate>Mon, 30 Mar 2015 03:23:22 -0700</pubDate>
+    <lastBuildDate>Mon, 30 Mar 2015 03:23:22 -0700</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta2</generator>
     
       <item>
         <title>A bug in Google Chrome and Apple Safari (and the fix)</title>
-        <description>&lt;p&gt;Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.&lt;/p&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;Of the three types of stylesheets,  &lt;em&gt;persistent&lt;/em&gt; stylesheets are always applied on page load.  They act as a good &lt;em&gt;base&lt;/em&gt; stylesheet and are identified by having no &lt;code&gt;title&lt;/code&gt; attribute and have a &lt;code&gt;rel&lt;/code&gt; attribute of simply “stylesheet”.  &lt;em&gt;Preferred&lt;/em&gt; stylesheets have the same &lt;code&gt;rel&lt;/code&gt; attribute but &lt;em&gt;do&lt;/em&gt; have a &lt;code&gt;title&lt;/code&gt; attribute.  Only one preferred stylesheet may be active at the same time.  &lt;em&gt;Alternate&lt;/em&gt; stylesheets have &lt;code&gt;rel=&quot;alternate stylesheet&quot;&lt;/code&gt; and a &lt;code&gt;title&lt;/code&gt; attribute.&lt;/p&gt;
 
@@ -29,7 +31,7 @@ link[i].disabled = false;
 
 &lt;p&gt;seems to work, but if an alternate stylesheet is being set on a page load dependent on a cookie setting, the page will load without a stylesheet at all.  Of course, when there is stylesheet being shown at all, switching to an undesired alternate stylesheet and quick switching to the desired stylesheet in quick succession will achieve the proper outcome, but this will result in a “flicker” where an intermediate stylesheet is shown before the final outcome.&lt;/p&gt;
 
-&lt;h3 id=&quot;the-solution-without-side-effects-in-firefox-and-ie&quot;&gt;The solution (without side-effects in Firefox and IE)&lt;/h3&gt;
+&lt;h4 id=&quot;the-solution-without-side-effects-in-firefox-and-ie&quot;&gt;The solution (without side-effects in Firefox and IE)&lt;/h4&gt;
 
 &lt;p&gt;The solution is to have no &lt;em&gt;preferred&lt;/em&gt; stylesheets (having base &lt;em&gt;persistent&lt;/em&gt; stylesheets is still okay).  Give all stylesheets a &lt;code&gt;rel=&quot;alternate stylesheet&quot;&lt;/code&gt; attribute (&lt;em&gt;i.e.&lt;/em&gt; make them all alternative stylesheets) and use JavaScript to iterate through these, in the page &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; &lt;strong&gt;before&lt;/strong&gt; the &lt;code&gt;&amp;lt;main&amp;gt;&lt;/code&gt; body loads, and set the desired stylesheet to have &lt;code&gt;rel=&quot;stylesheet&quot;&lt;/code&gt; and all others to have &lt;code&gt;rel=&quot;alternate stylesheet&quot;&lt;/code&gt;.  The same procedure (JavaScript function) can be called when the user performs an action on the page to change the stylesheet.&lt;/p&gt;
 
@@ -109,7 +111,7 @@ void differentiate(float *coeff, int degree) {
         <title>Isolated Ruby environments</title>
         <description>&lt;p&gt;First, make sure you have the latest &lt;code&gt;gems&lt;/code&gt; and &lt;code&gt;bundler&lt;/code&gt; installed:&lt;/p&gt;
 
-&lt;pre class=&quot;bash&quot;&gt;&lt;code&gt;sudo gem update --system
+&lt;pre&gt;&lt;code&gt;sudo gem update --system
 sudo gem install bundler
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -122,7 +124,7 @@ gem &#39;jekyll-tagging&#39;
 gem &#39;jekyll-paginate&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then, install the required gems and dependencies:&lt;/p&gt;
+&lt;p&gt;Then, install the required gems and dependencies: &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;bundle install --path=.rubyenv --binstubs=.gems
 &lt;/code&gt;&lt;/pre&gt;
@@ -173,11 +175,11 @@ gem &#39;jekyll-paginate&#39;
 sudo pip install virtualenv
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The first is &lt;code&gt;pip&lt;/code&gt; and this allows you to install the enabling &lt;code&gt;virtualenv&lt;/code&gt;.  With &lt;code&gt;virtualenv&lt;/code&gt;, you can have isolated Python environments, each with their own copy of &lt;code&gt;pip&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The first is &lt;code&gt;pip&lt;/code&gt; and this allows you to install the enabling &lt;code&gt;virtualenv&lt;/code&gt;.  With &lt;code&gt;virtualenv&lt;/code&gt;, you can have isolated Python environments, each with their own copy of &lt;code&gt;pip&lt;/code&gt;. &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Now &lt;code&gt;ch&lt;/code&gt; into the root of a project directory and run&lt;/p&gt;
 
-&lt;pre class=&quot;bash&quot;&gt;&lt;code&gt;virtualenv env
+&lt;pre&gt;&lt;code&gt;virtualenv env
 source env/bin/activate
 &lt;/code&gt;&lt;/pre&gt;
 

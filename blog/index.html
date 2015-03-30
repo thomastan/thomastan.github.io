@@ -56,7 +56,9 @@
       <div class="wrapper">
         <h3><a href="/post/bug-in-chrome-safari">A bug in Google Chrome and Apple Safari (and the fix)</a></h3>
 
-        <p>Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.</p>
+        <blockquote>
+  <p>Chrome, Safari (and other WebKit and Blink-based browsers) don’t handle alternate stylesheets correctly.</p>
+</blockquote>
 
 <p>Of the three types of stylesheets,  <em>persistent</em> stylesheets are always applied on page load.  They act as a good <em>base</em> stylesheet and are identified by having no <code>title</code> attribute and have a <code>rel</code> attribute of simply “stylesheet”.  <em>Preferred</em> stylesheets have the same <code>rel</code> attribute but <em>do</em> have a <code>title</code> attribute.  Only one preferred stylesheet may be active at the same time.  <em>Alternate</em> stylesheets have <code>rel="alternate stylesheet"</code> and a <code>title</code> attribute.</p>
 
@@ -88,7 +90,7 @@
 
         <p>First, make sure you have the latest <code>gems</code> and <code>bundler</code> installed:</p>
 
-<pre class="bash"><code>sudo gem update --system
+<pre><code>sudo gem update --system
 sudo gem install bundler
 </code></pre>
 
@@ -103,26 +105,12 @@ gem 'jekyll-paginate'
 
 <p>Then, install the required gems and dependencies:</p>
 
-<pre><code>bundle install --path=.rubyenv --binstubs=.gems
-</code></pre>
-
-<p>Note: <code>--path</code> is a remembered option by bundle.</p>
-
-<p>Generated in your project directory, alongside <code>Gemfile</code> will be:</p>
-
-<ul>
-  <li><code>.bundle</code>, listing the relative path of the environment created by bundler,</li>
-  <li><code>.gems</code>, a folder containing the gem executables,</li>
-  <li><code>.rubyenv/ruby/</code>, a folder containing yours gems’ other files,</li>
-  <li><code>Gemfile.lock</code>, a list of your installed gems and the installed gems these are dependent on.</li>
-</ul>
-
-<p>By running binaries from, and/or adding the <code>.gems/</code> folder to your <code>PATH</code>, you will be using your isolated Ruby environment. When you no longer want to work in this environment, simply remove <code>.gems/</code> from your <code>PATH</code>. To blow away your isolated environment, remove the <code>.rubyenv</code> and <code>.gems</code> folders from your project (you can also remove <code>.bundle</code>, <code>Gemfile</code> and <code>Gemfile.lock</code>).</p>
-
 
 
         
         
+        
+        <p class="read-more"><a title="Click to open the full article 'Isolated Ruby environments'" href="/post/isolated-ruby-environments"><i>Continue reading...</i></a></p>
         
         <ul class="tags">
           <li><a href="/tag/code">#code</a></li><li><a href="/tag/ruby">#ruby</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/gem">#gem</a></li><li><a href="/tag/gems">#gems</a></li><li><a href="/tag/bundle">#bundle</a></li><li><a href="/tag/bundler">#bundler</a></li>
@@ -147,28 +135,12 @@ sudo pip install virtualenv
 
 <p>The first is <code>pip</code> and this allows you to install the enabling <code>virtualenv</code>.  With <code>virtualenv</code>, you can have isolated Python environments, each with their own copy of <code>pip</code>.</p>
 
-<p>Now <code>ch</code> into the root of a project directory and run</p>
-
-<pre class="bash"><code>virtualenv env
-source env/bin/activate
-</code></pre>
-
-<p>This creates the Python environment in <code>env/</code> and activates the environment so the project uses env/bin/python.  Add <code>env/</code> to .gitignore (or similar) if you’re using a version control system.</p>
-
-<p>With <code>deactivate</code>, the <code>env/bin/deactivate</code> binary will bring you back to your normal environment.</p>
-
-<h4 id="requirements-files">Requirements files</h4>
-<p>You can state and install dependencies in your Python environments by placing them in the <code>requirements.txt</code> file in a project’s root directory.  These dependencies are installed with</p>
-
-<pre><code>env/bin/pip install -r requirements.txt
-</code></pre>
-
-<p>Have fun installing as many Python packages as you’d like without polluting your systems!</p>
-
 
 
         
         
+        
+        <p class="read-more"><a title="Click to open the full article 'Isolated Python environments'" href="/post/isolated-python-environments"><i>Continue reading...</i></a></p>
         
         <ul class="tags">
           <li><a href="/tag/code">#code</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/isolation">#isolation</a></li><li><a href="/tag/virtual-machine">#virtual-machine</a></li><li><a href="/tag/virtualenv">#virtualenv</a></li><li><a href="/tag/pip">#pip</a></li>
