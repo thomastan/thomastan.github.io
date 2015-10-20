@@ -5,9 +5,9 @@
     <description>my code, info, blog.</description>
     <link>http://thomastan.github.io/</link>
     <atom:link href="http://thomastan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Mar 2015 03:23:22 -0700</pubDate>
-    <lastBuildDate>Mon, 30 Mar 2015 03:23:22 -0700</lastBuildDate>
-    <generator>Jekyll v3.0.0.pre.beta2</generator>
+    <pubDate>Tue, 20 Oct 2015 02:27:59 -0700</pubDate>
+    <lastBuildDate>Tue, 20 Oct 2015 02:27:59 -0700</lastBuildDate>
+    <generator>Jekyll v3.0.0.pre.beta9</generator>
     
       <item>
         <title>A bug in Google Chrome and Apple Safari (and the fix)</title>
@@ -468,9 +468,9 @@ print $toServe;
     &lt;p&gt;Now comes your first warning: the above two code fragments are only equivalent in C# for the &lt;code&gt;requested == null&lt;/code&gt; case.  If &lt;code&gt;requested&lt;/code&gt; is the empty string &lt;code&gt;&quot;&quot;&lt;/code&gt;, the first line with &lt;code&gt;??&lt;/code&gt; works as expected, but the second won’t as am empty string is not boolean false.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;  However, it can be adjusted so it works as expected:&lt;/p&gt;
 
     &lt;ul&gt;
-      &lt;li&gt;In C#:&lt;br&gt;
+      &lt;li&gt;In C#:&lt;br /&gt;
 &lt;code&gt;string toServe = requested.Length &amp;gt; 0 ? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;In C++:&lt;br&gt;
+      &lt;li&gt;In C++:&lt;br /&gt;
 &lt;code&gt;string toServe = requested.length() &amp;gt; 0? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
