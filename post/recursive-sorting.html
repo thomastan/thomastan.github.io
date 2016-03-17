@@ -103,49 +103,39 @@ void merge(int a[], int left, int mid, int right) {
 <p>Comments: the recursion in this merge sort code is the <code>partition()</code> call.</p>
 
 <h4 id="quicksort">Quicksort</h4>
+
 <p>Select a pivot and partition the list in two, with the left list containing elements smaller than the partition and the right having those larger than it.  Repeat on the obtained partitions.</p>
 
 <pre><code>void quicksort(int a[], int n);
-int partition(int a[], int first, int last);
 void sort(int a[], int first, int last);
+int partition(int a[], int first, int last);
 
 void quicksort(int a[], int n) {
     sort(a, 0, n - 1);
 }
 
 void sort(int a[], int first, int last) {
-    int pivot;
-
     if (first &lt; last) {
-        pivot = partition(a, first, last);
-        sort(a, first, pivot - 1);
-        sort(a, pivot + 1, last);
+        int index = partition(a, first, last);
+        sort(a, first, index - 1);
+        sort(a, index + 1, last);
     }
 }
 
-int partition(int a[], int first, int last) {
-    int pivot, below, above, temp;
+int partition(int a[], int left, int right) {
+    int pivot = a[right];
 
-    if (first &lt; last) {
-        pivot = first;
-        below = first, above = last;
-
-        while (below &lt; above) {
-            while (a[below] &lt;= a[pivot] &amp;&amp; below &lt; last)
-                below++;
-                // below holds index of first number above pivot
-            while (a[above] &gt; a[pivot])
-                above--;
-                // above holds index of last number lte to pivot
-
-            if (below &lt; above)
-                temp = a[below], a[below] = a[above], a[above] = temp;
+    // place all elements smaller than the pivot on the left
+    int index = left, temp;
+    for (int i = left; i &lt; right; i++)
+        if (a[i] &lt;= pivot) {
+            temp = a[index], a[index] = a[i], a[i] = temp;
+            index++;
         }
 
-        temp = a[pivot], a[pivot] = a[above], a[above] = temp;
-
-        return above;
-    }
+    // place the pivot immediately after all these smaller elements
+    temp = a[index], a[index] = a[right], a[right] = temp;
+    return index;
 }
 </code></pre>
 
@@ -156,8 +146,7 @@ int partition(int a[], int first, int last) {
 
 int main() {
     int a[] = {-3, -2, 5, 7, 37, 2, 8, 19, 28};
-
-    int i, n = sizeof(a) / sizeof(a[0]);
+    int i, n = sizeof a / sizeof a[0];
 
     quicksort(a, n); // or mergesort(a, n);
 

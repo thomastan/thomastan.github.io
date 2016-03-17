@@ -5,9 +5,265 @@
     <description>my code, info, blog.</description>
     <link>http://thomastan.github.io/</link>
     <atom:link href="http://thomastan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 24 Oct 2015 02:03:32 -0700</pubDate>
-    <lastBuildDate>Sat, 24 Oct 2015 02:03:32 -0700</lastBuildDate>
+    <pubDate>Thu, 17 Mar 2016 02:06:34 -0700</pubDate>
+    <lastBuildDate>Thu, 17 Mar 2016 02:06:34 -0700</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta9</generator>
+    
+      <item>
+        <title>National π Day</title>
+        <description>&lt;p&gt;Today is 3/14, National π day!  In celebration, Pizza Hut is offering free pizza for 3.14 years for those who solve three math problems.  The problems are available at &lt;a href=&quot;http://blog.pizzahut.com/flavor-news/national-pi-day-math-contest-problems-are-here-2&quot;&gt;blog.pizzahut.com&lt;/a&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and I’ve provided one solution below.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;The first problem (Option A):&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;I’m thinking of a ten-digit integer whose digits are all distinct. It happens that the number formed by the first $n$ of them is divisible by $n$ for each $n$ from 1 to 10. What is my number?&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;can be solved in 18 or so lines by hand.  For those rusty on their rules of divisibility, the first problem can also be brute forced, after going through a few processes of elimination.  The C code is below, since C is fastest for these kinds of things 😀:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+
+/*
+ * We know a few things, such as:
+ *  - For the 10 digit number has to be divisible 10, the last digit must be 0.
+ *  - Consequently, 5 is the only option for the fifth digit, so that any
+ *    number formed from the first through fifth digit is divisible by 5.
+ *  - All even place digits must be a 2, 4, 6 or 8.
+ *  - All odd place digits must be a 1, 3, 7 or 9.
+ *  - Moreover, since the third digit is odd, the fourth digit must be 2 or 6.
+ *  - Likewise, since the seventh digit is odd, the eigth digit must be 2 or 6.
+ *  - Hence, the second and sixth digits must be 4 or 8.
+ */
+
+long pow10(int n) {
+    int product = 1;
+    for (int i = 0; i &amp;lt; n; i++)
+        product *= 10;
+    return product;
+}
+
+void pizzahut(int params) {
+    for (long i = pow10(9); i &amp;lt;= 9999999990L; i += 10) {
+        // only check numbers where the fifth digit is a 5
+        if (i / 100000 % 10 != 5)
+            continue;
+
+        // only check numbers if the second, fourth, sixth and eighth digits are
+        // 2/4/6/8
+        for (int j = 0, places[] = {2, 4, 6, 8}; j &amp;lt; 4; j++) {
+            int digit = i / pow10(10 - places[j]) % 10;
+            if (places[j] == 4 || places[j] == 8) {
+                if (digit != 2 &amp;amp;&amp;amp; digit != 6)
+                    goto nextCandidate;
+            } else if (places[j] == 2 || places[j] == 6)
+                if (digit != 4 &amp;amp;&amp;amp; digit != 8)
+                    goto nextCandidate;
+        }
+
+        // only check numbers if the first, third, seventh and ninth digits are
+        // 1/3/7/9
+        for (int j = 0, places[] = {1, 3, 7, 9}; j &amp;lt; 4; j++) {
+            int digit = i / pow10(10 - places[j]) % 10;
+            if (digit != 1 &amp;amp;&amp;amp; digit != 3 &amp;amp;&amp;amp; digit != 7 &amp;amp;&amp;amp; digit != 9)
+                goto nextCandidate;
+        }
+
+        {
+            int digitsUsed[10] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+            // check the n-th digit&#39;s uniqueness and divisibility by 1..n
+            for (int numDigits = 1; numDigits &amp;lt;= 10; numDigits++) {
+                long toCheck = i / pow10(10 - numDigits);
+
+                // check n-th the digit is not a repeat
+                int lastDigit = toCheck - (toCheck / 10) * 10, j;
+                for (j = 0; digitsUsed[j] != -1; j++)
+                    if (lastDigit == digitsUsed[j])
+                        goto nextCandidate;
+                digitsUsed[j] = lastDigit;
+
+                // check the first n digits form a number divisible by n
+                if (toCheck % numDigits != 0)
+                    goto nextCandidate;
+                else if (numDigits == 10) {
+                    printf(&quot;%ld\n&quot;, toCheck);
+                    if (params &amp;gt; 1)  // search more answers if given parameter
+                        return;
+                }
+            }
+        }
+
+    nextCandidate:
+        continue;
+    }
+}
+
+int main(int argc, char **argv) {
+    pizzahut(argc);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Good luck on solving the remaining two problems!&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://blog.pizzahut.com/flavor-news/national-pi-day-math-contest-problems-are-here-2&quot;&gt;http://blog.pizzahut.com/flavor-news/national-pi-day-math-contest-problems-are-here-2&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 14 Mar 2016 00:00:00 -0700</pubDate>
+        <link>http://thomastan.github.io/post/quickselect</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/quickselect</guid>
+        
+        <category>code</category>
+        
+        <category>C</category>
+        
+        <category>algorithms</category>
+        
+        <category>goto</category>
+        
+        <category>math</category>
+        
+        <category>pi</category>
+        
+        <category>divisibility</category>
+        
+        <category>contest</category>
+        
+        <category>pizza</category>
+        
+        
+        <category>post</category>
+        
+      </item>
+    
+      <item>
+        <title>Finding the n-th maximum or k-th order statistic</title>
+        <description>&lt;p&gt;Closely related to the Quicksort algorithm is the not-as-popular, but closely related &lt;strong&gt;Quicksearch&lt;/strong&gt;.  A common problem is to find the $n$-th largest or “$n$-th maximum” in a set without having to first sort the set.  More formally, Quicksearch finds the $k$-th order stastic, which is actually the $k$-th &lt;em&gt;smallest&lt;/em&gt; of the set.  However, the search can easily be flipped so that Quicksearch yields the $k$-th largest element instead.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h4 id=&quot;quicksearch&quot;&gt;Quicksearch&lt;/h4&gt;
+&lt;p&gt;A pivot is selected to partition the list in two, with the left list containing elements smaller than the partition and the right having those larger than it.  If the pivot is in the $k$-th position, then it is the $k$-th order statistic and the search ends.  Otherwise, the $k$-th order statistic exists either in the left sublist, if $k$ is less than the index of the pivot, or in the right sublist if $k$ is greater than the index of the pivot.  Unlike Quicksort, where sorting continues on both sublists after the pivot index is obtained, in Quicksearch, recursion only needs to continue on &lt;strong&gt;one&lt;/strong&gt; of the sublists.&lt;/p&gt;
+
+&lt;p&gt;Here is C code for Quicksearch:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+
+int quickselect(int a[], int n, int k);
+int select(int a[], int left, int right, int k);
+int partition(int a[], int left, int right, int k);
+
+int quickselect(int a[], int n, int k) {
+    return select(a, 0, n - 1, k);
+}
+
+int select(int a[], int left, int right, int k) {
+    int pivotIndex = partition(a, left, right, k);
+
+    if (k == pivotIndex)
+        return a[k];
+    else if (k &amp;lt; pivotIndex)
+        return select(a, left, pivotIndex - 1, k);
+    else
+        return select(a, pivotIndex + 1, right, k);
+}
+
+int partition(int a[], int left, int right, int k) {
+    int pivot = a[k];  // try finding the k-th smallest in slot k
+
+    a[k] = a[right], a[right] = pivot;
+
+    // place all elements smaller than the pivot on the left
+    int index = left, temp;
+    for (int i = left; i &amp;lt; right; i++)
+        if (a[i] &amp;lt; pivot) {
+            temp = a[index], a[index] = a[i], a[i] = temp;
+            index++;
+        }
+
+    // place the pivot immediately after all these smaller elements
+    temp = a[index], a[index] = a[right], a[right] = temp;
+    return index;
+}
+
+int main() {
+    int a[] = {-3, -2, 5, 7, 37, 2, 8, 19, 28, 13, -6, 200};
+    int i, n = sizeof a / sizeof a[0];
+
+    printf(&quot;%d\n&quot;, quickselect(a, n, 1));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can observe how closely the above resembles &lt;a href=&quot;/post/recursive-sorting#quicksort&quot;&gt;Quicksort code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Quicksearch is more conveniently implemented in C++ thanks to the vector STL:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+using namespace std;
+
+int quickselect(vector&amp;lt;int&amp;gt; a, int k) {
+    vector&amp;lt;int&amp;gt; below, above;
+    int pivot = a[k - 1];
+
+    for (vector&amp;lt;int&amp;gt;::iterator i = a.begin(); i != a.end(); i++)
+        if (*i &amp;lt; pivot)
+            below.push_back(*i);
+        else if (*i &amp;gt; pivot)
+            above.push_back(*i);
+
+    if (k == below.size() + 1)
+        return pivot;
+    else if (k &amp;lt;= below.size())
+        return quickselect(below, k);
+    else
+        return quickselect(above, k - (below.size() + 1));
+}
+
+int main() {
+    int a[] = {-3, -2, 5, 7, 37, 2, 8, 19, 28, 13, -6, 200};
+    int n = sizeof a / sizeof a[0];
+    vector&amp;lt;int&amp;gt; v(a, a + n);
+
+    printf(&quot;%d\n&quot;, quickselect(v, 7));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Comments: Like Quicksort, the worst case running time of Quicksearch is $\mathcal{O}(n^2)$.  This is not a common scenario (why Quicksort is still commonly found even though the worst case running time of Merge sort is not quadratic), and the best case is more prevalent.  The best case and average performance of Quicksearch is $\mathcal{O}(n)$.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 30 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://thomastan.github.io/post/quickselect</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/quickselect</guid>
+        
+        <category>code</category>
+        
+        <category>C</category>
+        
+        <category>C++</category>
+        
+        <category>simple</category>
+        
+        <category>searching</category>
+        
+        <category>algorithms</category>
+        
+        <category>recursion</category>
+        
+        <category>quick</category>
+        
+        <category>quick-sort</category>
+        
+        <category>quick-select</category>
+        
+        
+        <category>post</category>
+        
+      </item>
     
       <item>
         <title>A bug in Google Chrome and Apple Safari (and the fix)</title>
@@ -421,179 +677,6 @@ temp = a, a = b, b = temp;
         <category>xor</category>
         
         <category>bitwise</category>
-        
-        
-        <category>post</category>
-        
-      </item>
-    
-      <item>
-        <title>How operators save lines</title>
-        <description>&lt;p&gt;Operators such as the &lt;em&gt;coälescing&lt;/em&gt; (or &lt;em&gt;null-coälescing&lt;/em&gt;) operator in Microsoft’s C# language are capable of saving you from unnecessary lines of code when writing if-then-else assignment code blocks.  In C# the operator is &lt;code&gt;??&lt;/code&gt; and it’s also called the “double question mark” operator, but, unlike the ternary “single question mark operator” &lt;code&gt;?:&lt;/code&gt;, &lt;code&gt;??&lt;/code&gt; only takes two operands; a value to be assigned provided it isn’t &lt;em&gt;null&lt;/em&gt;, and an alternative for when it is.&lt;/p&gt;
-
-&lt;p&gt;An example in C#:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;using System;
-
-class Cafeteria {
-    static void Main(string[] args) {
-        serve(null);
-    }
-
-    static void serve(string requested) {
-        string toServe = requested ?? &quot;French Fries&quot;;
-        Console.WriteLine(toServe);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;!--more--&gt;
-&lt;p&gt;Perl 5.10+ also provides for null-coälescing via &lt;code&gt;//&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#!/usr/bin/env perl
-
-$toServe = $requested // &quot;French Fries&quot;;
-print $toServe;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Code containing null-coälescing operators have equivalents in their same language and in others, written using &lt;code&gt;?:&lt;/code&gt;, &lt;code&gt;||&lt;/code&gt; or if-then-else statements.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Take the ternary &lt;code&gt;?:&lt;/code&gt; operator for example:
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code&gt;string toServe = requested ?? &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code&gt;string toServe = requested ? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;Now comes your first warning: the above two code fragments are only equivalent in C# for the &lt;code&gt;requested == null&lt;/code&gt; case.  If &lt;code&gt;requested&lt;/code&gt; is the empty string &lt;code&gt;&quot;&quot;&lt;/code&gt;, the first line with &lt;code&gt;??&lt;/code&gt; works as expected, but the second won’t as am empty string is not boolean false.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;  However, it can be adjusted so it works as expected:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;In C#:&lt;br /&gt;
-&lt;code&gt;string toServe = requested.Length &amp;gt; 0 ? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;In C++:&lt;br /&gt;
-&lt;code&gt;string toServe = requested.length() &amp;gt; 0? requested : &quot;French Fries&quot;;&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In many languages the logical “OR” operator suffices.  In JavaScript for example, “OR” is &lt;code&gt;||&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;function serve(requested) {
-    var toServe = (requested || &quot;French Fries&quot;);
-    alert(toServe);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;code&gt;serve()&lt;/code&gt; yields “&lt;code&gt;French Fries&lt;/code&gt;” and &lt;code&gt;serve(&quot;meat&quot;)&lt;/code&gt; yields “&lt;code&gt;meat&lt;/code&gt;”.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;If you want to replace an if-then-else block with a null-coälescing operator you’ll need to exercise a bit of caution.  The following cannot be converted to use a null-coälescing operator:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;if (winnings)
-    gain = winnings;
-else
-    spent += 1;
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;Why not?  Because the conditional assignment is done to two differing variables, depending on whether &lt;code&gt;winnings&lt;/code&gt; is defined or not.  You also cannot convert the above to use the &lt;code&gt;?:&lt;/code&gt; operator in this case.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;In conclusion, the null-coälescing “double-question mark” operator is awesome.  For languages without it, you can still use &lt;code&gt;?:&lt;/code&gt; or &lt;code&gt;||&lt;/code&gt; to shorten code, but you need to pay attention when conditioning on your left operand depending on whether or not your language differentiates 0, empty strings and unassigned variables from &lt;em&gt;null&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;C# error: “Cannot implicitly convert type ‘string’ to ‘bool’”. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;C++ error: “could not convert ‘requested’ from ‘std::string {aka std::basic_string&lt;char&gt;}&#39; to &#39;bool&#39;&quot;.&lt;/char&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 24 Aug 2013 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/operators-save-lines</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/operators-save-lines</guid>
-        
-        <category>code</category>
-        
-        <category>C-sharp</category>
-        
-        <category>JavaScript</category>
-        
-        <category>perl</category>
-        
-        <category>question-mark</category>
-        
-        <category>null-coalescing</category>
-        
-        <category>operator</category>
-        
-        <category>kiss</category>
-        
-        <category>simple</category>
-        
-        
-        <category>post</category>
-        
-      </item>
-    
-      <item>
-        <title>Writing simple code</title>
-        <description>&lt;meta lang=&quot;en&quot; translation=&quot;fr-CA&quot; title=&quot;L&#39;écriture de code simple&quot; /&gt;
-
-&lt;p&gt;Complicated code is easy to write.  Simple code is hard to write.  How so?  Because “complicated” in this case doesn’t mean “complex” code, it means code that’s made unnecessarily complicated; obfuscated and harder to read and harder to understand.&lt;/p&gt;
-
-&lt;p&gt;Below are two examples; one calculates the factorial $n!$, the other finds the greatest common divisor (GCD).  Both examples are done in a single line and show how things can be kept minimalistic. &lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;factorial&quot;&gt;Factorial&lt;/h4&gt;
-&lt;p&gt;The factorial of a non-negative integer $n$ is denoted $n!$.  Mathematically,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-n! = \begin{cases} 1 &amp; n = 0 \newline \prod_{k=1}^{n} k &amp; n \in \mathbb{Z^+} \end{cases} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;In C/C++:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;int factorial(int n) {
-	return n == 0 || n == 1 ? 1 : n * factorial(n - 1);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;euclids-algorithm&quot;&gt;Euclid’s algorithm&lt;/h4&gt;
-&lt;p&gt;Euclid’s algorithm computes the &lt;em&gt;greatest common divisor&lt;/em&gt; (GCD) of two integers $a$ and $b$.  The GCD does not change if the smaller number is subtracted from the larger.  By repeating this process, smaller pairs of integers can be successively obtained until a pair of equal integers, or integers with unit difference is obtained.  By using modular arithmetic in place of subtractions, the process can be further accelerated.  Mathematically,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\gcd(a,b) = \begin{cases} a &amp; \text{if}~b = 0 \newline \gcd\left(b, a - b \left\lfloor {a \over b} \right\rfloor\right) &amp; \text{otherwise} \end{cases} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;So how can this be performed in code?  Here’s how in C/C++:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;int gcd(int a, int b) {
-	return b == 0 ? a : gcd(b, a % b);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Remember, always KISS — keep it simple, stupid!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 04 Aug 2013 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/simple-code</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/simple-code</guid>
-        
-        <category>code</category>
-        
-        <category>C</category>
-        
-        <category>C++</category>
-        
-        <category>simple</category>
-        
-        <category>math</category>
-        
-        <category>factorial</category>
-        
-        <category>gcd</category>
-        
-        <category>euclid</category>
-        
-        <category>recursion</category>
         
         
         <category>post</category>

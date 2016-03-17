@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | National π Day</title>
+  <meta name="description" content="Today is 3/14, National π day!  In celebration, Pizza Hut is offering free pizza for 3.14 years for those who solve three math problems.  The problems are av...">
+
+  <link rel="canonical" href="/post/quickselect">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Mar 14, 2016
+  </div>
+
+  <div class="wrapper">
+    <h3>National π Day</h3>
+
+    <p>Today is 3/14, National π day!  In celebration, Pizza Hut is offering free pizza for 3.14 years for those who solve three math problems.  The problems are available at <a href="http://blog.pizzahut.com/flavor-news/national-pi-day-math-contest-problems-are-here-2">blog.pizzahut.com</a><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and I’ve provided one solution below.</p>
+
+<!--more-->
+
+<p>The first problem (Option A):</p>
+
+<blockquote>
+  <p><em>I’m thinking of a ten-digit integer whose digits are all distinct. It happens that the number formed by the first $n$ of them is divisible by $n$ for each $n$ from 1 to 10. What is my number?</em></p>
+</blockquote>
+
+<p>can be solved in 18 or so lines by hand.  For those rusty on their rules of divisibility, the first problem can also be brute forced, after going through a few processes of elimination.  The C code is below, since C is fastest for these kinds of things 😀:</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+/*
+ * We know a few things, such as:
+ *  - For the 10 digit number has to be divisible 10, the last digit must be 0.
+ *  - Consequently, 5 is the only option for the fifth digit, so that any
+ *    number formed from the first through fifth digit is divisible by 5.
+ *  - All even place digits must be a 2, 4, 6 or 8.
+ *  - All odd place digits must be a 1, 3, 7 or 9.
+ *  - Moreover, since the third digit is odd, the fourth digit must be 2 or 6.
+ *  - Likewise, since the seventh digit is odd, the eigth digit must be 2 or 6.
+ *  - Hence, the second and sixth digits must be 4 or 8.
+ */
+
+long pow10(int n) {
+    int product = 1;
+    for (int i = 0; i &lt; n; i++)
+        product *= 10;
+    return product;
+}
+
+void pizzahut(int params) {
+    for (long i = pow10(9); i &lt;= 9999999990L; i += 10) {
+        // only check numbers where the fifth digit is a 5
+        if (i / 100000 % 10 != 5)
+            continue;
+
+        // only check numbers if the second, fourth, sixth and eighth digits are
+        // 2/4/6/8
+        for (int j = 0, places[] = {2, 4, 6, 8}; j &lt; 4; j++) {
+            int digit = i / pow10(10 - places[j]) % 10;
+            if (places[j] == 4 || places[j] == 8) {
+                if (digit != 2 &amp;&amp; digit != 6)
+                    goto nextCandidate;
+            } else if (places[j] == 2 || places[j] == 6)
+                if (digit != 4 &amp;&amp; digit != 8)
+                    goto nextCandidate;
+        }
+
+        // only check numbers if the first, third, seventh and ninth digits are
+        // 1/3/7/9
+        for (int j = 0, places[] = {1, 3, 7, 9}; j &lt; 4; j++) {
+            int digit = i / pow10(10 - places[j]) % 10;
+            if (digit != 1 &amp;&amp; digit != 3 &amp;&amp; digit != 7 &amp;&amp; digit != 9)
+                goto nextCandidate;
+        }
+
+        {
+            int digitsUsed[10] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+            // check the n-th digit's uniqueness and divisibility by 1..n
+            for (int numDigits = 1; numDigits &lt;= 10; numDigits++) {
+                long toCheck = i / pow10(10 - numDigits);
+
+                // check n-th the digit is not a repeat
+                int lastDigit = toCheck - (toCheck / 10) * 10, j;
+                for (j = 0; digitsUsed[j] != -1; j++)
+                    if (lastDigit == digitsUsed[j])
+                        goto nextCandidate;
+                digitsUsed[j] = lastDigit;
+
+                // check the first n digits form a number divisible by n
+                if (toCheck % numDigits != 0)
+                    goto nextCandidate;
+                else if (numDigits == 10) {
+                    printf("%ld\n", toCheck);
+                    if (params &gt; 1)  // search more answers if given parameter
+                        return;
+                }
+            }
+        }
+
+    nextCandidate:
+        continue;
+    }
+}
+
+int main(int argc, char **argv) {
+    pizzahut(argc);
+}
+</code></pre>
+
+<p>Good luck on solving the remaining two problems!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://blog.pizzahut.com/flavor-news/national-pi-day-math-contest-problems-are-here-2">http://blog.pizzahut.com/flavor-news/national-pi-day-math-contest-problems-are-here-2</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/C">#C</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/goto">#goto</a></li><li><a href="/tag/math">#math</a></li><li><a href="/tag/pi">#pi</a></li><li><a href="/tag/divisibility">#divisibility</a></li><li><a href="/tag/contest">#contest</a></li><li><a href="/tag/pizza">#pizza</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

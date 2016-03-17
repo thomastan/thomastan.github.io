@@ -51,6 +51,74 @@
     
   
     <div class="post single">
+      <div class="leftdate">Aug 24, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/operators-save-lines">How operators save lines</a></h3>
+
+        <p>Operators such as the <em>coälescing</em> (or <em>null-coälescing</em>) operator in Microsoft’s C# language are capable of saving you from unnecessary lines of code when writing if-then-else assignment code blocks.  In C# the operator is <code>??</code> and it’s also called the “double question mark” operator, but, unlike the ternary “single question mark operator” <code>?:</code>, <code>??</code> only takes two operands; a value to be assigned provided it isn’t <em>null</em>, and an alternative for when it is.</p>
+
+<p>An example in C#:</p>
+
+<pre><code>using System;
+
+class Cafeteria {
+    static void Main(string[] args) {
+        serve(null);
+    }
+
+    static void serve(string requested) {
+        string toServe = requested ?? "French Fries";
+        Console.WriteLine(toServe);
+    }
+}
+</code></pre>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'How operators save lines'" href="/post/operators-save-lines"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c-sharp">#c-sharp</a></li><li><a href="/tag/javascript">#javascript</a></li><li><a href="/tag/perl">#perl</a></li><li><a href="/tag/question-mark">#question-mark</a></li><li><a href="/tag/null-coalescing">#null-coalescing</a></li><li><a href="/tag/operator">#operator</a></li><li><a href="/tag/kiss">#kiss</a></li><li><a href="/tag/simple">#simple</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Aug 4, 2013</div>
+
+      <div class="wrapper">
+        <h3><a href="/post/simple-code">Writing simple code</a></h3>
+
+        <meta lang="en" translation="fr-CA" title="L'écriture de code simple" />
+
+<p>Complicated code is easy to write.  Simple code is hard to write.  How so?  Because “complicated” in this case doesn’t mean “complex” code, it means code that’s made unnecessarily complicated; obfuscated and harder to read and harder to understand.</p>
+
+<p>Below are two examples; one calculates the factorial $n!$, the other finds the greatest common divisor (GCD).  Both examples are done in a single line and show how things can be kept minimalistic.</p>
+
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'Writing simple code'" href="/post/simple-code"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/code">#code</a></li><li><a href="/tag/c">#c</a></li><li><a href="/tag/c++">#c++</a></li><li><a href="/tag/simple">#simple</a></li><li><a href="/tag/math">#math</a></li><li><a href="/tag/factorial">#factorial</a></li><li><a href="/tag/gcd">#gcd</a></li><li><a href="/tag/euclid">#euclid</a></li><li><a href="/tag/recursion">#recursion</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
       <div class="leftdate">Aug 3, 2013</div>
 
       <div class="wrapper">
@@ -333,77 +401,6 @@
         
         <ul class="tags">
           <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
-        </ul>
-        <div class="wrapper"><hr></div>
-      </div>
-    </div>
-  
-
-  
-    <div class="post single">
-      <div class="leftdate">Jun 9, 2013</div>
-
-      <div class="wrapper">
-        <h3><a href="/post/thesis-motivation">Motivation</a></h3>
-
-        <p>The Traveling Salesman Problem (TSP), of finding the shortest tour through $n$ cities, visiting each exactly once and finishing at the starting city, is classified as an $\mathcal{NP}$-hard problem whose solutions may require unfeasible computational resources or running times even for real-world instances. By its definition, a solution to a TSP instance is not just finding a ‘good’ tour, or one better than any previously known, but is the finding of the absolute shortest tour and determining that there is no better tour possible<sup id="fnref:gatech-lowerbounds"><a href="#fn:gatech-lowerbounds" class="footnote">1</a></sup>. Applications of the TSP in fields such as logistics, telecommunications routing and microchip manufacturing often lack the need to strictly satisfy these requirements and finding just ‘short’ feasible tours is often the case. The result has been the interest in, and development of large numbers of TSP heuristic methods that yield near-optimal results.</p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:gatech-lowerbounds">
-      <p>Wiliam Cook, <em><a href="http://www.tsp.gatech.edu/methods/opt/opt.htm">TSP Lower Bounds: Certifying Tour Quality</a></em> (May 2005). Georgia Institute of Technology, Atlanta GA, USA. <a href="#fnref:gatech-lowerbounds" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-
-        
-        
-        
-        <p class="read-more"><a title="Click to open the full article 'Motivation'" href="/post/thesis-motivation"><i>Continue reading...</i></a></p>
-        
-        <ul class="tags">
-          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/motivation">#motivation</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/traveling-salesman">#traveling-salesman</a></li><li><a href="/tag/algorithm">#algorithm</a></li><li><a href="/tag/algorithm-selection">#algorithm-selection</a></li><li><a href="/tag/asp">#asp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
-        </ul>
-        <div class="wrapper"><hr></div>
-      </div>
-    </div>
-  
-
-  
-    <div class="post single">
-      <div class="leftdate">Jun 9, 2013</div>
-
-      <div class="wrapper">
-        <h3><a href="/post/thesis-abstract">Abstract</a></h3>
-
-        <p>The Traveling Salesman Problem (TSP) is an $\mathcal{NP}$-hard problem easy to describe but difficult to solve.  Given $n$ cities, a salesman must complete a tour by visiting each city exactly once and then return to their starting city. Finding the shortest tour length is a <a href="http://en.wikipedia.org/wiki/combinatorial_optimization">combinatorial optimization</a> problem that traditional computational methods have difficulty with typically for large $n$.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>  The cause of problem difficulty is not a single problem-specific characteristic, but rather several characteristics of the problem <em>instances</em>.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup><sup>,</sup><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup><sup>,</sup><sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup></p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, <em><a href="en.tjcities.com/wp-content/uploads/Books/Algorithms_3rd.pdf">Introduction to Algorithms (3rd edition)</a></em>, (2009). MIT Press, Cambridge MA, USA. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>John R. Rice, <em><a href="http://docs.lib.purdue.edu/cstech/99">The Algorithm Selection Problem</a></em>, Computer Science Technical Reports, Paper 99 (1975). Purdue University, West Fayette IN, USA. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p>Kevin Leyton-Brown, Eugene Nudelman, Galen Andrew, Jim McFadden and Yoav Shoham, <em><a href="http://www.cs.ubc.ca/~kevinlb/papers/portfolio-IJCAI.pdf">A Portfolio Approach to Algorithm Selection</a></em>, International Joint Conferences on Artificial Intelligence (Proc. of 18th), pp. 1542-1543 (2003). <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:4">
-      <p>Peter Cheeseman, Bob Kanefsky and William M. Taylor, <em><a href="http://pic.plover.com/really-hard-NP-complete-problems.ps">Where the Really Hard Problems Are</a></em>, International Joint Conferences on Artificial Intelligence, Vol. 91, pp. 331-337 (1991). <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-
-        
-        
-        
-        <p class="read-more"><a title="Click to open the full article 'Abstract'" href="/post/thesis-abstract"><i>Continue reading...</i></a></p>
-        
-        <ul class="tags">
-          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/abstract">#abstract</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/traveling-salesman">#traveling-salesman</a></li><li><a href="/tag/algorithm">#algorithm</a></li><li><a href="/tag/algorithm-selection">#algorithm-selection</a></li><li><a href="/tag/asp">#asp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
         </ul>
         <div class="wrapper"><hr></div>
       </div>
