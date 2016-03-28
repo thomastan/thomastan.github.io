@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | Maximum subarray problem (Kadane's algorithm)</title>
+  <meta name="description" content="Kadane’s algorithm is used to solve the maximum subarray problem.  This is to find the contiguous subarray within a (1D) number array with the largest sum.">
+
+  <link rel="canonical" href="/post/maximum-subarray">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Oct 6, 2015
+  </div>
+
+  <div class="wrapper">
+    <h3>Maximum subarray problem (Kadane's algorithm)</h3>
+
+    <p>Kadane’s algorithm is used to solve the <em>maximum subarray problem</em>.  This is to find the contiguous subarray within a (1D) number array with the largest sum.</p>
+
+<!--more-->
+<p>Kadane’s algorithm works by scanning through the array, and at each number, calculating the maximum at that point using the maximum at the previous point.  The maximum at point $i$ is the bigger of the element itself and the sum of the element with the maximum at the previous point in the array.</p>
+
+<p>The maximum sum of the contiguous subarray is the maximum of the maximum reached at any point $i\in[0,n)$ ($i\in[1,n] for one-based indexing.)</p>
+
+<p>Python code to extract the maximum sum from the contiguous array is as follows:</p>
+
+<pre><code class="language-python">def maxSubarraySum(A):
+    maxAtIndex = maxSum = A[0]
+    for x in A[1:]:
+        maxAtIndex = max(x, maxAtIndex + x)
+        maxSum = max(maxSum, maxAtIndex)
+    return maxSum
+</code></pre>
+
+<p>To get the left and right indices of the subarray requires more work:</p>
+
+<ol>
+  <li>Initially, variables $L$ and $R$, the left and right respective indices of the contiguous subarray are initialized to the initial index.</li>
+  <li>Then, when scanning through the array, if the element at $i$ is bigger than the sum of the element with the maximum at the previous point, the current index needs to be saved as where the maximum contiguous subarray starts.  This is because the maximum sum cannot include anything to the left of $i$.</li>
+  <li>Before moving onto the next $i$, if the maximum at point $i$ is greater than the tracked maximum sum, the maximum sum gets updated with the maximum at point $i$, the ending index $R$ gets updated to $i$, and the starting index $L$ gets updated the the tracked index.</li>
+</ol>
+
+<p>A C++ implementation of a function that evaluates $L$ and $R$:</p>
+
+<pre><code>void maxSubarray(const vector&lt;int&gt; &amp;a, int &amp;left, int &amp;right) {
+    int maxAtIndex = a[0], maxSum = a[0];
+    int startHere = 0, left = 0, right = 0;
+
+    for (int i = 1; i &lt; a.size(); i++) {
+        if (a[i] &gt;= maxAtIndex + a[i])
+            maxAtIndex = a[i], startHere = i;
+        else
+            maxAtIndex = maxAtIndex + a[i];
+
+        if (maxSum &lt; maxAtIndex) {
+            maxSum = maxAtIndex;
+            right = i;
+            if (left &lt; startHere)
+                left = startHere;
+        }
+    }
+}
+</code></pre>
+
+<p>Kadane’s algorithm runs with $\mathcal{O}(n)$ complexity (in time, with $\mathcal{O}(1)$ complexity in space.)</p>
+
+<p>A more difficult but closely related problem is the <strong><a href="https://en.wikipedia.org/wiki/subset_sum_problem">subset sum problem</a></strong> (of finding a not-necessarily-contiguous subset summing to zero) which is $\mathcal{NP}$-complete.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/python">#python</a></li><li><a href="/tag/C++">#C++</a></li><li><a href="/tag/algorithms">#algorithms</a></li><li><a href="/tag/math">#math</a></li><li><a href="/tag/kadane">#kadane</a></li><li><a href="/tag/max">#max</a></li><li><a href="/tag/subarray">#subarray</a></li><li><a href="/tag/array">#array</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>

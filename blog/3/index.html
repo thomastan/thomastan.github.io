@@ -54,6 +54,64 @@
       <div class="leftdate">Jun 9, 2013</div>
 
       <div class="wrapper">
+        <h3><a href="/post/tsp">The Traveling Salesman Problem</a></h3>
+
+        
+<p><br></p>
+
+<h3 id="symbols-and-definitions-used">Symbols and definitions used</h3>
+
+<p>The TSP model<sup id="fnref:laporte"><a href="#fn:laporte" class="footnote">1</a></sup> consists of the input graph which can be either:</p>
+
+<ul>
+  <li>a complete undirected graph $G=(V,E)$</li>
+  <li>or a complete directed graph $G=(V,A)$</li>
+</ul>
+
+<p>where</p>
+
+<ul>
+  <li>$V=\{1,\ldots, n\}$ is the set of vertices or locations or ‘cities’,</li>
+  <li>$S$ is a non-empty proper subset of $V$,</li>
+  <li>$E=\{(i,j):i,j\in V,i&lt;j\}$ is the set of edges,</li>
+  <li>$A=\{(i,j):i,j\in V,i\ne j\}$ is the set of arcs,</li>
+  <li>$C=(c_{i,j})$ is the cost matrix defined on $E$ or $A$,</li>
+  <li>$k$ is the total cost of the tour,</li>
+</ul>
+
+<p>and tours are defined using $X_{i,j}=1$ when city $i$ is followed by city $j$ and 0 otherwise, subject to the constraints in $\eqref{eq:condition1}$, $\eqref{eq:condition2}$, $\eqref{eq:condition3}$ below.</p>
+
+<h3 id="description">Description</h3>
+
+<p>The Traveling Salesman Problem (TSP) is <em>described</em> as:</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:laporte">
+      <p>Gilbert Laporte, <em><a href="http://neumann.hec.ca/chairedistributique/common/laporte-short.pdf‎">A Short History of the Traveling Salesman Problem</a></em>. Canada Research Chair in Distribution Management, Centre for Research on Transportation (CRT) and GERAD HEC, Montréal QC, Canada (2006). <a href="#fnref:laporte" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+        
+        
+        <p class="read-more"><a title="Click to open the full article 'The Traveling Salesman Problem'" href="/post/tsp"><i>Continue reading...</i></a></p>
+        
+        <ul class="tags">
+          <li><a href="/tag/math">#math</a></li><li><a href="/tag/thesis">#thesis</a></li><li><a href="/tag/tsp">#tsp</a></li><li><a href="/tag/np">#np</a></li><li><a href="/tag/np-hard">#np-hard</a></li>
+        </ul>
+        <div class="wrapper"><hr></div>
+      </div>
+    </div>
+  
+
+  
+    <div class="post single">
+      <div class="leftdate">Jun 9, 2013</div>
+
+      <div class="wrapper">
         <h3><a href="/post/thesis-motivation">Motivation</a></h3>
 
         <p>The Traveling Salesman Problem (TSP), of finding the shortest tour through $n$ cities, visiting each exactly once and finishing at the starting city, is classified as an $\mathcal{NP}$-hard problem whose solutions may require unfeasible computational resources or running times even for real-world instances. By its definition, a solution to a TSP instance is not just finding a ‘good’ tour, or one better than any previously known, but is the finding of the absolute shortest tour and determining that there is no better tour possible<sup id="fnref:gatech-lowerbounds"><a href="#fn:gatech-lowerbounds" class="footnote">1</a></sup>. Applications of the TSP in fields such as logistics, telecommunications routing and microchip manufacturing often lack the need to strictly satisfy these requirements and finding just ‘short’ feasible tours is often the case. The result has been the interest in, and development of large numbers of TSP heuristic methods that yield near-optimal results.</p>

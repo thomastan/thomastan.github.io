@@ -5,8 +5,8 @@
     <description>my code, info, blog.</description>
     <link>http://thomastan.github.io/</link>
     <atom:link href="http://thomastan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 Mar 2016 02:06:34 -0700</pubDate>
-    <lastBuildDate>Thu, 17 Mar 2016 02:06:34 -0700</lastBuildDate>
+    <pubDate>Sun, 27 Mar 2016 20:02:45 -0700</pubDate>
+    <lastBuildDate>Sun, 27 Mar 2016 20:02:45 -0700</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta9</generator>
     
       <item>
@@ -104,6 +104,8 @@ int main(int argc, char **argv) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Note: the above C code makes use of the last sane reason to use the &lt;code&gt;goto&lt;/code&gt; jumping to break out of outer (for) loops.&lt;/p&gt;
+
 &lt;p&gt;Good luck on solving the remaining two problems!&lt;/p&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
@@ -115,8 +117,8 @@ int main(int argc, char **argv) {
 &lt;/div&gt;
 </description>
         <pubDate>Mon, 14 Mar 2016 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/quickselect</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/quickselect</guid>
+        <link>http://thomastan.github.io/post/pi-day</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/pi-day</guid>
         
         <category>code</category>
         
@@ -135,6 +137,88 @@ int main(int argc, char **argv) {
         <category>contest</category>
         
         <category>pizza</category>
+        
+        <category>pizzahut</category>
+        
+        
+        <category>post</category>
+        
+      </item>
+    
+      <item>
+        <title>Maximum subarray problem (Kadane&#39;s algorithm)</title>
+        <description>&lt;p&gt;Kadane’s algorithm is used to solve the &lt;em&gt;maximum subarray problem&lt;/em&gt;.  This is to find the contiguous subarray within a (1D) number array with the largest sum.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;p&gt;Kadane’s algorithm works by scanning through the array, and at each number, calculating the maximum at that point using the maximum at the previous point.  The maximum at point $i$ is the bigger of the element itself and the sum of the element with the maximum at the previous point in the array.&lt;/p&gt;
+
+&lt;p&gt;The maximum sum of the contiguous subarray is the maximum of the maximum reached at any point $i\in[0,n)$ ($i\in[1,n] for one-based indexing.)&lt;/p&gt;
+
+&lt;p&gt;Python code to extract the maximum sum from the contiguous array is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def maxSubarraySum(A):
+    maxAtIndex = maxSum = A[0]
+    for x in A[1:]:
+        maxAtIndex = max(x, maxAtIndex + x)
+        maxSum = max(maxSum, maxAtIndex)
+    return maxSum
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get the left and right indices of the subarray requires more work:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Initially, variables $L$ and $R$, the left and right respective indices of the contiguous subarray are initialized to the initial index.&lt;/li&gt;
+  &lt;li&gt;Then, when scanning through the array, if the element at $i$ is bigger than the sum of the element with the maximum at the previous point, the current index needs to be saved as where the maximum contiguous subarray starts.  This is because the maximum sum cannot include anything to the left of $i$.&lt;/li&gt;
+  &lt;li&gt;Before moving onto the next $i$, if the maximum at point $i$ is greater than the tracked maximum sum, the maximum sum gets updated with the maximum at point $i$, the ending index $R$ gets updated to $i$, and the starting index $L$ gets updated the the tracked index.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A C++ implementation of a function that evaluates $L$ and $R$:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void maxSubarray(const vector&amp;lt;int&amp;gt; &amp;amp;a, int &amp;amp;left, int &amp;amp;right) {
+    int maxAtIndex = a[0], maxSum = a[0];
+    int startHere = 0, left = 0, right = 0;
+
+    for (int i = 1; i &amp;lt; a.size(); i++) {
+        if (a[i] &amp;gt;= maxAtIndex + a[i])
+            maxAtIndex = a[i], startHere = i;
+        else
+            maxAtIndex = maxAtIndex + a[i];
+
+        if (maxSum &amp;lt; maxAtIndex) {
+            maxSum = maxAtIndex;
+            right = i;
+            if (left &amp;lt; startHere)
+                left = startHere;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kadane’s algorithm runs with $\mathcal{O}(n)$ complexity (in time, with $\mathcal{O}(1)$ complexity in space.)&lt;/p&gt;
+
+&lt;p&gt;A more difficult but closely related problem is the &lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/subset_sum_problem&quot;&gt;subset sum problem&lt;/a&gt;&lt;/strong&gt; (of finding a not-necessarily-contiguous subset summing to zero) which is $\mathcal{NP}$-complete.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 06 Oct 2015 00:00:00 -0700</pubDate>
+        <link>http://thomastan.github.io/post/maximum-subarray</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/maximum-subarray</guid>
+        
+        <category>code</category>
+        
+        <category>python</category>
+        
+        <category>C++</category>
+        
+        <category>algorithms</category>
+        
+        <category>math</category>
+        
+        <category>kadane</category>
+        
+        <category>max</category>
+        
+        <category>subarray</category>
+        
+        <category>array</category>
         
         
         <category>post</category>
@@ -251,6 +335,8 @@ int main() {
         <category>searching</category>
         
         <category>algorithms</category>
+        
+        <category>math</category>
         
         <category>recursion</category>
         
@@ -641,42 +727,6 @@ sub fromDoubling {
         <category>recursion</category>
         
         <category>searching</category>
-        
-        
-        <category>post</category>
-        
-      </item>
-    
-      <item>
-        <title>Swapping numbers without a temporary variable</title>
-        <description>&lt;p&gt;Most people do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;int temp;
-temp = a, a = b, b = temp;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;when you can do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;a ^= b ^= a ^= b;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Remember, &lt;a href=&quot;../tag/kiss&quot;&gt;KISS&lt;/a&gt; — keep it &lt;a href=&quot;writing-simple-code&quot;&gt;simple&lt;/a&gt;, stupid!&lt;/p&gt;
-</description>
-        <pubDate>Sat, 14 Sep 2013 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/swapping-without-temp</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/swapping-without-temp</guid>
-        
-        <category>code</category>
-        
-        <category>simple</category>
-        
-        <category>C</category>
-        
-        <category>kiss</category>
-        
-        <category>xor</category>
-        
-        <category>bitwise</category>
         
         
         <category>post</category>
