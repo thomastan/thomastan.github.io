@@ -5,9 +5,67 @@
     <description>my code, info, blog.</description>
     <link>http://thomastan.github.io/</link>
     <atom:link href="http://thomastan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Mar 2016 20:02:45 -0700</pubDate>
-    <lastBuildDate>Sun, 27 Mar 2016 20:02:45 -0700</lastBuildDate>
+    <pubDate>Wed, 13 Jul 2016 16:34:47 -0700</pubDate>
+    <lastBuildDate>Wed, 13 Jul 2016 16:34:47 -0700</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta9</generator>
+    
+      <item>
+        <title>C++11 Regular Expressions</title>
+        <description>&lt;p&gt;One of the exciting new features in C++11 (previously C++0x) is support for Regular Expressions (regex’s).&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Microsoft first added Regex support as a feature pack for Visual Studio 2008 by implementing (at the time) the proposed extensions of the C++ standard put forth in the C++ Standards Committee Technical Report 1 (TR1).  &lt;a href=&quot;http://boost.org&quot;&gt;Boost&lt;/a&gt; and &lt;a href=&quot;http://dinkumware.com&quot;&gt;Dinkumware&lt;/a&gt; also implemented the TR1 but support has now been finalized in C++11 compilers.&lt;/p&gt;
+
+&lt;p&gt;Regular expression support is provided by the C++11 provided &lt;code&gt;&amp;lt;regex&amp;gt;&lt;/code&gt; library header, and defaults to ECMAScript syntax.  However, &lt;em&gt;basic&lt;/em&gt;, &lt;em&gt;extended&lt;/em&gt;, &lt;em&gt;awk&lt;/em&gt;, &lt;em&gt;grep&lt;/em&gt; and &lt;em&gt;egrep&lt;/em&gt; syntax is also supported.&lt;/p&gt;
+
+&lt;p&gt;ECMAScript regex’s provide &lt;em&gt;lookahead&lt;/em&gt; support (but noteworthy is that ECMAScript does not provide regex support for its lookaround counterpart: &lt;em&gt;lookbehind&lt;/em&gt;).  The syntax for using a lookahead regex is &lt;code&gt;(?=regex)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We walk through an example with &lt;code&gt;a(?=b)c&lt;/code&gt; on the string &lt;code&gt;abcissa&lt;/code&gt;.  This regex traverses the string until &lt;code&gt;a&lt;/code&gt; is matched (at the start).  The next token is the lookahead.  When inside the lookahead construct, the regex engine matches the regex inside the lookahead, in this case &lt;code&gt;b&lt;/code&gt;.  The match from the lookahead is now discarded, so the engine steps back from &lt;code&gt;b&lt;/code&gt; in the string back to &lt;code&gt;a&lt;/code&gt;.  The lookahead was successful, so the engine continues with &lt;code&gt;c&lt;/code&gt;, but &lt;code&gt;c&lt;/code&gt; cannot match &lt;code&gt;b&lt;/code&gt;, so this match attempt fails.&lt;/p&gt;
+
+&lt;p&gt;Below is a code example of using a lookahead regex in C++11: to extract substrings starting with ‘o’ and ending with any letter other than a vowel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;regex&amp;gt;
+using namespace std;
+
+int main() {
+    string s = &quot;oook outside&quot;;
+    smatch m;
+    regex e(&quot;(?=(o+[^aeiou])).&quot;);
+
+    while (regex_search(s, m, e)) {
+        cout &amp;lt;&amp;lt; m[1] &amp;lt;&amp;lt; endl;
+        s = m.suffix();
+    }
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &lt;code&gt;smatch&lt;/code&gt; is an alias of &lt;code&gt;match_results&amp;lt;string::const_iterator&amp;gt;&lt;/code&gt; as &lt;code&gt;cmatch&lt;/code&gt; is an alias of &lt;code&gt;match_results&amp;lt;const char*&amp;gt;&lt;/code&gt;.  We extract &lt;code&gt;m[1]&lt;/code&gt; because when processing parentheses in the original the regex string (from left to right), the first opening parenthesis &lt;code&gt;(&lt;/code&gt; matches the lookahead construct, while the second matches the captured group.  The &lt;code&gt;.&lt;/code&gt; (period) at the end of the regex string is to manually bump the engine along by 1 character.  C++::regex gets its origins from boost::regex, but does &lt;strong&gt;&lt;em&gt;not&lt;/em&gt;&lt;/strong&gt; bump along itself.  Engines that don’t do this are susceptible to crashing as they enter infinite loops, which is undesirable.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 16 Jun 2016 00:00:00 -0700</pubDate>
+        <link>http://thomastan.github.io/post/c++-regex</link>
+        <guid isPermaLink="true">http://thomastan.github.io/post/c++-regex</guid>
+        
+        <category>code</category>
+        
+        <category>C</category>
+        
+        <category>C++</category>
+        
+        <category>C++11</category>
+        
+        <category>regular-expressions</category>
+        
+        <category>regex</category>
+        
+        
+        <category>post</category>
+        
+      </item>
     
       <item>
         <title>National π Day</title>
@@ -666,67 +724,6 @@ sub fromDoubling {
         <category>max</category>
         
         <category>min</category>
-        
-        
-        <category>post</category>
-        
-      </item>
-    
-      <item>
-        <title>A 20-year old binary search mistake</title>
-        <description>&lt;p&gt;Binary searching for a certain “key” within a sorted list involves looking at the “middle” element, then, if the key isn’t found, looking through either the first or second half of the list.  The binary searching process is repeated on the sublist.&lt;/p&gt;
-
-&lt;p&gt;The following implementation, previously used almost everywhere, had a mistake that evaded detection for 20 years:&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;pre&gt;&lt;code&gt;int binarySearch(int a[], int length, int key) {
-    int start = 0, middle, end = length - 1;
-
-    while (start &amp;lt;= end) {
-        middle = (start + end) / 2;
-
-        if (a[middle] == key)
-            return middle;
-        else if (key &amp;gt; a[middle])
-            start = middle + 1;
-        else if (key &amp;lt; a[middle])
-            end = middle - 1;
-    }
-
-    return -1;  /* the key wasn&#39;t found */
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The problem is in the calculation of &lt;code&gt;middle&lt;/code&gt; for certain sublists.  For sublists closer toward the right of the original list there is a chance of &lt;code&gt;(start + end)&lt;/code&gt; overflowing. The fix is to restrict calculation of &lt;code&gt;middle&lt;/code&gt; from going above &lt;code&gt;length&lt;/code&gt;, done by replacing&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;middle = (start + end) / 2;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;with&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;middle = start + (end - start) / 2;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now &lt;code&gt;middle&lt;/code&gt;, along with the intermediate calculation of it, is guaranteed to always be less than &lt;code&gt;length&lt;/code&gt;.  The use of a &lt;code&gt;middle&lt;/code&gt; to iteratively split the list in half means the complexity of binary search is $\mathcal{O}(\log_2 n)$.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 26 Sep 2013 00:00:00 -0700</pubDate>
-        <link>http://thomastan.github.io/post/binary-search-mistake</link>
-        <guid isPermaLink="true">http://thomastan.github.io/post/binary-search-mistake</guid>
-        
-        <category>code</category>
-        
-        <category>C</category>
-        
-        <category>mistakes</category>
-        
-        <category>max</category>
-        
-        <category>overflow</category>
-        
-        <category>recursion</category>
-        
-        <category>searching</category>
         
         
         <category>post</category>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Thomas Tan | C++11 Regular Expressions</title>
+  <meta name="description" content="One of the exciting new features in C++11 (previously C++0x) is support for Regular Expressions (regex’s).">
+
+  <link rel="canonical" href="/post/c++-regex">
+  <link rel="alternate" type="application/rss+xml" title="Thomas Tan | RSS" href="/feed.xml">
+  <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="alternate stylesheet" href="/css/style.css" title="default">
+  <link rel="alternate stylesheet" href="/css/dark.css" title="dark">
+  <script src="/css/switcher.js"></script>
+  <script>
+    setContrast(contrast);
+  </script>
+</head>
+
+<body>
+
+<div class="leftpad"></div>
+<div class="rightpad"></div>
+<div class="wrapper">
+
+  <div id="header">
+    <h1 id="logo"><a href="">Thomas Tan</a></h1>
+  </div>
+
+  <p class="blog-description">my code, info, blog.</p>
+
+  <div id="menu">
+    <span id="translator">
+      <img src="/globe.png" height="20px">
+      <select onchange="l10n(this)"></select>
+    </span>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/tag/code">Code</a>
+    <a href="/math">Math</a>
+    <a href="/engineering">Engineering</a>
+    <a href="/skills">Skills</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="post permalink">
+  <div class="leftdate">
+    Jun 16, 2016
+  </div>
+
+  <div class="wrapper">
+    <h3>C++11 Regular Expressions</h3>
+
+    <p>One of the exciting new features in C++11 (previously C++0x) is support for Regular Expressions (regex’s).</p>
+
+<!--more-->
+
+<p>Microsoft first added Regex support as a feature pack for Visual Studio 2008 by implementing (at the time) the proposed extensions of the C++ standard put forth in the C++ Standards Committee Technical Report 1 (TR1).  <a href="http://boost.org">Boost</a> and <a href="http://dinkumware.com">Dinkumware</a> also implemented the TR1 but support has now been finalized in C++11 compilers.</p>
+
+<p>Regular expression support is provided by the C++11 provided <code>&lt;regex&gt;</code> library header, and defaults to ECMAScript syntax.  However, <em>basic</em>, <em>extended</em>, <em>awk</em>, <em>grep</em> and <em>egrep</em> syntax is also supported.</p>
+
+<p>ECMAScript regex’s provide <em>lookahead</em> support (but noteworthy is that ECMAScript does not provide regex support for its lookaround counterpart: <em>lookbehind</em>).  The syntax for using a lookahead regex is <code>(?=regex)</code>.</p>
+
+<p>We walk through an example with <code>a(?=b)c</code> on the string <code>abcissa</code>.  This regex traverses the string until <code>a</code> is matched (at the start).  The next token is the lookahead.  When inside the lookahead construct, the regex engine matches the regex inside the lookahead, in this case <code>b</code>.  The match from the lookahead is now discarded, so the engine steps back from <code>b</code> in the string back to <code>a</code>.  The lookahead was successful, so the engine continues with <code>c</code>, but <code>c</code> cannot match <code>b</code>, so this match attempt fails.</p>
+
+<p>Below is a code example of using a lookahead regex in C++11: to extract substrings starting with ‘o’ and ending with any letter other than a vowel:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;regex&gt;
+using namespace std;
+
+int main() {
+    string s = "oook outside";
+    smatch m;
+    regex e("(?=(o+[^aeiou])).");
+
+    while (regex_search(s, m, e)) {
+        cout &lt;&lt; m[1] &lt;&lt; endl;
+        s = m.suffix();
+    }
+
+    return 0;
+}
+</code></pre>
+
+<p>Note that <code>smatch</code> is an alias of <code>match_results&lt;string::const_iterator&gt;</code> as <code>cmatch</code> is an alias of <code>match_results&lt;const char*&gt;</code>.  We extract <code>m[1]</code> because when processing parentheses in the original the regex string (from left to right), the first opening parenthesis <code>(</code> matches the lookahead construct, while the second matches the captured group.  The <code>.</code> (period) at the end of the regex string is to manually bump the engine along by 1 character.  C++::regex gets its origins from boost::regex, but does <strong><em>not</em></strong> bump along itself.  Engines that don’t do this are susceptible to crashing as they enter infinite loops, which is undesirable.</p>
+
+
+    <ul class="tags">
+      <li><a href="/tag/code">#code</a></li><li><a href="/tag/C">#C</a></li><li><a href="/tag/C++">#C++</a></li><li><a href="/tag/C++11">#C++11</a></li><li><a href="/tag/regular-expressions">#regular-expressions</a></li><li><a href="/tag/regex">#regex</a></li>
+    </ul>
+    <div><hr></div>
+  </div>
+</div>
+
+    <div id="footer">
+      <p>
+        <a href="/this-site">This site</a> has
+        been built, tested and modified for backwards compatibility with IE6.
+        © 2012 <a href="/contact">Thomas Tan</a>.
+        <a class="onright" href="javascript:changeContrast()">
+          <img title="Reduce contrast" src="/globe.png" height="20px">
+        </a>
+      </p>
+    </div> <!-- end footer -->
+
+  </div> <!-- end container -->
+</div> <!-- end wrapper -->
+
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+    TeX: { equationNumbers: { autoNumber: "AMS" } },
+    "HTML-CSS": { availableFonts: ["TeX"] },
+    menuSettings: { CHTMLpreview: false }
+  });
+</script>
+
+<script src="http://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+
+<script src="/mods.js"></script>
+<script src="/i18n.js"></script>
+
+<link href="/respond-proxy.html" id="respond-proxy">
+<script src="/respond.min.js"></script>
+<script src="/respond.proxy.js"></script>
+
+</body>
+
+</html>
